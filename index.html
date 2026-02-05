@@ -3,139 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JEAM ABBY KEITH PANGANIBAN 🩵</title>
+<title>For Abby 💖</title>
 
-<!-- Confetti library -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
 body{
     margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg,#ffe259,#ffa751);
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
     overflow:hidden;
 }
 
 /* Card */
 .card{
     background:white;
-    padding:25px;
+    padding:30px;
     border-radius:25px;
     text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
     width:90%;
     max-width:420px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 h1{ color:#ff4d6d; }
 
-/* Minion image */
-.minion{
-    width:220px;
-    margin:10px auto;
-    display:block;
-}
-
-/* Buttons */
 button{
-    padding:14px 28px;
+    padding:15px 28px;
     font-size:18px;
     border:none;
     border-radius:12px;
     margin:10px;
     cursor:pointer;
+    transition:0.3s;
 }
 
 #yes{ background:#ff4d6d; color:white; }
-#no{ background:#eee; position:absolute; }
-
-.bigText{
-    font-size:60px;
-    color:white;
-    text-align:center;
-}
+#no{ background:#ddd; position:absolute; }
 </style>
 </head>
 
-<body onclick="startMusic()">
+<body>
 
-<!-- Hidden YouTube Music Player -->
-<iframe id="music"
- width="0" height="0"
- src="https://www.youtube.com/embed/6m0qK7h-7tM?autoplay=1&mute=0&loop=1&playlist=6m0qK7h-7tM"
- allow="autoplay">
-</iframe>
-
-<div class="card" id="mainCard">
-    <h1>Will you be my Valentine? 💖</h1>
-
-    <!-- Minion holding heart -->
-    <img class="minion"
-    src="https://i.imgur.com/6M5135N.png">
-
-    <button id="yes" onclick="yesClicked()">YES 💘</button>
-    <button id="no"
-        onmouseover="moveNo()"
-        onclick="moveNo()">NO 😢</button>
+<div class="card">
+    <h1>Abby, will you be my Valentine? 💖</h1>
+    <div id="buttons">
+        <button id="yes" onclick="yesClicked()">YES 💘</button>
+        <button id="no" onmouseover="noEscape()" onclick="noEscape()">NO 😢</button>
+    </div>
 </div>
 
 <script>
-let attempts = 0;
+let scale = 1;
 
-/* Start music after first tap (mobile autoplay rule) */
-function startMusic(){
-    document.getElementById("music").style.display="block";
-}
+function noEscape(){
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
 
-/* NO button dodges */
-function moveNo(){
-    attempts++;
-    const btn = document.getElementById("no");
-    const x = Math.random()*(window.innerWidth-100);
-    const y = Math.random()*(window.innerHeight-50);
-    btn.style.left = x+"px";
-    btn.style.top = y+"px";
+    // Move NO randomly
+    noBtn.style.left = Math.random()*(window.innerWidth-100)+"px";
+    noBtn.style.top = Math.random()*(window.innerHeight-50)+"px";
 
-    if(attempts >= 5){
-        yesClicked();
+    // Shrink NO
+    scale -= 0.1;
+    noBtn.style.transform = `scale(${scale})`;
+
+    // Grow YES
+    yesBtn.style.transform = `scale(${1 + (1-scale)})`;
+
+    // Multiply YES buttons 😆
+    if(scale < 0.6){
+        const newYes = yesBtn.cloneNode(true);
+        newYes.innerHTML="YES 💘";
+        document.getElementById("buttons").appendChild(newYes);
+    }
+
+    // Delete NO forever 😂
+    if(scale <= 0.2){
+        noBtn.remove();
     }
 }
 
-/* YES clicked */
 function yesClicked(){
-    document.body.innerHTML =
-    "<div class='bigText'>YAYYY!! 💖</div>";
-    fireworkBurst();
+    document.body.innerHTML="<h1 style='font-size:60px;color:white;text-align:center;'>YAYYY!! 💖🥰</h1>";
+    fireworks();
 }
 
-/* Fireworks Confetti */
-function fireworkBurst(){
-    const duration = 4 * 1000;
+function fireworks(){
+    const duration = 3 * 1000;
     const end = Date.now() + duration;
 
-    (function frame() {
+    (function frame(){
         confetti({
-            particleCount: 5,
+            particleCount: 6,
             angle: 60,
-            spread: 55,
-            origin: { x: 0 }
+            spread: 70,
+            origin:{x:0}
         });
         confetti({
-            particleCount: 5,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1 }
+            particleCount: 6,
+            angle:120,
+            spread:70,
+            origin:{x:1}
         });
-
-        if (Date.now() < end) {
+        if(Date.now() < end){
             requestAnimationFrame(frame);
         }
-    }());
+    })();
 }
 </script>
+
 </body>
 </html>
