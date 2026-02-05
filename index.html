@@ -31,9 +31,12 @@ body{
 
 h1{ color:#ff4d6d; }
 
-.gif{
-    width:220px;
-    margin-bottom:10px;
+.gif{ width:220px; margin-bottom:10px; }
+
+#message{
+    font-size:18px;
+    color:#ff4d6d;
+    height:25px;
 }
 
 button{
@@ -48,22 +51,16 @@ button{
 
 #yes{ background:#ff4d6d; color:white; }
 #no{ background:#ddd; position:absolute; }
-
-.message{
-    max-width:600px;
-    margin:auto;
-    color:white;
-    text-align:center;
-    padding:30px;
-}
 </style>
 </head>
 
 <body>
 
 <div class="card">
-    <img class="gif" src="https://media.tenor.com/7KQ6dY6Z9GQAAAAi/bubbu-dubbu-cupid.gif">
+    <img class="gif" src="https://media.tenor.com/QC8i0QkR0XkAAAAi/bubbu-dubbu-cupid.gif">
     <h1>Abby, will you be my Valentine? 💖</h1>
+
+    <div id="message"></div>
 
     <div id="buttons">
         <button id="yes" onclick="yesClicked()">YES 💘</button>
@@ -73,33 +70,47 @@ button{
 
 <script>
 let scale = 1;
+let tries = 0;
+
+const messages = [
+"Please? 🥺",
+"I'll be sad...",
+"You're breaking my heart 💔",
+"Pretty please?",
+"Don't do this to me 😭",
+"Just press YES ❤️",
+"You're supposed to click YES 😤"
+];
 
 function noEscape(){
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
 
+    // show desperate message
+    document.getElementById("message").innerText = messages[tries % messages.length];
+    tries++;
+
+    // move NO randomly
     noBtn.style.left = Math.random()*(window.innerWidth-100)+"px";
     noBtn.style.top = Math.random()*(window.innerHeight-50)+"px";
 
+    // shrink NO + grow YES
     scale -= 0.1;
     noBtn.style.transform = `scale(${scale})`;
     yesBtn.style.transform = `scale(${1 + (1-scale)})`;
 
-    if(scale < 0.6){
-        const newYes = yesBtn.cloneNode(true);
-        document.getElementById("buttons").appendChild(newYes);
-    }
-
+    // remove NO forever 😂
     if(scale <= 0.2){
         noBtn.remove();
+        document.getElementById("message").innerText = "Okay fine 😭 just click YES ❤️";
     }
 }
 
 function yesClicked(){
     document.body.innerHTML=`
-    <div class="message">
+    <div style="color:white;text-align:center;padding:30px;">
         <h1 style="font-size:60px;">YAYYY!! 💖🥰</h1>
-        <p style="font-size:22px; line-height:1.8;">
+        <p style="font-size:22px;line-height:1.8;">
         Surprise 💌<br><br>
         I made this little website just to ask you something special.
         You make my days brighter, my nights happier,
