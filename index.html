@@ -6,80 +6,93 @@
 <title>For Abby 💖</title>
 
 <style>
+/* 🌌 NIGHT SKY BACKGROUND */
 body {
   margin: 0;
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
-
-  background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop") no-repeat center center fixed;
-  background-size: cover;
+  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #090a0f 100%);
 }
 
-body::before {
-  content: "";
+/* Stars layer */
+.stars {
   position: fixed;
-  inset: 0;
-  background: linear-gradient(120deg,
-    rgba(255,120,180,0.35),
-    rgba(120,180,255,0.35)
-  );
-  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/star.png') repeat;
+  animation: moveStars 200s linear infinite;
 }
 
-/* Main card */
+@keyframes moveStars {
+  from {background-position: 0 0;}
+  to {background-position: -10000px 5000px;}
+}
+
+/* 🌠 METEORS */
+.meteor {
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(white, transparent);
+  opacity: 0;
+  transform: rotate(45deg);
+  animation: meteor 6s linear infinite;
+}
+
+@keyframes meteor {
+  0% {opacity:0; transform: translateY(0) translateX(0) rotate(45deg);}
+  10% {opacity:1;}
+  100% {opacity:0; transform: translateY(800px) translateX(-800px) rotate(45deg);}
+}
+
+/* 💎 Glass Card */
 .card {
+  position: relative;
   text-align: center;
   padding: 40px;
   border-radius: 20px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
   color: white;
   width: fit-content;
   margin: 15vh auto;
+  z-index: 2;
 }
 
-h1 {
-  font-size: 2.5rem;
-  text-shadow: 0 0 10px white, 0 0 25px pink;
-}
+h1 { font-size: 2.5rem; text-shadow: 0 0 15px pink; }
 
-/* Buttons */
 button {
   padding: 12px 25px;
   font-size: 18px;
-  border: none;
   border-radius: 30px;
+  border: none;
   margin: 10px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 #yesBtn {
   background: linear-gradient(45deg,#ff7eb3,#ff758c);
-  color: white;
-  box-shadow: 0 0 15px rgba(255,120,180,0.8);
+  color:white;
+  box-shadow:0 0 20px pink;
 }
+#yesBtn:hover { transform: scale(1.15); }
 
-#yesBtn:hover {
-  transform: scale(1.15);
-}
+#noBtn { background:#ffffffcc; }
 
-#noBtn { background: #ffffffcc; }
-
-/* Hearts animation */
+/* hearts */
 .heart {
   position: fixed;
   font-size: 24px;
   animation: floatUp 2s linear forwards;
 }
 @keyframes floatUp {
-  0% { opacity:1; transform: translateY(0); }
-  100% { opacity:0; transform: translateY(-200px); }
+  0%{opacity:1; transform: translateY(0);}
+  100%{opacity:0; transform: translateY(-200px);}
 }
 
-/* Surprise message screen 💖 */
+/* surprise screen */
 #surprise {
   position: fixed;
   inset: 0;
@@ -88,18 +101,23 @@ button {
   align-items: center;
   text-align: center;
   color: white;
-  background: rgba(0,0,0,0.4);
   backdrop-filter: blur(10px);
+  z-index: 3;
 }
-
-#surprise h2 {
-  font-size: 3rem;
-  text-shadow: 0 0 15px pink;
-}
+#surprise h2 { font-size: 3rem; text-shadow: 0 0 20px pink; }
 </style>
 </head>
 
 <body>
+
+<!-- Stars -->
+<div class="stars"></div>
+
+<!-- Meteors -->
+<div class="meteor" style="top:10%; left:80%; animation-delay:0s"></div>
+<div class="meteor" style="top:20%; left:60%; animation-delay:2s"></div>
+<div class="meteor" style="top:0%; left:40%; animation-delay:4s"></div>
+<div class="meteor" style="top:15%; left:20%; animation-delay:6s"></div>
 
 <div class="card" id="mainCard">
   <h1>Abby, will you be my Valentine? 💖</h1>
@@ -107,12 +125,10 @@ button {
   <button id="noBtn">NO 😭</button>
 </div>
 
-<!-- Surprise message -->
 <div id="surprise">
   <div>
-    <h2>I KNEW IT!! 😭💖</h2>
-    <p>You just made me the happiest person alive.<br>
-    I love you so much Abby 💞</p>
+    <h2>You said YES 😭💖</h2>
+    <p>I love you so much Abby.<br>You make my universe brighter 🌌</p>
   </div>
 </div>
 
@@ -122,36 +138,32 @@ const noBtn = document.getElementById("noBtn");
 noBtn.addEventListener("mouseover", moveButton);
 noBtn.addEventListener("click", moveButton);
 function moveButton() {
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
-  noBtn.style.position = "absolute";
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+  const x = Math.random()*(window.innerWidth-100);
+  const y = Math.random()*(window.innerHeight-50);
+  noBtn.style.position="absolute";
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
 }
 
-// YES clicked → hearts + surprise screen
-const yesBtn = document.getElementById("yesBtn");
-const surprise = document.getElementById("surprise");
-const mainCard = document.getElementById("mainCard");
+// YES click
+const yesBtn=document.getElementById("yesBtn");
+const surprise=document.getElementById("surprise");
+const mainCard=document.getElementById("mainCard");
 
-yesBtn.addEventListener("click", () => {
-
-  // floating hearts
-  for (let i = 0; i < 30; i++) {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.top = window.innerHeight - 50 + "px";
+yesBtn.addEventListener("click",()=>{
+  for(let i=0;i<30;i++){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*window.innerWidth+"px";
+    heart.style.top=window.innerHeight-50+"px";
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 2000);
+    setTimeout(()=>heart.remove(),2000);
   }
-
-  // show surprise message
-  setTimeout(() => {
-    mainCard.style.display = "none";
-    surprise.style.display = "flex";
-  }, 800);
+  setTimeout(()=>{
+    mainCard.style.display="none";
+    surprise.style.display="flex";
+  },800);
 });
 </script>
 
