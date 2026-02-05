@@ -19,7 +19,7 @@ body{
     background: radial-gradient(circle at bottom, #081229, #000814);
 }
 
-/* STAR FIELD */
+/* twinkling stars */
 .star{
     position:absolute;
     background:white;
@@ -28,41 +28,20 @@ body{
 }
 @keyframes twinkle{ from{opacity:.2;} to{opacity:1;} }
 
-/* COMET TIAMAT */
-.cometTiamat{
-    position:absolute;
-    width:200%;
-    height:220px;
-    background: linear-gradient(90deg,
-        rgba(255,255,255,0),
-        rgba(130,210,255,0.9),
-        rgba(255,170,220,1),
-        rgba(130,210,255,0.9),
-        rgba(255,255,255,0));
-    filter: blur(35px);
-    transform: rotate(-18deg);
-    top:25%;
-    left:-40%;
-    opacity:0;
-    animation: cometAppear 3s forwards;
-}
-@keyframes cometAppear{
-    from{ opacity:0; transform:translateX(300px) rotate(-18deg); }
-    to{ opacity:0.9; transform:translateX(0) rotate(-18deg); }
-}
-
-/* Meteors */
+/* METEOR SHOWER */
 .meteor{
     position:absolute;
     width:3px;
-    height:140px;
-    background: linear-gradient(-45deg, white, rgba(255,255,255,0));
+    height:120px;
+    background: linear-gradient(-45deg, #fff, rgba(255,255,255,0));
     transform: rotate(45deg);
+    opacity:0;
     animation: meteorFall linear forwards;
 }
+
 @keyframes meteorFall{
-    0%{ transform:translate(0,0) rotate(45deg); opacity:1;}
-    100%{ transform:translate(-1200px,1200px) rotate(45deg); opacity:0;}
+    0%{ transform:translate(0,0) rotate(45deg); opacity:1; }
+    100%{ transform:translate(-1200px,1200px) rotate(45deg); opacity:0; }
 }
 
 /* Card */
@@ -116,8 +95,8 @@ button{
 </div>
 
 <script>
-/* STAR BACKGROUND ALWAYS */
-for(let i=0;i<180;i++){
+/* Create background stars */
+for(let i=0;i<150;i++){
     const star=document.createElement("div");
     star.classList.add("star");
     star.style.width=Math.random()*3+"px";
@@ -127,7 +106,18 @@ for(let i=0;i<180;i++){
     document.body.appendChild(star);
 }
 
-/* NO BUTTON DRAMA */
+/* METEOR SHOWER generator 🌠 */
+setInterval(()=>{
+    const meteor=document.createElement("div");
+    meteor.classList.add("meteor");
+    meteor.style.left=Math.random()*100+"vw";
+    meteor.style.top=Math.random()*40+"vh";
+    meteor.style.animationDuration=(Math.random()*1.5+1.2)+"s";
+    document.body.appendChild(meteor);
+    setTimeout(()=>meteor.remove(),2000);
+},300);
+
+/* NO button drama */
 let scale=1, tries=0;
 const messages=[
 "Please? 🥺","I'll be sad...","You're breaking my heart 💔",
@@ -154,29 +144,17 @@ function noEscape(){
     if(scale<=0.2){ noBtn.remove(); msg.innerText="Okay fine 😭 click YES ❤️"; }
 }
 
-/* YES CLICKED → COMET TIAMAT + METEOR SHOWER */
 function yesClicked(){
-    document.body.innerHTML+=`<div class="cometTiamat"></div>`;
-    startMeteorShower();
-    fireworks();
-
-    document.body.innerHTML+=`
-    <div style="color:white;text-align:center;position:absolute;top:40%;width:100%;">
+    document.body.innerHTML=`
+    <div style="color:white;text-align:center;padding:30px;">
         <h1 style="font-size:60px;">YAYYY!! 💖🥰</h1>
-        <p style="font-size:22px;">You just made me the happiest ❤️</p>
+        <p style="font-size:22px;line-height:1.8;">
+        Surprise 💌<br><br>
+        I made this just for you.
+        You make my days brighter and my heart happier ❤️
+        </p>
     </div>`;
-}
-
-function startMeteorShower(){
-    setInterval(()=>{
-        const meteor=document.createElement("div");
-        meteor.classList.add("meteor");
-        meteor.style.left=Math.random()*100+"vw";
-        meteor.style.top=Math.random()*40+"vh";
-        meteor.style.animationDuration=(Math.random()*1.5+1.2)+"s";
-        document.body.appendChild(meteor);
-        setTimeout(()=>meteor.remove(),2000);
-    },250);
+    fireworks();
 }
 
 function fireworks(){
