@@ -5,182 +5,183 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Abby 💖</title>
 
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 <style>
 body{
-  margin:0;
-  min-height:100vh;
-  font-family:Poppins, sans-serif;
-  overflow:hidden;
-  background: radial-gradient(ellipse at bottom,#0d1d31 0%,#090a0f 100%);
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow:hidden;
+    background: radial-gradient(circle at bottom, #081229, #02030a 70%);
+}
+
+/* COMET BAND (Your Name style) */
+.cometBand{
+    position:absolute;
+    width:200%;
+    height:180px;
+    background: linear-gradient(90deg,
+        rgba(255,255,255,0),
+        rgba(140,200,255,0.8),
+        rgba(255,180,220,0.9),
+        rgba(140,200,255,0.8),
+        rgba(255,255,255,0));
+    filter: blur(25px);
+    transform: rotate(-20deg);
+    top:20%;
+    left:-30%;
+    opacity:0.7;
 }
 
 /* Stars */
-.stars{
-  position:fixed;
-  width:100%; height:100%;
-  background:url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/star.png') repeat;
-  animation:moveStars 200s linear infinite;
+.star{
+    position:absolute;
+    background:white;
+    border-radius:50%;
+    animation: twinkle 2s infinite alternate;
 }
-@keyframes moveStars{from{background-position:0 0;} to{background-position:-10000px 5000px;}}
+@keyframes twinkle{ from{opacity:.2;} to{opacity:1;} }
 
 /* Meteors */
 .meteor{
-  position:absolute;
-  width:2px; height:80px;
-  background:linear-gradient(white,transparent);
-  transform:rotate(45deg);
-  animation:meteor 6s linear infinite;
+    position:absolute;
+    width:3px;
+    height:140px;
+    background: linear-gradient(-45deg, white, rgba(255,255,255,0));
+    transform: rotate(45deg);
+    animation: meteorFall linear forwards;
 }
-@keyframes meteor{
-  0%{opacity:0; transform:translateY(0) translateX(0) rotate(45deg);}
-  10%{opacity:1;}
-  100%{opacity:0; transform:translateY(800px) translateX(-800px) rotate(45deg);}
+@keyframes meteorFall{
+    0%{ transform:translate(0,0) rotate(45deg); opacity:1;}
+    100%{ transform:translate(-1200px,1200px) rotate(45deg); opacity:0;}
 }
 
 /* Card */
 .card{
-  position:relative;
-  text-align:center;
-  padding:40px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.1);
-  backdrop-filter:blur(12px);
-  color:white;
-  width:fit-content;
-  margin:15vh auto;
-  z-index:2;
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    width:90%;
+    max-width:420px;
+    z-index:2;
 }
-h1{font-size:2.5rem; text-shadow:0 0 20px pink;}
+
+h1{ color:#ff4d6d; }
+.gif{ width:220px; margin-bottom:10px; }
+
+#floatingMsg{
+    position:absolute;
+    color:#ff4d6d;
+    font-size:18px;
+    font-weight:bold;
+    pointer-events:none;
+}
 
 button{
-  padding:12px 25px;
-  font-size:18px;
-  border-radius:30px;
-  border:none;
-  margin:10px;
-  cursor:pointer;
+    padding:15px 28px;
+    font-size:18px;
+    border:none;
+    border-radius:12px;
+    margin:10px;
+    cursor:pointer;
 }
-
-#yesBtn{
-  background:linear-gradient(45deg,#ff7eb3,#ff758c);
-  color:white;
-  box-shadow:0 0 20px pink;
-}
-#yesBtn:hover{transform:scale(1.15);}
-
-#noBtn{background:#ffffffcc; position:relative}
-
-/* hearts */
-.heart{
-  position:fixed;
-  font-size:24px;
-  animation:floatUp 2s linear forwards;
-}
-@keyframes floatUp{
-  0%{opacity:1; transform:translateY(0);}
-  100%{opacity:0; transform:translateY(-200px);}
-}
-
-/* begging text */
-#beg{
-  margin-top:10px;
-  font-size:18px;
-  color:#ffd1e6;
-}
-
-/* surprise screen */
-#surprise{
-  position:fixed;
-  inset:0;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:white;
-  backdrop-filter:blur(10px);
-  z-index:3;
-}
-#surprise h2{font-size:3rem;}
+#yes{ background:#ff4d6d; color:white; }
+#no{ background:#ddd; position:absolute; }
 </style>
 </head>
 
 <body>
 
-<div class="stars"></div>
-<div class="meteor" style="top:10%; left:80%; animation-delay:0s"></div>
-<div class="meteor" style="top:20%; left:60%; animation-delay:2s"></div>
-<div class="meteor" style="top:0%; left:40%; animation-delay:4s"></div>
+<div class="cometBand"></div>
+<div id="floatingMsg"></div>
 
-<div class="card" id="mainCard">
-  <h1>Abby, will you be my Valentine? 💖</h1>
-  <button id="yesBtn">YES 💕</button>
-  <button id="noBtn">NO 😭</button>
-  <div id="beg">Hover the NO button 😭</div>
-</div>
+<div class="card">
+    <img class="gif" src="https://media.tenor.com/QC8i0QkR0XkAAAAi/bubbu-dubbu-cupid.gif">
+    <h1>will you be my valentine, jeam abby keith panganiban? 💖</h1>
 
-<div id="surprise">
-  <div>
-    <h2>You said YES 😭💖</h2>
-    <p>I love you so much Abby.<br>You make my universe brighter 🌌</p>
-  </div>
+    <div id="buttons">
+        <button id="yes" onclick="yesClicked()">YES 💘</button>
+        <button id="no" onmouseover="noEscape()" onclick="noEscape()">NO 😢</button>
+    </div>
 </div>
 
 <script>
-/* Desperate messages */
-const messages=[
-"please 😭",
-"don't break my heart 💔",
-"I'll be sad…",
-"are you sure??",
-"give me a chance 🥺",
-"pretty please 💖",
-"last chance 😭",
-"I bought flowers 💐",
-"I'll cry 😢",
-"NO button is broken 😭"
-];
-
-let speed=1;
-const beg=document.getElementById("beg");
-const noBtn=document.getElementById("noBtn");
-
-function moveButton(){
-  const x=Math.random()*(window.innerWidth-120);
-  const y=Math.random()*(window.innerHeight-80);
-  noBtn.style.position="absolute";
-  noBtn.style.left=x+"px";
-  noBtn.style.top=y+"px";
-
-  // panic mode increase
-  speed+=0.3;
-  noBtn.style.transform="scale("+speed+")";
-
-  beg.innerHTML=messages[Math.floor(Math.random()*messages.length)];
+/* Stars */
+for(let i=0;i<180;i++){
+    const star=document.createElement("div");
+    star.classList.add("star");
+    star.style.width=Math.random()*3+"px";
+    star.style.height=star.style.width;
+    star.style.top=Math.random()*100+"vh";
+    star.style.left=Math.random()*100+"vw";
+    document.body.appendChild(star);
 }
 
-noBtn.addEventListener("mouseover",moveButton);
-noBtn.addEventListener("click",moveButton);
+/* Meteor shower */
+setInterval(()=>{
+    const meteor=document.createElement("div");
+    meteor.classList.add("meteor");
+    meteor.style.left=Math.random()*100+"vw";
+    meteor.style.top=Math.random()*40+"vh";
+    meteor.style.animationDuration=(Math.random()*1.5+1.2)+"s";
+    document.body.appendChild(meteor);
+    setTimeout(()=>meteor.remove(),2000);
+},300);
 
-/* YES click hearts + surprise */
-const yesBtn=document.getElementById("yesBtn");
-const surprise=document.getElementById("surprise");
-const mainCard=document.getElementById("mainCard");
+/* NO button drama */
+let scale=1, tries=0;
+const messages=[
+"Please? 🥺","I'll be sad...","You're breaking my heart 💔",
+"Pretty please?","Don't do this 😭","Just press YES ❤️"
+];
 
-yesBtn.addEventListener("click",()=>{
-  for(let i=0;i<30;i++){
-    const heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="💖";
-    heart.style.left=Math.random()*window.innerWidth+"px";
-    heart.style.top=window.innerHeight-50+"px";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),2000);
-  }
-  setTimeout(()=>{
-    mainCard.style.display="none";
-    surprise.style.display="flex";
-  },800);
-});
+function noEscape(){
+    const noBtn=document.getElementById("no");
+    const yesBtn=document.getElementById("yes");
+    const msg=document.getElementById("floatingMsg");
+
+    const x=Math.random()*(window.innerWidth-100);
+    const y=Math.random()*(window.innerHeight-50);
+    noBtn.style.left=x+"px"; noBtn.style.top=y+"px";
+
+    msg.innerText=messages[tries%messages.length];
+    msg.style.left=(x-20)+"px"; msg.style.top=(y-30)+"px";
+    tries++;
+
+    scale-=0.1;
+    noBtn.style.transform=`scale(${scale})`;
+    yesBtn.style.transform=`scale(${1+(1-scale)})`;
+
+    if(scale<=0.2){ noBtn.remove(); msg.innerText="Okay fine 😭 click YES ❤️"; }
+}
+
+function yesClicked(){
+    document.body.innerHTML=`
+    <div style="color:white;text-align:center;padding:30px;">
+        <h1 style="font-size:60px;">YAYYY!! 💖🥰</h1>
+        <p style="font-size:22px;line-height:1.8;">
+        Surprise 💌<br><br>
+        I made this just for you.
+        You make my days brighter and my heart happier ❤️
+        </p>
+    </div>`;
+    fireworks();
+}
+
+function fireworks(){
+    const end=Date.now()+3000;
+    (function frame(){
+        confetti({particleCount:6,angle:60,spread:70,origin:{x:0}});
+        confetti({particleCount:6,angle:120,spread:70,origin:{x:1}});
+        if(Date.now()<end) requestAnimationFrame(frame);
+    })();
+}
 </script>
 
 </body>
