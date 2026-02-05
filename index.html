@@ -6,123 +6,116 @@
 <title>For Abby 💖</title>
 
 <style>
-/* 🌌 NIGHT SKY BACKGROUND */
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #090a0f 100%);
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Poppins, sans-serif;
+  overflow:hidden;
+  background: radial-gradient(ellipse at bottom,#0d1d31 0%,#090a0f 100%);
 }
 
-/* Stars layer */
-.stars {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/star.png') repeat;
-  animation: moveStars 200s linear infinite;
+/* Stars */
+.stars{
+  position:fixed;
+  width:100%; height:100%;
+  background:url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/star.png') repeat;
+  animation:moveStars 200s linear infinite;
+}
+@keyframes moveStars{from{background-position:0 0;} to{background-position:-10000px 5000px;}}
+
+/* Meteors */
+.meteor{
+  position:absolute;
+  width:2px; height:80px;
+  background:linear-gradient(white,transparent);
+  transform:rotate(45deg);
+  animation:meteor 6s linear infinite;
+}
+@keyframes meteor{
+  0%{opacity:0; transform:translateY(0) translateX(0) rotate(45deg);}
+  10%{opacity:1;}
+  100%{opacity:0; transform:translateY(800px) translateX(-800px) rotate(45deg);}
 }
 
-@keyframes moveStars {
-  from {background-position: 0 0;}
-  to {background-position: -10000px 5000px;}
+/* Card */
+.card{
+  position:relative;
+  text-align:center;
+  padding:40px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(12px);
+  color:white;
+  width:fit-content;
+  margin:15vh auto;
+  z-index:2;
+}
+h1{font-size:2.5rem; text-shadow:0 0 20px pink;}
+
+button{
+  padding:12px 25px;
+  font-size:18px;
+  border-radius:30px;
+  border:none;
+  margin:10px;
+  cursor:pointer;
 }
 
-/* 🌠 METEORS */
-.meteor {
-  position: absolute;
-  width: 2px;
-  height: 80px;
-  background: linear-gradient(white, transparent);
-  opacity: 0;
-  transform: rotate(45deg);
-  animation: meteor 6s linear infinite;
-}
-
-@keyframes meteor {
-  0% {opacity:0; transform: translateY(0) translateX(0) rotate(45deg);}
-  10% {opacity:1;}
-  100% {opacity:0; transform: translateY(800px) translateX(-800px) rotate(45deg);}
-}
-
-/* 💎 Glass Card */
-.card {
-  position: relative;
-  text-align: center;
-  padding: 40px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-  color: white;
-  width: fit-content;
-  margin: 15vh auto;
-  z-index: 2;
-}
-
-h1 { font-size: 2.5rem; text-shadow: 0 0 15px pink; }
-
-button {
-  padding: 12px 25px;
-  font-size: 18px;
-  border-radius: 30px;
-  border: none;
-  margin: 10px;
-  cursor: pointer;
-}
-
-#yesBtn {
-  background: linear-gradient(45deg,#ff7eb3,#ff758c);
+#yesBtn{
+  background:linear-gradient(45deg,#ff7eb3,#ff758c);
   color:white;
   box-shadow:0 0 20px pink;
 }
-#yesBtn:hover { transform: scale(1.15); }
+#yesBtn:hover{transform:scale(1.15);}
 
-#noBtn { background:#ffffffcc; }
+#noBtn{background:#ffffffcc; position:relative}
 
 /* hearts */
-.heart {
-  position: fixed;
-  font-size: 24px;
-  animation: floatUp 2s linear forwards;
+.heart{
+  position:fixed;
+  font-size:24px;
+  animation:floatUp 2s linear forwards;
 }
-@keyframes floatUp {
-  0%{opacity:1; transform: translateY(0);}
-  100%{opacity:0; transform: translateY(-200px);}
+@keyframes floatUp{
+  0%{opacity:1; transform:translateY(0);}
+  100%{opacity:0; transform:translateY(-200px);}
+}
+
+/* begging text */
+#beg{
+  margin-top:10px;
+  font-size:18px;
+  color:#ffd1e6;
 }
 
 /* surprise screen */
-#surprise {
-  position: fixed;
-  inset: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  backdrop-filter: blur(10px);
-  z-index: 3;
+#surprise{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  backdrop-filter:blur(10px);
+  z-index:3;
 }
-#surprise h2 { font-size: 3rem; text-shadow: 0 0 20px pink; }
+#surprise h2{font-size:3rem;}
 </style>
 </head>
 
 <body>
 
-<!-- Stars -->
 <div class="stars"></div>
-
-<!-- Meteors -->
 <div class="meteor" style="top:10%; left:80%; animation-delay:0s"></div>
 <div class="meteor" style="top:20%; left:60%; animation-delay:2s"></div>
 <div class="meteor" style="top:0%; left:40%; animation-delay:4s"></div>
-<div class="meteor" style="top:15%; left:20%; animation-delay:6s"></div>
 
 <div class="card" id="mainCard">
   <h1>Abby, will you be my Valentine? 💖</h1>
   <button id="yesBtn">YES 💕</button>
   <button id="noBtn">NO 😭</button>
+  <div id="beg">Hover the NO button 😭</div>
 </div>
 
 <div id="surprise">
@@ -133,19 +126,42 @@ button {
 </div>
 
 <script>
-// NO button runs away
-const noBtn = document.getElementById("noBtn");
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("click", moveButton);
-function moveButton() {
-  const x = Math.random()*(window.innerWidth-100);
-  const y = Math.random()*(window.innerHeight-50);
+/* Desperate messages */
+const messages=[
+"please 😭",
+"don't break my heart 💔",
+"I'll be sad…",
+"are you sure??",
+"give me a chance 🥺",
+"pretty please 💖",
+"last chance 😭",
+"I bought flowers 💐",
+"I'll cry 😢",
+"NO button is broken 😭"
+];
+
+let speed=1;
+const beg=document.getElementById("beg");
+const noBtn=document.getElementById("noBtn");
+
+function moveButton(){
+  const x=Math.random()*(window.innerWidth-120);
+  const y=Math.random()*(window.innerHeight-80);
   noBtn.style.position="absolute";
   noBtn.style.left=x+"px";
   noBtn.style.top=y+"px";
+
+  // panic mode increase
+  speed+=0.3;
+  noBtn.style.transform="scale("+speed+")";
+
+  beg.innerHTML=messages[Math.floor(Math.random()*messages.length)];
 }
 
-// YES click
+noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener("click",moveButton);
+
+/* YES click hearts + surprise */
 const yesBtn=document.getElementById("yesBtn");
 const surprise=document.getElementById("surprise");
 const mainCard=document.getElementById("mainCard");
