@@ -2,186 +2,96 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>For Abby ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Abby 💖</title>
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow:hidden;
-    background: radial-gradient(circle at bottom, #081229, #02030a 70%);
-}
+    body {
+        margin:0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        color:#fff;
+    }
 
-/* COMET BAND (Your Name style) */
-.cometBand{
-    position:absolute;
-    width:200%;
-    height:180px;
-    background: linear-gradient(90deg,
-        rgba(255,255,255,0),
-        rgba(140,200,255,0.8),
-        rgba(255,180,220,0.9),
-        rgba(140,200,255,0.8),
-        rgba(255,255,255,0));
-    filter: blur(25px);
-    transform: rotate(-20deg);
-    top:20%;
-    left:-30%;
-    opacity:0.7;
-}
+    .card {
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(10px);
+        padding:40px;
+        border-radius:20px;
+        width:90%;
+        max-width:400px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    }
 
-/* Stars */
-.star{
-    position:absolute;
-    background:white;
-    border-radius:50%;
-    animation: twinkle 2s infinite alternate;
-}
-@keyframes twinkle{ from{opacity:.2;} to{opacity:1;} }
+    h1 { font-size:28px; margin-bottom:10px; }
+    p { opacity:0.9; margin-bottom:30px; }
 
-/* Meteors */
-.meteor{
-    position:absolute;
-    width:3px;
-    height:140px;
-    background: linear-gradient(-45deg, white, rgba(255,255,255,0));
-    transform: rotate(45deg);
-    animation: meteorFall linear forwards;
-}
-@keyframes meteorFall{
-    0%{ transform:translate(0,0) rotate(45deg); opacity:1;}
-    100%{ transform:translate(-1200px,1200px) rotate(45deg); opacity:0;}
-}
+    button {
+        padding:15px 25px;
+        border:none;
+        border-radius:50px;
+        font-size:18px;
+        cursor:pointer;
+        margin:10px;
+        transition:0.3s;
+    }
 
-/* Card */
-.card{
-    background:white;
-    padding:30px;
-    border-radius:25px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
-    width:90%;
-    max-width:420px;
-    z-index:2;
-}
+    #yes {
+        background:#ff4d6d;
+        color:white;
+    }
 
-h1{ color:#ff4d6d; }
-.gif{ width:220px; margin-bottom:10px; }
+    #yes:hover {
+        transform:scale(1.1);
+        background:#ff2e55;
+    }
 
-#floatingMsg{
-    position:absolute;
-    color:#ff4d6d;
-    font-size:18px;
-    font-weight:bold;
-    pointer-events:none;
-}
+    #no {
+        background:white;
+        color:#ff4d6d;
+        position:relative;
+    }
 
-button{
-    padding:15px 28px;
-    font-size:18px;
-    border:none;
-    border-radius:12px;
-    margin:10px;
-    cursor:pointer;
-}
-#yes{ background:#ff4d6d; color:white; }
-#no{ background:#ddd; position:absolute; }
+    .hidden { display:none; }
 </style>
 </head>
 
 <body>
 
-<div class="cometBand"></div>
-<div id="floatingMsg"></div>
+<div class="card" id="question">
+    <h1>Abby, will you be my Valentine? 💘</h1>
+    <p>I made this tiny website just to ask you something important.</p>
 
-<div class="card">
-    <img class="gif" src="https://media.tenor.com/QC8i0QkR0XkAAAAi/bubbu-dubbu-cupid.gif">
-    <h1>Abby, will you be my Valentine? 💖</h1>
+    <button id="yes">YES 🥰</button>
+    <button id="no">No 🙈</button>
+</div>
 
-    <div id="buttons">
-        <button id="yes" onclick="yesClicked()">YES 💘</button>
-        <button id="no" onmouseover="noEscape()" onclick="noEscape()">NO 😢</button>
-    </div>
+<div class="card hidden" id="success">
+    <h1>YAY!! ❤️</h1>
+    <p>You just made me the happiest person alive.</p>
+    <p>Valentine’s date secured 💌</p>
 </div>
 
 <script>
-/* Stars */
-for(let i=0;i<180;i++){
-    const star=document.createElement("div");
-    star.classList.add("star");
-    star.style.width=Math.random()*3+"px";
-    star.style.height=star.style.width;
-    star.style.top=Math.random()*100+"vh";
-    star.style.left=Math.random()*100+"vw";
-    document.body.appendChild(star);
-}
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
 
-/* Meteor shower */
-setInterval(()=>{
-    const meteor=document.createElement("div");
-    meteor.classList.add("meteor");
-    meteor.style.left=Math.random()*100+"vw";
-    meteor.style.top=Math.random()*40+"vh";
-    meteor.style.animationDuration=(Math.random()*1.5+1.2)+"s";
-    document.body.appendChild(meteor);
-    setTimeout(()=>meteor.remove(),2000);
-},300);
+yesBtn.onclick = () => {
+    document.getElementById("question").classList.add("hidden");
+    document.getElementById("success").classList.remove("hidden");
+};
 
-/* NO button drama */
-let scale=1, tries=0;
-const messages=[
-"Please? 🥺","I'll be sad...","You're breaking my heart 💔",
-"Pretty please?","Don't do this 😭","Just press YES ❤️"
-];
-
-function noEscape(){
-    const noBtn=document.getElementById("no");
-    const yesBtn=document.getElementById("yes");
-    const msg=document.getElementById("floatingMsg");
-
-    const x=Math.random()*(window.innerWidth-100);
-    const y=Math.random()*(window.innerHeight-50);
-    noBtn.style.left=x+"px"; noBtn.style.top=y+"px";
-
-    msg.innerText=messages[tries%messages.length];
-    msg.style.left=(x-20)+"px"; msg.style.top=(y-30)+"px";
-    tries++;
-
-    scale-=0.1;
-    noBtn.style.transform=`scale(${scale})`;
-    yesBtn.style.transform=`scale(${1+(1-scale)})`;
-
-    if(scale<=0.2){ noBtn.remove(); msg.innerText="Okay fine 😭 click YES ❤️"; }
-}
-
-function yesClicked(){
-    document.body.innerHTML=`
-    <div style="color:white;text-align:center;padding:30px;">
-        <h1 style="font-size:60px;">YAYYY!! 💖🥰</h1>
-        <p style="font-size:22px;line-height:1.8;">
-        Surprise 💌<br><br>
-        I made this just for you.
-        You make my days brighter and my heart happier ❤️
-        </p>
-    </div>`;
-    fireworks();
-}
-
-function fireworks(){
-    const end=Date.now()+3000;
-    (function frame(){
-        confetti({particleCount:6,angle:60,spread:70,origin:{x:0}});
-        confetti({particleCount:6,angle:120,spread:70,origin:{x:1}});
-        if(Date.now()<end) requestAnimationFrame(frame);
-    })();
-}
+// Make NO button run away 😄
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
 </script>
 
 </body>
