@@ -15,18 +15,32 @@ body{
     justify-content:center;
     align-items:center;
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg,#ff758c,#ff7eb3);
     overflow:hidden;
+    background: radial-gradient(circle at bottom, #0b1d3a, #000814);
 }
 
+/* Stars */
+.star{
+    position:absolute;
+    background:white;
+    border-radius:50%;
+    animation: twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+    from{opacity:0.2;}
+    to{opacity:1;}
+}
+
+/* Card */
 .card{
     background:white;
     padding:30px;
     border-radius:25px;
     text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
     width:90%;
     max-width:420px;
+    z-index:2;
 }
 
 h1{ color:#ff4d6d; }
@@ -41,6 +55,19 @@ h1{ color:#ff4d6d; }
     pointer-events:none;
 }
 
+/* Falling hearts */
+.heart{
+    position:absolute;
+    color:#ff6b81;
+    font-size:20px;
+    animation: fall linear infinite;
+}
+@keyframes fall{
+    0%{ transform: translateY(-10vh); opacity:0; }
+    50%{ opacity:1; }
+    100%{ transform: translateY(110vh); opacity:0; }
+}
+
 button{
     padding:15px 28px;
     font-size:18px;
@@ -48,7 +75,6 @@ button{
     border-radius:12px;
     margin:10px;
     cursor:pointer;
-    transition:0.3s;
 }
 
 #yes{ background:#ff4d6d; color:white; }
@@ -71,45 +97,53 @@ button{
 </div>
 
 <script>
-let scale = 1;
-let tries = 0;
+/* Create stars */
+for(let i=0;i<120;i++){
+    const star=document.createElement("div");
+    star.classList.add("star");
+    star.style.width=Math.random()*3+"px";
+    star.style.height=star.style.width;
+    star.style.top=Math.random()*100+"vh";
+    star.style.left=Math.random()*100+"vw";
+    document.body.appendChild(star);
+}
 
-const messages = [
-"Please? 🥺",
-"I'll be sad...",
-"You're breaking my heart 💔",
-"Pretty please?",
-"Don't do this to me 😭",
-"Just press YES ❤️",
-"You're supposed to click YES 😤"
+/* Falling hearts */
+setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    heart.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+},300);
+
+let scale=1, tries=0;
+const messages=[
+"Please? 🥺","I'll be sad...","You're breaking my heart 💔",
+"Pretty please?","Don't do this 😭","Just press YES ❤️"
 ];
 
 function noEscape(){
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const msg = document.getElementById("floatingMsg");
+    const noBtn=document.getElementById("no");
+    const yesBtn=document.getElementById("yes");
+    const msg=document.getElementById("floatingMsg");
 
-    // Move NO randomly
-    const x = Math.random()*(window.innerWidth-100);
-    const y = Math.random()*(window.innerHeight-50);
-    noBtn.style.left = x+"px";
-    noBtn.style.top = y+"px";
+    const x=Math.random()*(window.innerWidth-100);
+    const y=Math.random()*(window.innerHeight-50);
+    noBtn.style.left=x+"px"; noBtn.style.top=y+"px";
 
-    // Message follows NO button
-    msg.innerText = messages[tries % messages.length];
-    msg.style.left = (x - 20) + "px";
-    msg.style.top = (y - 30) + "px";
+    msg.innerText=messages[tries%messages.length];
+    msg.style.left=(x-20)+"px"; msg.style.top=(y-30)+"px";
     tries++;
 
-    // Shrink NO + Grow YES
-    scale -= 0.1;
-    noBtn.style.transform = `scale(${scale})`;
-    yesBtn.style.transform = `scale(${1 + (1-scale)})`;
+    scale-=0.1;
+    noBtn.style.transform=`scale(${scale})`;
+    yesBtn.style.transform=`scale(${1+(1-scale)})`;
 
-    if(scale <= 0.2){
-        noBtn.remove();
-        msg.innerText = "Okay fine 😭 just click YES ❤️";
-    }
+    if(scale<=0.2){ noBtn.remove(); msg.innerText="Okay fine 😭 click YES ❤️"; }
 }
 
 function yesClicked(){
@@ -118,23 +152,19 @@ function yesClicked(){
         <h1 style="font-size:60px;">YAYYY!! 💖🥰</h1>
         <p style="font-size:22px;line-height:1.8;">
         Surprise 💌<br><br>
-        I made this little website just to ask you something special.
-        You make my days brighter, my nights happier,
-        and my heart a little softer.<br><br>
-        I can't wait to spend Valentine's Day with you ❤️
+        I made this just for you.
+        You make my days brighter and my heart happier ❤️
         </p>
     </div>`;
     fireworks();
 }
 
 function fireworks(){
-    const duration = 3 * 1000;
-    const end = Date.now() + duration;
-
+    const end=Date.now()+3000;
     (function frame(){
-        confetti({particleCount:6, angle:60, spread:70, origin:{x:0}});
-        confetti({particleCount:6, angle:120, spread:70, origin:{x:1}});
-        if(Date.now() < end) requestAnimationFrame(frame);
+        confetti({particleCount:6,angle:60,spread:70,origin:{x:0}});
+        confetti({particleCount:6,angle:120,spread:70,origin:{x:1}});
+        if(Date.now()<end) requestAnimationFrame(frame);
     })();
 }
 </script>
