@@ -16,10 +16,28 @@ body{
     align-items:center;
     font-family: Arial, Helvetica, sans-serif;
     overflow:hidden;
-    background: radial-gradient(circle at bottom, #081229, #000814);
+    background: radial-gradient(circle at bottom, #081229, #02030a 70%);
 }
 
-/* Star background */
+/* COMET BAND (Your Name style) */
+.cometBand{
+    position:absolute;
+    width:200%;
+    height:180px;
+    background: linear-gradient(90deg,
+        rgba(255,255,255,0),
+        rgba(140,200,255,0.8),
+        rgba(255,180,220,0.9),
+        rgba(140,200,255,0.8),
+        rgba(255,255,255,0));
+    filter: blur(25px);
+    transform: rotate(-20deg);
+    top:20%;
+    left:-30%;
+    opacity:0.7;
+}
+
+/* Stars */
 .star{
     position:absolute;
     background:white;
@@ -27,52 +45,6 @@ body{
     animation: twinkle 2s infinite alternate;
 }
 @keyframes twinkle{ from{opacity:.2;} to{opacity:1;} }
-
-/* Card */
-.card{
-    background:white;
-    padding:30px;
-    border-radius:25px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.4);
-    width:90%;
-    max-width:420px;
-    z-index:2;
-}
-
-h1{ color:#ff4d6d; }
-.gif{ width:220px; margin-bottom:10px; }
-
-/* CENTER ONLY THE BUTTONS */
-#buttons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-top:10px;
-}
-
-/* Comet Tiamat */
-.cometTiamat{
-    position:absolute;
-    width:200%;
-    height:220px;
-    background: linear-gradient(90deg,
-        rgba(255,255,255,0),
-        rgba(130,210,255,0.9),
-        rgba(255,170,220,1),
-        rgba(130,210,255,0.9),
-        rgba(255,255,255,0));
-    filter: blur(35px);
-    transform: rotate(-18deg);
-    top:25%;
-    left:-40%;
-    opacity:0;
-    animation: cometAppear 3s forwards;
-}
-@keyframes cometAppear{
-    from{ opacity:0; transform:translateX(300px) rotate(-18deg); }
-    to{ opacity:0.9; transform:translateX(0) rotate(-18deg); }
-}
 
 /* Meteors */
 .meteor{
@@ -88,6 +60,21 @@ h1{ color:#ff4d6d; }
     100%{ transform:translate(-1200px,1200px) rotate(45deg); opacity:0;}
 }
 
+/* Card */
+.card{
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    width:90%;
+    max-width:420px;
+    z-index:2;
+}
+
+h1{ color:#ff4d6d; }
+.gif{ width:220px; margin-bottom:10px; }
+
 #floatingMsg{
     position:absolute;
     color:#ff4d6d;
@@ -101,6 +88,7 @@ button{
     font-size:18px;
     border:none;
     border-radius:12px;
+    margin:10px;
     cursor:pointer;
 }
 #yes{ background:#ff4d6d; color:white; }
@@ -110,6 +98,7 @@ button{
 
 <body>
 
+<div class="cometBand"></div>
 <div id="floatingMsg"></div>
 
 <div class="card">
@@ -123,7 +112,7 @@ button{
 </div>
 
 <script>
-/* stars */
+/* Stars */
 for(let i=0;i<180;i++){
     const star=document.createElement("div");
     star.classList.add("star");
@@ -133,6 +122,17 @@ for(let i=0;i<180;i++){
     star.style.left=Math.random()*100+"vw";
     document.body.appendChild(star);
 }
+
+/* Meteor shower */
+setInterval(()=>{
+    const meteor=document.createElement("div");
+    meteor.classList.add("meteor");
+    meteor.style.left=Math.random()*100+"vw";
+    meteor.style.top=Math.random()*40+"vh";
+    meteor.style.animationDuration=(Math.random()*1.5+1.2)+"s";
+    document.body.appendChild(meteor);
+    setTimeout(()=>meteor.remove(),2000);
+},300);
 
 /* NO button drama */
 let scale=1, tries=0;
@@ -161,35 +161,17 @@ function noEscape(){
     if(scale<=0.2){ noBtn.remove(); msg.innerText="Okay fine 😭 click YES ❤️"; }
 }
 
-/* YES CLICK */
 function yesClicked(){
-    document.body.innerHTML += `<div class="cometTiamat"></div>`;
-    startMeteorShower();
-    fireworks();
-
-    document.body.innerHTML += `
-    <div style="color:white;text-align:center;position:absolute;top:38%;width:100%;padding:20px;">
+    document.body.innerHTML=`
+    <div style="color:white;text-align:center;padding:30px;">
         <h1 style="font-size:60px;">YAYYY!! 💖🥰</h1>
         <p style="font-size:22px;line-height:1.8;">
         Surprise 💌<br><br>
-        I made this little website just to ask you something special.<br>
-        You make my days brighter, my nights happier,<br>
-        and my heart softer every day.<br><br>
-        I can't wait to spend Valentine’s Day with you ❤️
+        I made this just for you.
+        You make my days brighter and my heart happier ❤️
         </p>
     </div>`;
-}
-
-function startMeteorShower(){
-    setInterval(()=>{
-        const meteor=document.createElement("div");
-        meteor.classList.add("meteor");
-        meteor.style.left=Math.random()*100+"vw";
-        meteor.style.top=Math.random()*40+"vh";
-        meteor.style.animationDuration=(Math.random()*1.5+1.2)+"s";
-        document.body.appendChild(meteor);
-        setTimeout(()=>meteor.remove(),2000);
-    },250);
+    fireworks();
 }
 
 function fireworks(){
