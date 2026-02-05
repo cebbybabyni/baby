@@ -175,4 +175,19 @@ function startMeteorShower(){
         meteor.style.top=Math.random()*40+"vh";
         meteor.style.animationDuration=(Math.random()*1.5+1.2)+"s";
         document.body.appendChild(meteor);
-        setTimeout(()=>meteor.remove(),
+        setTimeout(()=>meteor.remove(),2000);
+    },250);
+}
+
+function fireworks(){
+    const end=Date.now()+3000;
+    (function frame(){
+        confetti({particleCount:6,angle:60,spread:70,origin:{x:0}});
+        confetti({particleCount:6,angle:120,spread:70,origin:{x:1}});
+        if(Date.now()<end) requestAnimationFrame(frame);
+    })();
+}
+</script>
+
+</body>
+</html>
