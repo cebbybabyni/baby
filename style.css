@@ -58,11 +58,16 @@ button{
 
 .btnRow{
   display:flex;
-  gap:12px;
-  justify-content:center;
+  flex-direction:row;      /* keep buttons in one line */
+  justify-content:center;  /* center horizontally */
   align-items:center;
-  flex-wrap:wrap; /* prevents overflow on very small phones */
-  margin-top:6px;
+  gap:15px;                /* space between YES & NO */
+  width:100%;
+  margin-top:20px;
+}
+
+.btnRow button{
+  white-space:nowrap;      /* stops stacking on mobile */
 }
 
 @keyframes heartbeat {
