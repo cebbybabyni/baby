@@ -79,11 +79,23 @@ button{
 
 .btnRow{
   display:flex;
-  gap:12px;
+  gap:8px;  /* reduced gap */
   justify-content:center;
   align-items:center;
-  flex-wrap:wrap; /* prevents overflow on very small phones */
+  flex-wrap:nowrap;  /* force one row */
   margin-top:6px;
+  width:100%;
+}
+
+button{
+  padding:12px 16px;
+  font-size:clamp(12px, 3vw, 16px);
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  flex:1;  /* equal width distribution */
+  min-width:0;  /* allow shrinking below min-width */
+  white-space:nowrap;  /* prevent text wrapping */
 }
 
 .heart{
