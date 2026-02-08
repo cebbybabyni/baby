@@ -63,7 +63,6 @@ function move() {
   noBtn.style.position = "fixed";
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
-  noBtn.style.fontSize = "clamp(16px, 4.5vw, 20px)";  /* ADD THIS LINE */
   noBtn.innerText = msgs[Math.floor(Math.random() * msgs.length)];
 }
 
