@@ -158,3 +158,13 @@ setInterval(()=>{
 };
 
 });
+
+// open secret letter
+document.getElementById("secretBtn").onclick = function(){
+  document.getElementById("secretLetter").style.display="flex";
+}
+
+// close letter
+document.getElementById("closeLetter").onclick = function(){
+  document.getElementById("secretLetter").style.display="none";
+}
