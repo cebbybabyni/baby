@@ -1,14 +1,23 @@
-// typing intro
+document.addEventListener("DOMContentLoaded", () => {
+
+// ✨ typing intro
 const text="To: Jeam Abby Keith Panganiban 😊";
 let i=0;
-function type(){ if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i); i++; setTimeout(type,50);} }
+function type(){
+ if(i<text.length){
+  document.getElementById("typing").innerHTML+=text.charAt(i);
+  i++;
+  setTimeout(type,50);
+ }
+}
 type();
 
-// hearts burst anywhere clicked
+
+// 💖 hearts burst when screen clicked
 document.addEventListener("click", function(e){
  for(let i=0;i<10;i++){
   let heart=document.createElement("div");
-  heart.innerHTML=["💖","💗","💕","💘","❤️"][Math.floor(Math.random()*5)];
+  heart.innerHTML=["💖","💕","💗","💘"][Math.floor(Math.random()*4)];
   heart.style.position="fixed";
   heart.style.left=e.clientX+"px";
   heart.style.top=e.clientY+"px";
@@ -19,36 +28,12 @@ document.addEventListener("click", function(e){
   const x=(Math.random()-0.5)*200;
   const y=(Math.random()-0.5)*200;
   heart.animate([
-    {transform:"translate(0,0) scale(1)",opacity:1},
+    {transform:"translate(0,0)",opacity:1},
     {transform:`translate(${x}px,${y}px) scale(1.8)`,opacity:0}
   ],{duration:1200,easing:"ease-out"});
   setTimeout(()=>heart.remove(),1200);
  }
 });
-
-// 💖 Slow floating hearts in background
-setInterval(()=>{
-  let heart=document.createElement("div");
-  heart.innerHTML=["💖","💕","💗","💘"][Math.floor(Math.random()*4)];
-  heart.style.position="fixed";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.bottom="-30px";
-  heart.style.fontSize=(Math.random()*12+16)+"px";
-  heart.style.opacity="0.6";
-  heart.style.pointerEvents="none";
-
-  document.body.appendChild(heart);
-
-  heart.animate([
-    { transform:"translateY(0)", opacity:0.6 },
-    { transform:"translateY(-120vh)", opacity:0 }
-  ],{
-    duration:9000,   // slow movement
-    easing:"linear"
-  });
-
-  setTimeout(()=>heart.remove(),9000);
-},1200); // new heart every 1.2 sec
 
 // runaway NO button
 const noBtn=document.getElementById("noBtn");
@@ -65,21 +50,16 @@ function move(){
 noBtn.onmouseover=move;
 noBtn.onclick=move;
 
-// YES click message + confetti
+
+// 💥 YES click
 document.getElementById("yesBtn").onclick = () => {
-
-  // 💥 SHAKE THE WHOLE PAGE
-  document.body.classList.add("shake");
-  setTimeout(() => {
-    document.body.classList.remove("shake");
-  }, 600);
-
-  // Wait before showing YES page
-  setTimeout(showYesPage, 600);
+ document.body.classList.add("shake");
+ setTimeout(() => document.body.classList.remove("shake"), 600);
+ setTimeout(showYesPage,600);
 };
 
 
-// 💕 YES PAGE FUNCTION
+// 💕 YES PAGE
 function showYesPage(){
 
 document.body.innerHTML=`
@@ -91,36 +71,6 @@ document.body.innerHTML=`
 <h1 id="yesText" style="font-family:Pacifico;">She said YES gaizzz!!! 💕</h1>
 <p id="loveMsg"></p>
 </div>`;
-
-// typing love message
-const msg="You just made me the happiest person alive. I can't wait to spend Valentine's Day with you 🌹 You're stuck with me now 😌💖";
-let j=0;
-function typeLove(){
- if(j<msg.length){
-  document.getElementById("loveMsg").innerHTML+=msg.charAt(j);
-  j++;
-  setTimeout(typeLove,40);
- }
-}
-typeLove();
-
-// play music
-const music = new Audio("music.mp3");
-music.loop = true;
-music.volume = 0;
-music.play();
-
-let volume = 0;
-const fade = setInterval(()=>{
-  if(volume < 0.6){
-    volume += 0.03;
-    music.volume = volume;
-  } else {
-    clearInterval(fade);
-  }
-},300);
-
-};
 
 // 💌 typing love message
 const msg="You just made me the happiest person alive. I can't wait to spend Valentine's Day with you 🌹 You're stuck with me now 😌💖";
@@ -148,18 +98,6 @@ const fade = setInterval(()=>{
     clearInterval(fade);
   }
 },300);
-
-// 💖 heart rain
-for(let i=0;i<200;i++){
- let c=document.createElement("div");
- c.innerHTML="💖";
- c.style.position="fixed";
- c.style.left=Math.random()*100+"vw";
- c.style.top="-20px";
- c.style.fontSize="24px";
- c.style.animation="float 4s linear forwards";
- document.body.appendChild(c);
-}
 
  // 💥 RANDOM HEART BURSTS
 setInterval(()=>{
@@ -194,4 +132,3 @@ setInterval(()=>{
 
 },1200); 
 };
-
