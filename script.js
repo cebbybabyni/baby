@@ -185,3 +185,23 @@ setInterval(()=>{
 
 },1200); 
 };
+
+/* 💥 STRONG SCREEN SHAKE */
+@keyframes shake {
+  0%  { transform: translate(0,0) rotate(0deg); }
+  10% { transform: translate(-6px,-4px) rotate(-1deg); }
+  20% { transform: translate(6px,4px) rotate(1deg); }
+  30% { transform: translate(-6px,4px) rotate(0deg); }
+  40% { transform: translate(6px,-4px) rotate(1deg); }
+  50% { transform: translate(-6px,4px) rotate(-1deg); }
+  60% { transform: translate(6px,4px) rotate(0deg); }
+  70% { transform: translate(-6px,-4px) rotate(1deg); }
+  80% { transform: translate(6px,4px) rotate(-1deg); }
+  90% { transform: translate(-6px,-4px) rotate(1deg); }
+  100%{ transform: translate(0,0) rotate(0deg); }
+}
+
+.shake {
+  animation: shake 0.6s ease;
+}
+
