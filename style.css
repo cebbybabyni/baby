@@ -79,27 +79,15 @@ button{
   box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
-/* CENTER WHOLE PAGE */
-.page{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-}
+
 
 .btnRow{
   display:flex;
-  flex-direction:row;      /* horizontal */
-  justify-content:center;  /* center buttons */
+  gap:12px;
+  justify-content:center;
   align-items:center;
-  gap:15px;
-  margin-top:20px;
-}
-
-.btnRow button{
-  white-space:nowrap;      /* stop stacking on mobile */
+  flex-wrap:wrap; /* prevents overflow on very small phones */
+  margin-top:6px;
 }
 
 .heart{
