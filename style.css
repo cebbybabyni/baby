@@ -81,13 +81,11 @@ button{
 
 .btnRow{
   display:flex;
+  gap:12px;
   justify-content:center;
   align-items:center;
-  gap:14px;
-  flex-wrap:wrap;        /* stack nicely on small phones */
-  width:100%;            /* important for mobile centering */
-  max-width:320px;       /* keeps buttons close together */
-  margin-top:12px;
+  flex-wrap:wrap; /* prevents overflow on very small phones */
+  margin-top:6px;
 }
 
 .heart{
