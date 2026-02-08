@@ -79,6 +79,16 @@ button{
   box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
+/* CENTER WHOLE PAGE */
+.page{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
 .btnRow{
   display:flex;
   flex-direction:row;      /* horizontal */
