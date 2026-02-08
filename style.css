@@ -107,3 +107,42 @@ button{
  50%{transform:translateY(-12px);}
 }
 
+/* CENTER WHOLE PAGE */
+body{
+  margin:0;
+  padding:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  text-align:center;
+}
+
+/* YES & NO BUTTON CONTAINER */
+.buttons{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  margin-top:20px;
+}
+
+/* BUTTON STYLE */
+.buttons button{
+  padding:12px 22px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+/* MOBILE FIX */
+@media (max-width:600px){
+  .buttons{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+}
