@@ -54,19 +54,32 @@ setInterval(()=>{
 },1200); // new heart every 1.2 sec
 
 // runaway NO button
-const noBtn=document.getElementById("noBtn");
-const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭","it's a love story, baby, just say, YES 🥰","oops wrong button nganiii 😂","say YES to heaven 😇","nye nyee nyeee 🤪","baby, be serious pls 😤","i love you, babyyy 🥰","stop playing, baby 😆","click YES na garod 😌💕","say YES to me 😭","halla si oa hahaha 🤣","amaccana babyyy 🙄","baby, please? 🥺👉👈","wilablabbb 😝"];
+const noBtn = document.getElementById("noBtn");
+const msgs = ["sure na yarn, baby? 🥺", "aww, that hurts my feelings, baby 😭", "it's a love story, baby, just say, YES 🥰", "oops wrong button nganiii 😂", "say YES to heaven 😇", "nye nyee nyeee 🤪", "baby, be serious pls 😤", "i love you, babyyy 🥰", "stop playing, baby 😆", "click YES na garod 😌💕", "say YES to me 😭", "halla si oa hahaha 🤣", "amaccana babyyy 🙄", "baby, please? 🥺👉👈", "wilablabbb 😝"];
 
-function move(){
- const x=Math.random()*(window.innerWidth-noBtn.offsetWidth-20);
- const y=Math.random()*(window.innerHeight-noBtn.offsetHeight-20);
- noBtn.style.position="fixed";
- noBtn.style.left=x+"px";
- noBtn.style.top=y+"px";
- noBtn.innerText=msgs[Math.floor(Math.random()*msgs.length)];
+function move() {
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20);
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+  noBtn.innerText = msgs[Math.floor(Math.random() * msgs.length)];
 }
-noBtn.onmouseover=move;
-noBtn.onclick=move;
+
+// Desktop: move on hover
+noBtn.addEventListener("mouseenter", move);
+
+// Mobile & Desktop: move on click/tap (with slight delay to prevent immediate re-tap)
+noBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  move();
+});
+
+// Move away when they try to tap it (touchstart)
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  move();
+});
 
 // YES click message + confetti
 document.getElementById("yesBtn").onclick=()=>{
