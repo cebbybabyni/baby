@@ -151,3 +151,69 @@ html,body{
   max-width:none;      /* remove width limits */
 }
 
+/* hide YES page initially */
+.yesPage{
+  display:none;
+  text-align:center;
+  padding-top:40px;
+} 
+
+.envelopeWrapper{
+  position:relative;
+  width:320px;
+  height:260px;
+  margin:40px auto;
+  cursor:pointer;
+}
+
+.envelope{
+  width:320px;
+  height:200px;
+  background:#ff8fab;
+  position:absolute;
+  bottom:0;
+  border-radius:10px;
+  box-shadow:0 15px 30px rgba(0,0,0,0.2);
+}
+
+.front{
+  position:absolute;
+  border-left:160px solid transparent;
+  border-right:160px solid transparent;
+  border-top:100px solid #ffb3c6;
+}
+
+.flap{
+  position:absolute;
+  border-left:160px solid transparent;
+  border-right:160px solid transparent;
+  border-bottom:100px solid #ffc2d1;
+  top:-100px;
+  transform-origin:bottom;
+  transition:0.8s;
+}
+
+.letter{
+  width:290px;
+  height:190px;
+  background:white;
+  border-radius:8px;
+  position:absolute;
+  left:15px;
+  bottom:10px;
+  padding:18px;
+  transform:translateY(120px);
+  transition:1s;
+}
+
+.openFlap{ transform:rotateX(180deg); }
+.pullLetter{ transform:translateY(-130px); }
+
+.secret{
+  opacity:0;
+  color:#ff4d6d;
+  font-weight:600;
+  transition:1.5s;
+}
+.showSecret{ opacity:1; }
+
