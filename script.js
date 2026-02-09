@@ -166,9 +166,9 @@ setInterval(()=>{
 
 });
 
-// 💖 show YES page
 function openYesPage(){
-  document.body.innerHTML = document.getElementById("yesPage").outerHTML;
+  document.getElementById("mainPage").style.display="none";
+  document.getElementById("yesPage").style.display="block";
 }
 
 function openEnvelope(){
