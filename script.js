@@ -57,16 +57,29 @@ setInterval(()=>{
 const noBtn=document.getElementById("noBtn");
 const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭","it's a love story, baby, just say, YES 🥰","oops wrong button nganiii 😂","say YES to heaven 😇","nye nyee nyeee 🤪","baby, be serious pls 😤","i love you, baby 🥰","stop playing, baby 😆","click YES na garod 😌💕","say YES to me 😭","halla si oa hahaha 🤣","arti artiii nito 😤","baby, please? 🥺👉👈","wilablabbb 😝"];
 
-function move(){
- const x=Math.random()*(window.innerWidth-noBtn.offsetWidth-20);
- const y=Math.random()*(window.innerHeight-noBtn.offsetHeight-20);
- noBtn.style.position="fixed";
- noBtn.style.left=x+"px";
- noBtn.style.top=y+"px";
- noBtn.innerText=msgs[Math.floor(Math.random()*msgs.length)];
+noBtn.addEventListener("click", runAway);
+noBtn.addEventListener("mouseenter", runAway); // also run when hovered (desktop)
+
+function runAway() {
+  // screen size
+  const screenW = window.innerWidth;
+  const screenH = window.innerHeight;
+
+  // button size
+  const btnW = noBtn.offsetWidth;
+  const btnH = noBtn.offsetHeight;
+
+  // SAFE random position INSIDE screen
+  const safeX = Math.random() * (screenW - btnW - 20);
+  const safeY = Math.random() * (screenH - btnH - 20);
+
+  noBtn.style.position = "fixed";
+  noBtn.style.left = safeX + "px";
+  noBtn.style.top = safeY + "px";
+
+  // change text every click
+  noBtn.innerText = msgs[Math.floor(Math.random()*msgs.length)];
 }
-noBtn.onmouseover=move;
-noBtn.onclick=move;
 
 // YES click message + confetti
 document.getElementById("yesBtn").onclick=()=>{
