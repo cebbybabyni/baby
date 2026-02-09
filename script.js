@@ -58,12 +58,19 @@ const noBtn=document.getElementById("noBtn");
 const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭","it's a love story, baby, just say, YES 🥰","oops wrong button nganiii 😂","say YES to heaven 😇","nye nyee nyeee 🤪","baby, be serious pls 😤","i love you, baby 🥰","stop playing, baby 😆","click YES na garod 😌💕","say YES to me 😭","halla si oa hahaha 🤣","arti artiii nito 😤","baby, please? 🥺👉👈","wilablabbb 😝"];
 
 function move(){
- const x=Math.random()*(window.innerWidth-noBtn.offsetWidth-20);
- const y=Math.random()*(window.innerHeight-noBtn.offsetHeight-20);
- noBtn.style.position="fixed";
- noBtn.style.left=x+"px";
- noBtn.style.top=y+"px";
- noBtn.innerText=msgs[Math.floor(Math.random()*msgs.length)];
+
+  // change text FIRST so width updates
+  noBtn.innerText = msgs[Math.floor(Math.random()*msgs.length)];
+
+  const btnW = noBtn.offsetWidth;
+  const btnH = noBtn.offsetHeight;
+
+  const x = Math.random() * (window.innerWidth - btnW - 20);
+  const y = Math.random() * (window.innerHeight - btnH - 20);
+
+  noBtn.style.position="fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top  = y + "px";
 }
 noBtn.onmouseover=move;
 noBtn.onclick=move;
