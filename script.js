@@ -165,3 +165,17 @@ setInterval(()=>{
 };
 
 });
+
+// 💖 show YES page
+function openYesPage(){
+  document.body.innerHTML = document.getElementById("yesPage").outerHTML;
+}
+
+function openEnvelope(){
+  document.getElementById("flap").classList.add("openFlap");
+  document.getElementById("letter").classList.add("pullLetter");
+
+  setTimeout(()=>{
+    document.getElementById("secretMsg").classList.add("showSecret");
+  },1200);
+}
