@@ -31,7 +31,7 @@ h1{
 }
 
 #question{
-  font-size:clamp(26px,6vw,36px);
+  font-size:clamp(28px,6vw,36px);
 }
 
 p{
