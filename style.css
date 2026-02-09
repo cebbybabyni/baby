@@ -80,7 +80,7 @@ button{
 }
 
 #valentineGif{
-  width:min(300px,60vw);
+  width:min(220px,60vw);
   border-radius:20px;
   margin:15px;
   box-shadow:0 5px 15px rgba(0,0,0,.2);
