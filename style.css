@@ -87,6 +87,23 @@ button{
   }
 }
 
+/* AREA THAT CONTAINS THE RUNAWAY BUTTON */
+.btnArea{
+  position:relative;
+  width:100%;
+  max-width:320px;   /* keeps movement inside phone screen */
+  margin:auto;
+}
+
+/* keep row centered */
+.btnRow{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:nowrap;
+}
+
 @keyframes heartbeat {
  0%{transform:scale(1);}
  25%{transform:scale(1.05);}
