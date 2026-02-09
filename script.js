@@ -53,34 +53,49 @@ setInterval(()=>{
   setTimeout(()=>heart.remove(),9000);
 },1200); // new heart every 1.2 sec
 
-// runaway NO button
-const noBtn=document.getElementById("noBtn");
-const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭","it's a love story, baby, just say, YES 🥰","oops wrong button nganiii 😂","say YES to heaven 😇","nye nyee nyeee 🤪","baby, be serious pls 😤","i love you, baby 🥰","stop playing, baby 😆","click YES na garod 😌💕","say YES to me 😭","halla si oa hahaha 🤣","arti artiii nito 😤","baby, please? 🥺👉👈","wilablabbb 😝"];
+/* 😭 RUNAWAY NO BUTTON WITH YOUR MESSAGES */
+const noBtn = document.getElementById("noBtn");
+const area = document.querySelector(".btnArea");
 
-// wait until page loads
-document.addEventListener("DOMContentLoaded", function(){
+const msgs = [
+"sure na yarn, baby? 🥺",
+"aww, that hurts my feelings, baby 😭",
+"it's a love story, baby, just say YES 🥰",
+"oops wrong button nganiii 😂",
+"say YES to heaven 😇",
+"nye nyee nyeee 🤪",
+"baby, be serious pls 😤",
+"i love you, baby 🥰",
+"stop playing, baby 😆",
+"click YES na garod 😌💕",
+"say YES to me 😭",
+"halla si oa hahaha 🤣",
+"arti artiii nito 😤",
+"baby, please? 🥺👉👈",
+"wilablabbb 😝"
+];
 
-  const noBtn = document.getElementById("noBtn");
-  const area = document.querySelector(".btnArea");
+let msgIndex = 0;
 
-  function moveNo(){
-    const areaRect = area.getBoundingClientRect();
+function moveNo(){
+  const areaRect = area.getBoundingClientRect();
+  const maxX = areaRect.width - noBtn.offsetWidth;
+  const maxY = 80;
 
-    const maxX = areaRect.width - noBtn.offsetWidth;
-    const maxY = 80;
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+  noBtn.style.position = "absolute";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
 
-    noBtn.style.position = "absolute";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-  }
+  // change text each time it runs away
+  noBtn.innerText = msgs[msgIndex];
+  msgIndex = (msgIndex + 1) % msgs.length;
+}
 
-  noBtn.addEventListener("mouseover", moveNo);
-  noBtn.addEventListener("click", moveNo);
-
-});
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("click", moveNo);
 
 // YES click message + confetti
 document.getElementById("yesBtn").onclick=()=>{
