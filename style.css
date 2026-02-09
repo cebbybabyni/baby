@@ -128,3 +128,23 @@ button{
  0%,100%{transform:translateY(0);}
  50%{transform:translateY(-12px);}
 }
+
+/* stop whole page horizontal scroll */
+html,body{
+  overflow-x:hidden;
+}
+
+/* RUNAWAY NO BUTTON MOBILE FIX */
+#noBtn{
+  max-width:75vw;        /* button can never exceed screen width */
+  white-space:normal;    /* allow line break */
+  overflow-wrap:break-word;
+  word-break:break-word;
+  text-align:center;
+  padding:12px 16px;
+  line-height:1.2;
+}
+
+#noBtn{
+  border-radius:25px;
+}
