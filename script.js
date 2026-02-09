@@ -57,16 +57,25 @@ setInterval(()=>{
 const noBtn=document.getElementById("noBtn");
 const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭","it's a love story, baby, just say, YES 🥰","oops wrong button nganiii 😂","say YES to heaven 😇","nye nyee nyeee 🤪","baby, be serious pls 😤","i love you, baby 🥰","stop playing, baby 😆","click YES na garod 😌💕","say YES to me 😭","halla si oa hahaha 🤣","arti artiii nito 😤","baby, please? 🥺👉👈","wilablabbb 😝"];
 
-function move(){
- const x=Math.random()*(window.innerWidth-noBtn.offsetWidth-20);
- const y=Math.random()*(window.innerHeight-noBtn.offsetHeight-20);
- noBtn.style.position="fixed";
- noBtn.style.left=x+"px";
- noBtn.style.top=y+"px";
- noBtn.innerText=msgs[Math.floor(Math.random()*msgs.length)];
+const noBtn = document.getElementById("noBtn");
+const area = document.querySelector(".btnArea");
+
+noBtn.addEventListener("click", moveNo);
+noBtn.addEventListener("mouseover", moveNo); // mobile + desktop
+
+function moveNo() {
+  const areaRect = area.getBoundingClientRect();
+
+  const maxX = areaRect.width - noBtn.offsetWidth;
+  const maxY = 80; // how far vertically it can move
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  noBtn.style.position = "absolute";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
 }
-noBtn.onmouseover=move;
-noBtn.onclick=move;
 
 // YES click message + confetti
 document.getElementById("yesBtn").onclick=()=>{
