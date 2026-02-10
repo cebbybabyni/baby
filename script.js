@@ -59,27 +59,21 @@ const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭",
 
 function move(){
 
-  // 😱 SHAKE FIRST
-  noBtn.classList.add("shake");
+  // change text FIRST so width updates
+  noBtn.innerText = msgs[Math.floor(Math.random()*msgs.length)];
 
-  setTimeout(()=>{
-    noBtn.classList.remove("shake");
+  const btnW = noBtn.offsetWidth;
+  const btnH = noBtn.offsetHeight;
 
-    // keep your original messages 💖
-    noBtn.innerText = msgs[Math.floor(Math.random()*msgs.length)];
+  const x = Math.random() * (window.innerWidth - btnW - 20);
+  const y = Math.random() * (window.innerHeight - btnH - 20);
 
-    const btnW = noBtn.offsetWidth;
-    const btnH = noBtn.offsetHeight;
-
-    const x = Math.random() * (window.innerWidth - btnW - 20);
-    const y = Math.random() * (window.innerHeight - btnH - 20);
-
-    noBtn.style.position="fixed";
-    noBtn.style.left = x + "px";
-    noBtn.style.top  = y + "px";
-
-  },250);
+  noBtn.style.position="fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top  = y + "px";
 }
+noBtn.onmouseover=move;
+noBtn.onclick=move;
 
 // YES click message + confetti
 document.getElementById("yesBtn").onclick=()=>{
