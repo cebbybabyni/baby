@@ -210,16 +210,17 @@ function openEnvelope(){
 }
 
 function showEnvelope(){
+
   const env = document.getElementById("envelopeBox");
 
-  // pop animation
+  // show + pop
+  env.classList.remove("showEnvelope"); 
+  void env.offsetWidth; // force animation restart
   env.classList.add("showEnvelope");
 
-  // open envelope after pop
-  setTimeout(()=>{
-    openEnvelope();
-  },600);
+  // open flap after pop
+  setTimeout(openEnvelope,700);
 
-  // hide the "tap text"
+  // hide the tap text
   document.getElementById("tapText").style.display="none";
 }
