@@ -55,7 +55,7 @@ setInterval(()=>{
 
 // runaway NO button
 const noBtn=document.getElementById("noBtn");
-const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭","it's a love story, baby, just say, YES 🥰","oops wrong button nganiii 😂","say YES to heaven 😇","nye nyee nyeee 🤪","baby, be serious pls 😤","i love you, baby 🥰","stop playing, baby 😆","click YES na garod 😌💕","say YES to me 😭","halla si oa hahaha 🤣","how are u so pretty, baby 🥺","baby, please? 🥺👉👈","wilablabbb 😝"];
+const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭","it's a love story, baby, just say, YES 🥰","oops, wrong button nganiii 😂","say YES to heaven 😇","nye nyee nyeee 🤪","baby, be serious pls 😤","i love you, my princess 🥰","stop playing, baby 😆","click YES na garod 😌💕","say YES to me 😭","halla si oa hahaha 🤣","how are u so pretty, baby 🥹","baby, please? 🥺👉👈","wilab na wilab sayo 😝"];
 
 function move(){
 
@@ -82,44 +82,15 @@ document.getElementById("yesBtn").onclick=()=>{
 if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
 
 document.body.innerHTML=`
-<div style="
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:30px;
-">
+<div style="padding:30px">
 
 <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExODhia3UwN3BrOWVtczloajJycWFkbWY3dnBha2plcGxlb3BxNjhsNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif"
  style="width:320px;max-width:85vw;border-radius:20px;margin-bottom:15px;box-shadow:0 5px 15px rgba(0,0,0,.2);">
 
 <h1 id="yesText" style="font-family:Pacifico;">She said YES gaizzz!!! 💕</h1>
-
 <p id="loveMsg"></p>
-
-<p style="margin-top:25px">Tap the envelope 💌</p>
-
-<div class="envelopeWrapper" onclick="openEnvelope()">
-  <div class="envelope">
-      <div class="front"></div>
-      <div class="flap" id="flap"></div>
-  </div>
-
-  <div class="letter" id="letter">
-      <h2>To my Baby 💕</h2>
-      <p>You make my world brighter every day.</p>
-      <p>I promise to love you forever 💖</p>
-
-      <p class="secret" id="secretMsg">
-      ✨ Secret message ✨  
-      You are my forever person 😭💖
-      </p>
-  </div>
-</div>
-
 </div>`;
+
 // 💌 typing love message
 const msg="You just made me the happiest person alive. I can't wait to spend Valentine's Day with you 🌹 You're stuck with me now 😌💖";
 let j=0;
@@ -194,42 +165,3 @@ setInterval(()=>{
 };
 
 });
-
-function openYesPage(){
-  document.getElementById("mainPage").style.display="none";
-  document.getElementById("yesPage").style.display="block";
-}
-
-function openEnvelope(){
-  document.getElementById("flap").classList.add("openFlap");
-  document.getElementById("letter").classList.add("pullLetter");
-
-  setTimeout(()=>{
-    document.getElementById("secretMsg").classList.add("showSecret");
-  },1200);
-}
-
-function showEnvelope(){
-
-  const env = document.getElementById("envelopeBox");
-
-  // POP animation directly with JS (no CSS dependency)
-  env.animate([
-    { transform:"scale(0)", opacity:0 },
-    { transform:"scale(1.2)", opacity:1 },
-    { transform:"scale(0.95)" },
-    { transform:"scale(1)" }
-  ],{
-    duration:700,
-    easing:"ease-out",
-    fill:"forwards"
-  });
-
-  // open the envelope after pop
-  setTimeout(()=>{
-    openEnvelope();
-  },700);
-
-  // hide tap text
-  document.getElementById("tapText").style.display="none";
-}
