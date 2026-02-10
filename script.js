@@ -208,3 +208,18 @@ function openEnvelope(){
     document.getElementById("secretMsg").classList.add("showSecret");
   },1200);
 }
+
+function showEnvelope(){
+  const env = document.getElementById("envelopeBox");
+
+  // pop animation
+  env.classList.add("showEnvelope");
+
+  // open envelope after pop
+  setTimeout(()=>{
+    openEnvelope();
+  },600);
+
+  // hide the "tap text"
+  document.getElementById("tapText").style.display="none";
+}
