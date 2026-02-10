@@ -151,3 +151,29 @@ html,body{
   max-width:none;      /* remove width limits */
 }
 
+.hidden{
+  opacity:0;
+  transform: translateY(30px);
+  transition: all 1.2s ease;
+}
+
+.show{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* button animation */
+.btnRow button{
+  opacity:0;
+  transform: scale(0.6);
+  transition: all .6s ease;
+}
+
+.show .btnRow button{
+  opacity:1;
+  transform: scale(1);
+}
+
+.show #yesBtn{ transition-delay:.4s; }
+.show #noBtn{ transition-delay:.7s; }
+
