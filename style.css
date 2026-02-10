@@ -251,3 +251,9 @@ html,body{
   opacity:1 !important;
   transform:scale(1) !important;
 }
+
+/* envelope hidden before tap */
+#envelopeBox{
+  opacity:0;
+  transform:scale(0);
+}
