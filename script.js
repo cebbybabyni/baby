@@ -213,14 +213,23 @@ function showEnvelope(){
 
   const env = document.getElementById("envelopeBox");
 
-  // show + pop
-  env.classList.remove("showEnvelope"); 
-  void env.offsetWidth; // force animation restart
-  env.classList.add("showEnvelope");
+  // POP animation directly with JS (no CSS dependency)
+  env.animate([
+    { transform:"scale(0)", opacity:0 },
+    { transform:"scale(1.2)", opacity:1 },
+    { transform:"scale(0.95)" },
+    { transform:"scale(1)" }
+  ],{
+    duration:700,
+    easing:"ease-out",
+    fill:"forwards"
+  });
 
-  // open flap after pop
-  setTimeout(openEnvelope,700);
+  // open the envelope after pop
+  setTimeout(()=>{
+    openEnvelope();
+  },700);
 
-  // hide the tap text
+  // hide tap text
   document.getElementById("tapText").style.display="none";
 }
