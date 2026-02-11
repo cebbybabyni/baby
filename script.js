@@ -1,3 +1,56 @@
+// ================= PHYSICS ENGINE =================
+const Engine = Matter.Engine;
+const Render = Matter.Render;
+const World = Matter.World;
+const Bodies = Matter.Bodies;
+const Runner = Matter.Runner;
+
+const engine = Engine.create();
+const world = engine.world;
+
+window.addEventListener("load", ()=>{
+
+ const canvas = document.getElementById("world");
+
+ const render = Render.create({
+  canvas: canvas,
+  engine: engine,
+  options:{
+    width: window.innerWidth,
+    height: window.innerHeight,
+    wireframes:false,
+    background:"transparent"
+  }
+ });
+
+ Render.run(render);
+ Runner.run(Runner.create(), engine);
+
+ const ground = Bodies.rectangle(
+   window.innerWidth/2,
+   window.innerHeight + 60,
+   window.innerWidth,
+   120,
+   { isStatic:true }
+ );
+
+ World.add(world, ground);
+});
+
+// spawn physics heart
+function spawnHeart(x,y){
+ const heart = Bodies.circle(x, y, 15,{
+  restitution:0.9,
+  render:{
+   sprite:{
+    texture:"https://i.imgur.com/Qp9Z1Zm.png",
+    xScale:0.08,
+    yScale:0.08
+   }
+  }
+ });
+ World.add(world, heart);
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 
