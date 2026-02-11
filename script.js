@@ -1,7 +1,5 @@
 
-document.addEventListener("DOMContentLoaded", function () {
-
-// TYPING FUNCTION (will start after loader)
+// ⭐ GLOBAL TYPING FUNCTION (must be outside everything)
 function startTyping(){
   const text = "To: Jeam Abby Keith Panganiban 😊";
   let i = 0;
@@ -16,6 +14,8 @@ function startTyping(){
 
   type();
 }
+
+document.addEventListener("DOMContentLoaded", function () {
 
 // hearts burst anywhere clicked
 document.addEventListener("click", function(e){
