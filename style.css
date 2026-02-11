@@ -7,12 +7,15 @@ body{
   flex-direction:column;
   text-align:center;
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#ffd6e7,#ffe9f2,#fff5f9);
+
+  background:transparent;   /* ⭐ important */
   overflow-x:hidden;
   padding:20px;
   animation:fadeIn 1.5s ease;
-}
 
+  position:relative;
+  z-index:2;                /* ⭐ content above canvas */
+}
 @keyframes fadeIn{
  from{opacity:0; transform:translateY(10px);}
  to{opacity:1; transform:translateY(0);}
@@ -157,7 +160,9 @@ html,body{
   left:0;
   width:100%;
   height:100%;
-  z-index:-1;
-  pointer-events:none;
-}
 
+  z-index:0;                /* ⭐ NOT -1 */
+  pointer-events:none;
+
+  background:linear-gradient(135deg,#ffd6e7,#ffe9f2,#fff5f9);
+}
