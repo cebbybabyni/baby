@@ -1,4 +1,7 @@
-// ================= PHYSICS ENGINE =================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+// ================= START MATTER PHYSICS =================
 const Engine = Matter.Engine;
 const Render = Matter.Render;
 const World = Matter.World;
@@ -8,11 +11,9 @@ const Runner = Matter.Runner;
 const engine = Engine.create();
 const world = engine.world;
 
-window.addEventListener("load", ()=>{
+const canvas = document.getElementById("world");
 
- const canvas = document.getElementById("world");
-
- const render = Render.create({
+const render = Render.create({
   canvas: canvas,
   engine: engine,
   options:{
@@ -21,21 +22,20 @@ window.addEventListener("load", ()=>{
     wireframes:false,
     background:"transparent"
   }
- });
-
- Render.run(render);
- Runner.run(Runner.create(), engine);
-
- const ground = Bodies.rectangle(
-   window.innerWidth/2,
-   window.innerHeight + 60,
-   window.innerWidth,
-   120,
-   { isStatic:true }
- );
-
- World.add(world, ground);
 });
+
+Render.run(render);
+Runner.run(Runner.create(), engine);
+
+// ground so hearts bounce
+const ground = Bodies.rectangle(
+  window.innerWidth/2,
+  window.innerHeight + 60,
+  window.innerWidth,
+  120,
+  { isStatic:true }
+);
+World.add(world, ground);
 
 // spawn physics heart
 function spawnHeart(x,y){
@@ -51,8 +51,6 @@ function spawnHeart(x,y){
  });
  World.add(world, heart);
 }
-
-document.addEventListener("DOMContentLoaded", function () {
 
 // typing intro
 const text="To: Jeam Abby Keith Panganiban 😊";
