@@ -60,26 +60,11 @@ let i=0;
 function type(){ if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i); i++; setTimeout(type,50);} }
 type();
 
-// hearts burst anywhere clicked
+// physics hearts when clicking anywhere 💖
 document.addEventListener("click", function(e){
- for(let i=0;i<10;i++){
-  let heart=document.createElement("div");
-  heart.innerHTML=["💖","💗","💕","💘","❤️"][Math.floor(Math.random()*5)];
-  heart.style.position="fixed";
-  heart.style.left=e.clientX+"px";
-  heart.style.top=e.clientY+"px";
-  heart.style.fontSize=(Math.random()*10+18)+"px";
-  heart.style.pointerEvents="none";
-  document.body.appendChild(heart);
-
-  const x=(Math.random()-0.5)*200;
-  const y=(Math.random()-0.5)*200;
-  heart.animate([
-    {transform:"translate(0,0) scale(1)",opacity:1},
-    {transform:`translate(${x}px,${y}px) scale(1.8)`,opacity:0}
-  ],{duration:1200,easing:"ease-out"});
-  setTimeout(()=>heart.remove(),1200);
- }
+  for(let i=0;i<6;i++){
+    spawnHeart(e.clientX, e.clientY);
+  }
 });
 
 // 💖 Slow floating hearts in background
@@ -171,51 +156,12 @@ const fade = setInterval(()=>{
   }
 },300);
 
-// 💖 heart rain
-for(let i=0;i<200;i++){
- let c=document.createElement("div");
- c.innerHTML="💖";
- c.style.position="fixed";
- c.style.left=Math.random()*100+"vw";
- c.style.top="-20px";
- c.style.fontSize="24px";
- c.style.animation="float 4s linear forwards";
- document.body.appendChild(c);
+// MASSIVE PHYSICS HEART CELEBRATION 💥
+for(let i=0;i<80;i++){
+ spawnHeart(Math.random()*window.innerWidth, -50);
 }
 
- // 💥 RANDOM HEART BURSTS
+ // random falling physics hearts forever 💕
 setInterval(()=>{
-  const centerX = Math.random()*window.innerWidth;
-  const centerY = Math.random()*window.innerHeight*0.8;
-
-  for(let i=0;i<20;i++){
-    let heart=document.createElement("div");
-    heart.innerHTML=["💓","💕","💗","💞","💖"][Math.floor(Math.random()*5)];
-    heart.style.position="fixed";
-    heart.style.left=centerX+"px";
-    heart.style.top=centerY+"px";
-    heart.style.fontSize="22px";
-    heart.style.pointerEvents="none";
-    document.body.appendChild(heart);
-
-    const angle=Math.random()*2*Math.PI;
-    const distance=Math.random()*200+50;
-    const x=Math.cos(angle)*distance;
-    const y=Math.sin(angle)*distance;
-
-    heart.animate([
-      {transform:"translate(0,0)",opacity:1},
-      {transform:`translate(${x}px,${y}px) scale(1.6)`,opacity:0}
-    ],{
-      duration:1400,
-      easing:"ease-out"
-    });
-
-    setTimeout(()=>heart.remove(),1400);
-  }
-
-},1200); 
-};
-
-});
-
+ spawnHeart(Math.random()*window.innerWidth, -30);
+}, 500);
