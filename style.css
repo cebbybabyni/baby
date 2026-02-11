@@ -226,3 +226,18 @@ html,body{
   50%{opacity:1}
   100%{opacity:0}
 }
+
+.beatWord{
+  display:inline-block;
+  color:#ff4d88;
+  font-weight:bold;
+  animation:wordBeat 1s infinite;
+}
+
+@keyframes wordBeat{
+  0%{ transform:scale(1); }
+  20%{ transform:scale(1.35); }
+  40%{ transform:scale(1); }
+  60%{ transform:scale(1.35); }
+  100%{ transform:scale(1); }
+}
