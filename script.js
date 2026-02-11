@@ -172,7 +172,7 @@ window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
 
   // ⏳ change this number to control delay
-  const delay = 4000; // 2.8 seconds (perfect sweet spot)
+  const delay = 2800; // 2.8 seconds (perfect sweet spot)
 
   setTimeout(() => {
       loader.style.opacity = "0";
