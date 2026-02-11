@@ -166,11 +166,3 @@ setInterval(()=>{
 
 });
 
-// hide loader when site is ready
-window.addEventListener("load", function(){
-  setTimeout(()=>{
-    const loader=document.getElementById("loader");
-    loader.style.opacity="0";
-    loader.style.visibility="hidden";
-  },2500); // loader duration (change if you want)
-});
