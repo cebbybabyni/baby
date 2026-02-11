@@ -1,23 +1,3 @@
-// ========================================
-// 🎵 MUSIC FUNCTION
-// ========================================
-function startMusic(){
-  const music = document.getElementById("bgMusic");
-  if(!music) return;
-
-  music.volume = 0;
-  music.play();
-
-  let vol = 0;
-  const fade = setInterval(()=>{
-    if(vol < 0.6){
-      vol += 0.03;
-      music.volume = vol;
-    } else {
-      clearInterval(fade);
-    }
-  },300);
-}
 
 
 // ========================================
@@ -145,6 +125,21 @@ if(yesBtn){
      }
     }
     typeLove();
+
+const music = new Audio("music.mp3");
+music.loop = true;
+music.volume = 0;
+music.play();
+
+let volume = 0;
+const fade = setInterval(()=>{
+  if(volume < 0.6){
+    volume += 0.03;
+    music.volume = volume;
+  } else {
+    clearInterval(fade);
+  }
+},300);
 
     // 💥 HEART EXPLOSIONS ON YES PAGE
     setInterval(()=>{
