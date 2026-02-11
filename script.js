@@ -166,29 +166,47 @@ setInterval(()=>{
 
 });
 
-// 💌 LOVE LETTER AFTER 10 TAPS
-let tapCount = 0;
-let eggUnlocked = false;
+/* ===============================
+   UNIVERSAL 10 TAP EASTER EGG FIX
+   =============================== */
 
-document.addEventListener("click", function() {
-  if(eggUnlocked) return;
+// use touchstart + click so it works on mobile
+let secretTapCount = 0;
+let secretUnlocked = false;
 
-  tapCount++;
+function countSecretTap() {
+  if (secretUnlocked) return;
 
-  if(tapCount >= 10){
-    eggUnlocked = true;
-    showLetter();
+  secretTapCount++;
+
+  // console log so you can verify it's working
+  console.log("Taps:", secretTapCount);
+
+  if (secretTapCount >= 10) {
+    secretUnlocked = true;
+    launchEasterEgg();
   }
-});
-
-function showLetter(){
-  const letter = document.getElementById("letter");
-  letter.classList.add("show");
-
-  setTimeout(()=>{
-    letter.classList.remove("show");
-    tapCount = 0;
-    eggUnlocked = false;
-  },6000);
 }
 
+// listen on whole document LAST so it never gets blocked
+document.addEventListener("click", countSecretTap);
+document.addEventListener("touchstart", countSecretTap);
+
+
+
+/* ===============================
+   YOUR EASTER EGG TRIGGER
+   =============================== */
+
+function launchEasterEgg() {
+  console.log("EASTER EGG ACTIVATED 🎉");
+
+  // 👉 TEMP TEST EFFECT (we test first before real effect)
+  alert("Easter egg unlocked 💖");
+
+  // reset so it can be triggered again later
+  setTimeout(() => {
+    secretTapCount = 0;
+    secretUnlocked = false;
+  }, 1000);
+}
