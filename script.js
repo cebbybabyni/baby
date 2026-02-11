@@ -176,12 +176,11 @@ setInterval(()=>{
 
 });
 
+// LOADER + START TYPING AFTER LOADER
 window.addEventListener("load", () => {
 
   const loader = document.getElementById("loader");
-
-  // ⏳ how long the loading screen stays visible
-  const loaderStayTime = 5000; // 5 seconds (nice dramatic intro)
+  const loaderStayTime = 5000; // change delay here if you want
 
   setTimeout(() => {
       loader.style.opacity = "0";
@@ -189,6 +188,7 @@ window.addEventListener("load", () => {
 
       setTimeout(() => {
          loader.style.display = "none";
+         startTyping(); // ⭐ typing starts AFTER loader
       }, 800);
 
   }, loaderStayTime);
