@@ -1,11 +1,21 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-// typing intro
-const text="To: Jeam Abby Keith Panganiban 😊";
-let i=0;
-function type(){ if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i); i++; setTimeout(type,50);} }
-type();
+// TYPING FUNCTION (will start after loader)
+function startTyping(){
+  const text = "To: Jeam Abby Keith Panganiban 😊";
+  let i = 0;
+
+  function type(){
+    if(i < text.length){
+      document.getElementById("typing").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, 50);
+    }
+  }
+
+  type();
+}
 
 // hearts burst anywhere clicked
 document.addEventListener("click", function(e){
