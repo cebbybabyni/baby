@@ -40,7 +40,7 @@ function startTyping(){
 document.addEventListener("DOMContentLoaded", function () {
 
 
-// 💖 CLICK HEART BURST
+// 💖 CLICK HEART BURST ANYWHERE
 document.addEventListener("click", function(e){
  for(let i=0;i<10;i++){
   let heart=document.createElement("div");
@@ -64,7 +64,7 @@ document.addEventListener("click", function(e){
 });
 
 
-// 💖 FLOATING HEARTS
+// 💖 FLOATING BACKGROUND HEARTS
 setInterval(()=>{
   let heart=document.createElement("div");
   heart.innerHTML=["💖","💕","💗","💘"][Math.floor(Math.random()*4)];
@@ -85,7 +85,7 @@ setInterval(()=>{
 },1200);
 
 
-// 😈 RUNAWAY BUTTON
+// 😈 RUNAWAY NO BUTTON
 const noBtn=document.getElementById("noBtn");
 
 const msgs=[
@@ -120,7 +120,7 @@ noBtn.onmouseover=move;
 noBtn.onclick=move;
 
 
-// 💖 YES BUTTON (UNCHANGED TEXT)
+// 💖 YES BUTTON (YOUR TEXT UNCHANGED)
 const yesBtn = document.getElementById("yesBtn");
 if(yesBtn){
   yesBtn.onclick = function(){
@@ -145,6 +145,35 @@ if(yesBtn){
      }
     }
     typeLove();
+
+    // 💥 HEART EXPLOSIONS ON YES PAGE
+    setInterval(()=>{
+      const centerX = Math.random()*window.innerWidth;
+      const centerY = Math.random()*window.innerHeight*0.8;
+
+      for(let i=0;i<20;i++){
+        let heart=document.createElement("div");
+        heart.innerHTML=["💓","💕","💗","💞","💖"][Math.floor(Math.random()*5)];
+        heart.style.position="fixed";
+        heart.style.left=centerX+"px";
+        heart.style.top=centerY+"px";
+        heart.style.fontSize="22px";
+        heart.style.pointerEvents="none";
+        document.body.appendChild(heart);
+
+        const angle=Math.random()*2*Math.PI;
+        const distance=Math.random()*200+50;
+        const x=Math.cos(angle)*distance;
+        const y=Math.sin(angle)*distance;
+
+        heart.animate([
+          {transform:"translate(0,0)",opacity:1},
+          {transform:`translate(${x}px,${y}px) scale(1.6)`,opacity:0}
+        ],{ duration:1400, easing:"ease-out" });
+
+        setTimeout(()=>heart.remove(),1400);
+      }
+    },1200);
   }
 }
 
@@ -163,7 +192,7 @@ window.addEventListener("load", () => {
       setTimeout(() => {
          loader.style.display = "none";
          startTyping();
-         startMusic(); // 🎵 music starts here
+         startMusic();
       }, 800);
 
   }, loaderStayTime);
