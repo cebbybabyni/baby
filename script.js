@@ -166,12 +166,14 @@ setInterval(()=>{
 
 });
 
-// PRO LOADER FIX
+// PRO LOADER (longer cinematic intro)
 window.addEventListener("load", () => {
 
   const loader = document.getElementById("loader");
 
-  // show page after short cinematic delay
+  // ⏳ change this number to control delay
+  const delay = 2800; // 2.8 seconds (perfect sweet spot)
+
   setTimeout(() => {
       loader.style.opacity = "0";
       document.body.style.opacity = "1";
@@ -180,6 +182,6 @@ window.addEventListener("load", () => {
          loader.style.display = "none";
       }, 800);
       
-  }, 1200);
+  }, delay);
 
 });
