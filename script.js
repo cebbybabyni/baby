@@ -1,5 +1,27 @@
 // ========================================
-// 💖 GLOBAL TYPING FUNCTION
+// 🎵 MUSIC FUNCTION
+// ========================================
+function startMusic(){
+  const music = document.getElementById("bgMusic");
+  if(!music) return;
+
+  music.volume = 0;
+  music.play();
+
+  let vol = 0;
+  const fade = setInterval(()=>{
+    if(vol < 0.6){
+      vol += 0.03;
+      music.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  },300);
+}
+
+
+// ========================================
+// 💖 TYPING FUNCTION
 // ========================================
 function startTyping(){
   const text = "To: Jeam Abby Keith Panganiban 😊";
@@ -18,9 +40,7 @@ function startTyping(){
 document.addEventListener("DOMContentLoaded", function () {
 
 
-// ========================================
 // 💖 CLICK HEART BURST
-// ========================================
 document.addEventListener("click", function(e){
  for(let i=0;i<10;i++){
   let heart=document.createElement("div");
@@ -44,9 +64,7 @@ document.addEventListener("click", function(e){
 });
 
 
-// ========================================
-// 💖 FLOATING HEARTS BACKGROUND
-// ========================================
+// 💖 FLOATING HEARTS
 setInterval(()=>{
   let heart=document.createElement("div");
   heart.innerHTML=["💖","💕","💗","💘"][Math.floor(Math.random()*4)];
@@ -67,9 +85,7 @@ setInterval(()=>{
 },1200);
 
 
-// ========================================
-// 😈 RUNAWAY NO BUTTON
-// ========================================
+// 😈 RUNAWAY BUTTON
 const noBtn=document.getElementById("noBtn");
 
 const msgs=[
@@ -104,9 +120,7 @@ noBtn.onmouseover=move;
 noBtn.onclick=move;
 
 
-// ========================================
-// 💖 YES BUTTON (YOUR ORIGINAL TEXT)
-// ========================================
+// 💖 YES BUTTON (UNCHANGED TEXT)
 const yesBtn = document.getElementById("yesBtn");
 if(yesBtn){
   yesBtn.onclick = function(){
@@ -115,10 +129,8 @@ if(yesBtn){
 
     document.body.innerHTML=`
     <div style="padding:30px">
-
     <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExODhia3UwN3BrOWVtczloajJycWFkbWY3dnBha2plcGxlb3BxNjhsNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif"
     style="width:320px;max-width:85vw;border-radius:20px;margin-bottom:15px;box-shadow:0 5px 15px rgba(0,0,0,.2);">
-
     <h1 id="yesText">She said YES gaizzz!!! 💕</h1>
     <p id="loveMsg"></p>
     </div>`;
@@ -139,9 +151,7 @@ if(yesBtn){
 });
 
 
-// ========================================
-// ⏳ LOADER + START TYPING AFTER LOADER
-// ========================================
+// ⏳ LOADER → TYPING → MUSIC
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
   const loaderStayTime = 5000;
@@ -153,6 +163,7 @@ window.addEventListener("load", () => {
       setTimeout(() => {
          loader.style.display = "none";
          startTyping();
+         startMusic(); // 🎵 music starts here
       }, 800);
 
   }, loaderStayTime);
