@@ -53,6 +53,86 @@ setInterval(()=>{
   setTimeout(()=>heart.remove(),9000);
 },1200); // new heart every 1.2 sec
 
+/* 💌 SECRET LOVE LETTER EASTER EGG */
+
+// create love letter overlay (hidden)
+const letter = document.createElement("div");
+letter.id = "loveLetter";
+letter.style.position = "fixed";
+letter.style.inset = "0";
+letter.style.background = "rgba(0,0,0,.75)";
+letter.style.display = "none";
+letter.style.justifyContent = "center";
+letter.style.alignItems = "center";
+letter.style.zIndex = "99999";
+
+// letter content
+letter.innerHTML = `
+<div style="
+background:#fffafc;
+max-width:420px;
+padding:35px;
+border-radius:20px;
+font-family:Poppins;
+line-height:1.6;
+">
+
+<h2 style="color:#ff4fa3;text-align:center">To Abby 💖</h2>
+
+<p>
+So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra.
+Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣
+</p>
+
+<p>
+Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers.
+Dati akala ko puro games lang siya, pero hindi pala. This was my first love. Ito yung bumuhay sakin noon,
+at dito ko rin nakuha yung first paycheck ko.
+</p>
+
+<p>
+Kung ano man narating ko ngayon, nagsimula lahat sa basic HTML na ’to 🥹
+</p>
+
+<p>
+Kaya thank you talaga baby. Thank you sa buhay mo, at thank you rin sa dad mo na hindi ka niya pinutok
+sa tiyan ng mom mo 🤣
+</p>
+
+<p>
+Thank you kasi dumating ka sa buhay ko. Thank you kasi kahit nabuburnout ako sa work,
+nung naalala ko ’to parang gusto ko pang mag-extend ng mga five years eme haha.
+Thank you, binuhay mo ako. Thank you for making me do this kahit hindi mo naman ako inutusan.
+</p>
+
+<p style="font-weight:bold;text-align:center">
+I love you baby 💗<br>Mwaaaah mwaaah mwah
+</p>
+
+<p style="text-align:right">
+Swerte mo naman 😌<br>
+Ikaw ang kauna-unahang ginawan ko nito hahaha
+</p>
+
+<button onclick="document.getElementById('loveLetter').style.display='none'"
+style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">
+Close 💌
+</button>
+
+</div>
+`;
+
+document.body.appendChild(letter);
+
+// secret tap counter (only after YES page appears)
+let secretTaps = 0;
+document.addEventListener("click", ()=>{
+  secretTaps++;
+  if(secretTaps >= 5){
+    letter.style.display = "flex";
+  }
+});
+
 // runaway NO button
 const noBtn=document.getElementById("noBtn");
 const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭","it's a love story, baby, just say, YES 🥰","oops, wrong button nganiii 🙄","say YES to heaven 😇","nye nyee nyeee 🤪","baby, be serious pls 😤","i love you, my princess 😍","stappph playing, baby 😆","click YES na garod 😌💕","yieee, enjoy yarn syaaa 😚","halla si oa hahaha 🤣","how are u so pretty, baby 🥹","baby, please? 🥺👉👈","wilab na wilab sayo 😝"];
@@ -166,82 +246,3 @@ setInterval(()=>{
 
 });
 
-/* 💌 SECRET LOVE LETTER EASTER EGG */
-
-// create love letter overlay (hidden)
-const letter = document.createElement("div");
-letter.id = "loveLetter";
-letter.style.position = "fixed";
-letter.style.inset = "0";
-letter.style.background = "rgba(0,0,0,.75)";
-letter.style.display = "none";
-letter.style.justifyContent = "center";
-letter.style.alignItems = "center";
-letter.style.zIndex = "99999";
-
-// letter content
-letter.innerHTML = `
-<div style="
-background:#fffafc;
-max-width:420px;
-padding:35px;
-border-radius:20px;
-font-family:Poppins;
-line-height:1.6;
-">
-
-<h2 style="color:#ff4fa3;text-align:center">To Abby 💖</h2>
-
-<p>
-So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra.
-Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣
-</p>
-
-<p>
-Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers.
-Dati akala ko puro games lang siya, pero hindi pala. This was my first love. Ito yung bumuhay sakin noon,
-at dito ko rin nakuha yung first paycheck ko.
-</p>
-
-<p>
-Kung ano man narating ko ngayon, nagsimula lahat sa basic HTML na ’to 🥹
-</p>
-
-<p>
-Kaya thank you talaga baby. Thank you sa buhay mo, at thank you rin sa dad mo na hindi ka niya pinutok
-sa tiyan ng mom mo 🤣
-</p>
-
-<p>
-Thank you kasi dumating ka sa buhay ko. Thank you kasi kahit nabuburnout ako sa work,
-nung naalala ko ’to parang gusto ko pang mag-extend ng mga five years eme haha.
-Thank you, binuhay mo ako. Thank you for making me do this kahit hindi mo naman ako inutusan.
-</p>
-
-<p style="font-weight:bold;text-align:center">
-I love you baby 💗<br>Mwaaaah mwaaah mwah
-</p>
-
-<p style="text-align:right">
-Swerte mo naman 😌<br>
-Ikaw ang kauna-unahang ginawan ko nito hahaha
-</p>
-
-<button onclick="document.getElementById('loveLetter').style.display='none'"
-style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">
-Close 💌
-</button>
-
-</div>
-`;
-
-document.body.appendChild(letter);
-
-// secret tap counter (only after YES page appears)
-let secretTaps = 0;
-document.addEventListener("click", ()=>{
-  secretTaps++;
-  if(secretTaps >= 5){
-    letter.style.display = "flex";
-  }
-});
