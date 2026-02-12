@@ -225,19 +225,16 @@ document.body.appendChild(letter);
 
 let secretTaps = 0;
 
-// wait a bit so the YES click doesn't count
 setTimeout(()=>{
-  document.body.addEventListener("click", ()=>{
-    secretTaps++;
-    console.log("secret taps:", secretTaps);
-
-    if(secretTaps >= 5){
-      letter.style.display = "flex";
-    }
-  });
+  window.addEventListener("click", countSecretTap);
 },1000);
 
-};
+function countSecretTap(){
+  secretTaps++;
+  console.log("secret taps:", secretTaps);
 
-});
-
+  if(secretTaps >= 5){
+    letter.style.display = "flex";
+    window.removeEventListener("click", countSecretTap);
+  }
+}
