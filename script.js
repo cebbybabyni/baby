@@ -135,15 +135,21 @@ letter.innerHTML=`
 </div>`;
 document.body.appendChild(letter);
 
-// close button fix
-setTimeout(()=>{
-const closeBtn=document.getElementById("closeLetter");
-if(closeBtn){ closeBtn.onclick=()=>{ letter.style.display="none"; }; }
-},100);
+// 🔒 BULLETPROOF CLOSE BUTTON
+document.addEventListener("click", function(e){
+  if(e.target && e.target.id === "closeLetter"){
+    letter.style.display = "none";
+  }
+});
 
 // open easter egg after 5 taps
 let taps=0;
-setTimeout(()=>{document.addEventListener("click",()=>{taps++; if(taps>=5) letter.style.display="flex";});},1000);
+setTimeout(()=>{
+document.addEventListener("click",()=>{
+taps++;
+if(taps>=5) letter.style.display="flex";
+});
+},1000);
 
 };
 
