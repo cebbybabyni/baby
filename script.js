@@ -83,7 +83,10 @@ noBtn.onclick=move;
 }
 
 // YES click message + confetti
-document.getElementById("yesBtn").onclick=()=>{
+const yesBtn = document.getElementById("yesBtn");
+
+if(yesBtn){   // ⭐ attach click only when button exists
+yesBtn.onclick = () => {
 
 // 📳 vibration
 if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
@@ -245,5 +248,5 @@ setTimeout(() => {
   });
 
 }, 300); // small delay after DOM rewrite
-
+};
 });
