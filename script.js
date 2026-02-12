@@ -83,7 +83,7 @@ document.getElementById("yesBtn").onclick=()=>{
 // 📳 vibration
 if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
 
-document.onclick = null;
+document.removeEventListener("click", heartBurst);
 
 document.body.innerHTML=`
 <div style="padding:30px">
