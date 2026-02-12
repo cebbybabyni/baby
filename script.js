@@ -134,8 +134,8 @@ letter.innerHTML=`
 <p>Kung ano man narating ko ngayon, nagsimula lahat sa basic HTML na ’to 🥹</p>
 <p>Kaya thank you talaga baby. Thank you sa buhay mo, at thank you rin sa dad mo na hindi ka niya pinutok sa tiyan ng mom mo 🤣</p>
 <p>Thank you kasi dumating ka sa buhay ko. Thank you kasi kahit nabuburnout ako sa work, nung naalala ko ’to parang gusto ko pang mag-extend ng mga five years eme haha. Thank you, binuhay mo ako. Thank you for making me do this kahit hindi mo naman ako inutusan.</p>
-<p style="font-weight:bold;margin-top:18px;">I love you baby 💗<br>Mwaaaah mwaaah mwah</p>
-<p style="margin-top:10px;">Swerte mo naman 😌<br>Ikaw ang kauna-unahang ginawan ko nito hahaha</p>
+<p style="font-weight:bold;margin-top:18px;">I love you, my baby abby! 😚😚😚💗</p>
+<p style="margin-top:10px;">Love, 😌<br>Cebby — baliw na baliw pa rin sayo</p>
 
 <button id="closeLetter" style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
 </div>`;
