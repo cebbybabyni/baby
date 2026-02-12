@@ -249,4 +249,5 @@ setTimeout(() => {
 
 }, 300); // small delay after DOM rewrite
 };
-});
+}); // closes yesBtn IF
+}); // closes DOMContentLoaded
