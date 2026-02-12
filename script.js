@@ -166,26 +166,33 @@ setInterval(()=>{
 
 });
 
-/* 💌 SECRET LOVE LETTER ON YES SCREEN */
+
+/* 💌 SECRET LOVE LETTER - FIXED VERSION */
 
 let letterTapCount = 0;
 let letterUnlocked = false;
 
-document.getElementById("yesScreen").addEventListener("click", function(){
+document.addEventListener("click", function(e){
 
-  // only count taps when yes screen visible
-  if(!document.getElementById("yesScreen").classList.contains("show")) return;
+  const yesScreen = document.getElementById("yesScreen");
+  const letter = document.getElementById("loveLetter");
+
+  // if YES screen is not open → ignore taps
+  if(!yesScreen.classList.contains("show")) return;
+
+  // if already opened → ignore taps
   if(letterUnlocked) return;
 
   letterTapCount++;
+  console.log("YES screen taps:", letterTapCount); // for debugging
 
   if(letterTapCount >= 5){
     letterUnlocked = true;
-    document.getElementById("loveLetter").classList.add("show");
+    letter.classList.add("show");
   }
+
 });
 
 function closeLetter(){
   document.getElementById("loveLetter").classList.remove("show");
 }
-
