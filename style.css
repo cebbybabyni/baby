@@ -219,3 +219,13 @@ html,body{
   cursor:pointer;
 }
 
+#loveLetter{
+  opacity:0;
+  pointer-events:none;
+}
+
+#loveLetter.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
