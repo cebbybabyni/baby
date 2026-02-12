@@ -167,7 +167,8 @@ setTimeout(()=>heart.remove(),1400);
 const letter = document.createElement("div");
 letter.style.position = "fixed";
 letter.style.inset = "0";
-letter.style.background = "rgba(0,0,0,.75)";
+letter.style.background = "rgba(0,0,0,.65)";
+letter.style.backdropFilter = "blur(6px)";
 letter.style.display = "none";
 letter.style.zIndex = "99999";
 letter.style.padding = "20px";
@@ -186,8 +187,10 @@ if(window.innerWidth >= 768){
 letter.innerHTML = `
 
 <div style="
-<div style="
 background:#fffafc;
+opacity:1;
+position:relative;
+z-index:2;
 width:100%;
 max-width:520px;
 max-height:85vh;
