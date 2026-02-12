@@ -221,7 +221,7 @@ Close 💌
 </div>
 `;
 
-document.body.appendChild(letter);
+document.getElementById("yesPage").appendChild(letter);
 
 let secretTaps = 0;
 
