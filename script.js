@@ -80,6 +80,8 @@ function move(){
 noBtn.onmouseover=move;
 noBtn.onclick=move;
 
+}
+
 // YES click message + confetti
 document.getElementById("yesBtn").onclick=()=>{
 
@@ -243,4 +245,4 @@ function countSecretTap(){
 }
 };
 
-});
+});q
