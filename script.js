@@ -91,7 +91,9 @@ yesBtn.onclick = () => {
 // 📳 vibration
 if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
 
-document.removeEventListener("click", heartBurst);
+// 🔥 KILL ALL OLD CLICK EVENTS COMPLETELY
+document.onclick = null;
+document.body.onclick = null;
 
 document.body.innerHTML=`
 <div id="yesPage" style="padding:30px">
