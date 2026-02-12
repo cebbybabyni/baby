@@ -179,20 +179,20 @@ letter.style.zIndex = "99999";
 letter.innerHTML = `
 <div style="
 background:#fffafc;
-width:90%;
-max-width:480px;
-max-height:80vh;
+width:92%;
+max-width:650px;
+max-height:85vh;
 overflow-y:auto;
-padding:28px;
-border-radius:20px;
+padding:clamp(22px,4vw,40px);
+border-radius:24px;
 font-family:Poppins;
-line-height:1.7;
+line-height:1.8;
 text-align:left;
-box-shadow:0 20px 50px rgba(0,0,0,.25);
+box-shadow:0 25px 60px rgba(0,0,0,.25);
 ">
-<h2 style="color:#ff4fa3;margin-bottom:15px">Cong🐀s! You found my secret 🥳</h2>
+<h2 style="color:#ff4fa3;margin-bottom:18px;font-size:clamp(22px,3vw,30px);"> Cong🐀s! You found my secret 🥳</h2>
 
-<p>So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra.
+<p style="font-size:clamp(15px,2.2vw,18px);">So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra.
 Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>
 
 <p>Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers.
