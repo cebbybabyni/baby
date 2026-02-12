@@ -169,9 +169,19 @@ letter.style.position = "fixed";
 letter.style.inset = "0";
 letter.style.background = "rgba(0,0,0,.75)";
 letter.style.display = "none";
-letter.style.justifyContent = "center";
-letter.style.alignItems = "center";
 letter.style.zIndex = "99999";
+letter.style.padding = "20px";
+letter.style.overflowY = "auto";
+
+// 📱 default = mobile bottom sheet
+letter.style.display = "none";
+letter.style.justifyContent = "center";
+letter.style.alignItems = "flex-end";
+
+// 📲 tablet / desktop switch to center modal
+if(window.innerWidth >= 768){
+  letter.style.alignItems = "center";
+}
 
 letter.innerHTML = `
 
