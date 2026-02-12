@@ -126,7 +126,7 @@ letter.style.alignItems= window.innerWidth>=768 ? "center":"flex-end";
 letter.style.overflowY="auto";
 
 letter.innerHTML=`
-<div style="background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:left;">
+<div style="background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">
 <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">To Abby 💖</h2>
 
 <p>So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>
@@ -143,12 +143,11 @@ document.body.appendChild(letter);
 
 
 // ⭐ OPEN/CLOSE LOGIC — 10 TAPS
-let taps = 0;
-let letterOpen = false;
+let taps=0;
+let letterOpen=false;
 
 document.addEventListener("click", function(e){
 
-  // close button
   if(e.target && e.target.id==="closeLetter"){
     letter.style.display="none";
     letterOpen=false;
