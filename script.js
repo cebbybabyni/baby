@@ -86,7 +86,7 @@ if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
 document.removeEventListener("click", heartBurst);
 
 document.body.innerHTML=`
-<div style="padding:30px">
+<div id="yesPage" style="padding:30px">
 
 <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExODhia3UwN3BrOWVtczloajJycWFkbWY3dnBha2plcGxlb3BxNjhsNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif"
  style="width:320px;max-width:85vw;border-radius:20px;margin-bottom:15px;box-shadow:0 5px 15px rgba(0,0,0,.2);">
@@ -226,7 +226,7 @@ document.body.appendChild(letter);
 let secretTaps = 0;
 
 setTimeout(()=>{
-  window.addEventListener("click", countSecretTap);
+  document.getElementById("yesPage").addEventListener("click", countSecretTap);
 },1000);
 
 function countSecretTap(){
@@ -235,7 +235,7 @@ function countSecretTap(){
 
   if(secretTaps >= 5){
     letter.style.display = "flex";
-    window.removeEventListener("click", countSecretTap);
+ document.getElementById("yesPage").removeEventListener("click", countSecretTap);
   }
 }
 };
