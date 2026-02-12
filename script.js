@@ -78,13 +78,11 @@ document.body.innerHTML=`
 <p id="loveMsg"></p>  
 </div>`;
 
-// typing love message
 const msg="You just made me the happiest person alive. I can't wait to spend Valentine's Day with you 🌹 You're stuck with me now 😌💖";
 let j=0;
 function typeLove(){ if(j<msg.length){document.getElementById("loveMsg").innerHTML+=msg.charAt(j); j++; setTimeout(typeLove,40);} }
 typeLove();
 
-// music fade in
 const music=new Audio("music.mp3");
 music.loop=true; music.volume=0; music.play();
 let volume=0;
@@ -129,7 +127,7 @@ letter.style.alignItems= window.innerWidth>=768 ? "center":"flex-end";
 letter.style.overflowY="auto";
 
 letter.innerHTML=`
-<div style="background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">  
+<div id="letterCard" style="background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">  
 <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, babyyy! 💖</h2>
 
 <p>So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>
@@ -154,6 +152,44 @@ document.body.appendChild(letter);
 let taps=0;
 let letterOpen=false;
 
+
+// 🦋 REAL BUTTERFLY VIDEO
+function flyRealButterfly(){
+  const card=document.getElementById("letterCard");
+  if(!card) return;
+
+  const butterfly=document.createElement("video");
+  butterfly.src="butterfly.mp4";
+  butterfly.autoplay=true;
+  butterfly.muted=true;
+  butterfly.playsInline=true;
+
+  butterfly.style.position="absolute";
+  butterfly.style.width="120px";
+  butterfly.style.left="-120px";
+  butterfly.style.top=Math.random()*60+"%";
+  butterfly.style.pointerEvents="none";
+  butterfly.style.mixBlendMode="multiply";
+  butterfly.style.opacity="0.95";
+
+  card.appendChild(butterfly);
+
+  const midY=Math.random()*40-20;
+
+  butterfly.animate([
+    { transform:"translateX(0)" },
+    { transform:`translate(40%, ${midY}px)` },
+    { transform:`translate(80%, ${-midY}px)` },
+    { transform:`translateX(120%)` }
+  ],{
+    duration:8000,
+    easing:"ease-in-out"
+  });
+
+  setTimeout(()=>butterfly.remove(),8000);
+}
+
+
 document.addEventListener("click", function(e){
 
 if(e.target && e.target.id==="closeLetter"){
@@ -169,9 +205,16 @@ taps++;
 if(taps>=10){
 letter.style.display="flex";
 letterOpen=true;
+flyRealButterfly();
 }
 
 });
+
+// keep butterflies flying
+setInterval(()=>{
+if(!letterOpen) return;
+flyRealButterfly();
+},9000);
 
 };
 
