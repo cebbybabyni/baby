@@ -231,10 +231,14 @@ Close 💌
 </div>
 `;
 
-// wait until new YES page fully renders
-setTimeout(() => {
+// 🔎 WAIT until YES page really exists (no timeout guessing)
+const waitForYesPage = setInterval(() => {
 
   const yesPage = document.getElementById("yesPage");
+  if(!yesPage) return; // keep waiting
+
+  clearInterval(waitForYesPage); // stop checking
+
   yesPage.appendChild(letter);
 
   let secretTaps = 0;
@@ -249,7 +253,7 @@ setTimeout(() => {
     }
   });
 
-}, 300); // small delay after DOM rewrite
+}, 50);
 };
 }); // closes yesBtn IF
 }); // closes DOMContentLoaded
