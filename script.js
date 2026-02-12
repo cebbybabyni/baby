@@ -165,3 +165,26 @@ setInterval(()=>{
 };
 
 });
+
+/* 💌 SECRET LOVE LETTER ON YES SCREEN */
+
+let letterTapCount = 0;
+let letterUnlocked = false;
+
+document.getElementById("yesScreen").addEventListener("click", function(){
+
+  // only count taps when yes screen visible
+  if(!document.getElementById("yesScreen").classList.contains("show")) return;
+  if(letterUnlocked) return;
+
+  letterTapCount++;
+
+  if(letterTapCount >= 5){
+    letterUnlocked = true;
+    document.getElementById("loveLetter").classList.add("show");
+  }
+});
+
+function closeLetter(){
+  document.getElementById("loveLetter").classList.remove("show");
+}
