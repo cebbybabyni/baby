@@ -1,11 +1,23 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-// typing intro
-const text="To: Jeam Abby Keith Panganiban 😊";
-let i=0;
-function type(){ if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i); i++; setTimeout(type,50);} }
-type();
+// 💌 SAFE typing intro
+const typingEl = document.getElementById("typing");
+
+if (typingEl) {
+  const text = "To: Jeam Abby Keith Panganiban 😊";
+  let i = 0;
+
+  function type(){
+    if(i < text.length){
+      typingEl.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, 50);
+    }
+  }
+
+  type();
+}
 
 // hearts burst anywhere clicked
 function heartBurst(e){
