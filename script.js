@@ -6,7 +6,6 @@ let i=0;
 function type(){ if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i); i++; setTimeout(type,50);} }
 type();
 
-
 // 💖 hearts burst anywhere clicked
 document.addEventListener("click", function(e){
 for(let i=0;i<10;i++){
@@ -22,12 +21,11 @@ const x=(Math.random()-0.5)*200;
 const y=(Math.random()-0.5)*200;
 heart.animate([
 {transform:"translate(0,0) scale(1)",opacity:1},
-{transform:`translate(${x}px,${y}px) scale(1.8)`,opacity:0}
+{transform:translate(${x}px,${y}px) scale(1.8),opacity:0}
 ],{duration:1200,easing:"ease-out"});
 setTimeout(()=>heart.remove(),1200);
 }
 });
-
 
 // floating hearts background
 setInterval(()=>{
@@ -47,16 +45,15 @@ heart.animate([
 setTimeout(()=>heart.remove(),9000);
 },1200);
 
-
 // runaway NO button
 const noBtn=document.getElementById("noBtn");
 const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭","it's a love story, baby, just say, YES 🥰","oops, wrong button nganiii 🙄","say YES to heaven 😇","nye nyee nyeee 🤪","baby, be serious pls 😤","i love you, my princess 😍","stappph playing, baby 😆","click YES na garod 😌💕","yieee, enjoy yarn syaaa 😚","halla si oa hahaha 🤣","how are u so pretty, baby 🥹","baby, please? 🥺👉👈","wilab na wilab sayo 😝"];
 
 function move(){
-noBtn.innerText=msgs[Math.floor(Math.random()*msgs.length)];
+noBtn.innerText=msgs[Math.floor(Math.random()msgs.length)];
 const btnW=noBtn.offsetWidth;
 const btnH=noBtn.offsetHeight;
-const x=Math.random()*(window.innerWidth-btnW-20);
+const x=Math.random()(window.innerWidth-btnW-20);
 const y=Math.random()*(window.innerHeight-btnH-20);
 noBtn.style.position="fixed";
 noBtn.style.left=x+"px";
@@ -65,20 +62,18 @@ noBtn.style.top=y+"px";
 noBtn.onmouseover=move;
 noBtn.onclick=move;
 
-
 // 💚 YES PAGE
 document.getElementById("yesBtn").onclick=()=>{
 
 if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
 
 document.body.innerHTML=`
-<div style="padding:30px">
-<img src="https://media3.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" style="width:320px;max-width:85vw;border-radius:20px;margin-bottom:15px;">
-<h1 id="yesText" style="font-family:Pacifico;">She said YES gaizzz!!! 💕</h1>
-<p id="loveMsg"></p>
-</div>`;
 
-// typing love message
+<div style="padding:30px">  
+<img src="https://media3.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" style="width:320px;max-width:85vw;border-radius:20px;margin-bottom:15px;">  
+<h1 id="yesText" style="font-family:Pacifico;">She said YES gaizzz!!! 💕</h1>  
+<p id="loveMsg"></p>  
+</div>`;  // typing love message
 const msg="You just made me the happiest person alive. I can't wait to spend Valentine's Day with you 🌹 You're stuck with me now 😌💖";
 let j=0;
 function typeLove(){ if(j<msg.length){document.getElementById("loveMsg").innerHTML+=msg.charAt(j); j++; setTimeout(typeLove,40);} }
@@ -90,6 +85,25 @@ music.loop=true; music.volume=0; music.play();
 let volume=0;
 const fade=setInterval(()=>{ if(volume<0.6){volume+=0.03;music.volume=volume;} else clearInterval(fade); },300);
 
+// 💥 random heart bursts on YES page
+setInterval(()=>{
+const centerX=Math.random()*window.innerWidth;
+const centerY=Math.random()window.innerHeight0.8;
+for(let i=0;i<20;i++){
+let heart=document.createElement("div");
+heart.innerHTML=["💓","💕","💗","💞","💖"][Math.floor(Math.random()*5)];
+heart.style.position="fixed";
+heart.style.left=centerX+"px";
+heart.style.top=centerY+"px";
+heart.style.fontSize="22px";
+document.body.appendChild(heart);
+const angle=Math.random()2Math.PI;
+const distance=Math.random()*200+50;
+const x=Math.cos(angle)*distance;
+const y=Math.sin(angle)*distance;
+heart.animate([{transform:"translate(0,0)",opacity:1},{transform:translate(${x}px,${y}px) scale(1.6),opacity:0}],{duration:1400,easing:"ease-out"});
+setTimeout(()=>heart.remove(),1400);
+}},1200);
 
 // 💌 EASTER EGG LETTER
 const letter=document.createElement("div");
@@ -105,42 +119,37 @@ letter.style.alignItems= window.innerWidth>=768 ? "center":"flex-end";
 letter.style.overflowY="auto";
 
 letter.innerHTML=`
-<div style="background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">
-<h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, babyyy! 💖</h2>
 
-<p>So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>
-<p>Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers. Dati akala ko puro games lang siya, pero hindi pala. This was my first love. Ito yung bumuhay sakin noon, at dito ko rin nakuha yung first paycheck ko.</p>
-<p>Kung ano man narating ko ngayon, nagsimula lahat sa basic HTML na ’to 🥹</p>
-<p>Kaya thank you talaga baby. Thank you sa buhay mo, at thank you rin sa dad mo na hindi ka niya pinutok sa tiyan ng mom mo 🤣</p>
-<p>Thank you kasi dumating ka sa buhay ko. Thank you kasi kahit nabuburnout ako sa work, nung naalala ko ’to parang gusto ko pang mag-extend ng mga five years eme haha. Thank you, binuhay mo ako. Thank you for making me do this kahit hindi mo naman ako inutusan.</p>
-<p style="font-weight:bold;margin-top:18px;">I love you, my baby abby! 😚😚😚💗</p>
-<p style="margin-top:10px;">Love, 😌<br>Cebby — baliw na baliw pa rin sayo</p>
+<div style="background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">  
+<h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, babyyy! 💖</h2>  <p>So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>  
+<p>Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers. Dati akala ko puro games lang siya, pero hindi pala. This was my first love. Ito yung bumuhay sakin noon, at dito ko rin nakuha yung first paycheck ko.</p>  
+<p>Kung ano man narating ko ngayon, nagsimula lahat sa basic HTML na ’to 🥹</p>  
+<p>Kaya thank you talaga baby. Thank you sa buhay mo, at thank you rin sa dad mo na hindi ka niya pinutok sa tiyan ng mom mo 🤣</p>  
+<p>Thank you kasi dumating ka sa buhay ko. Thank you kasi kahit nabuburnout ako sa work, nung naalala ko ’to parang gusto ko pang mag-extend ng mga five years eme haha. Thank you, binuhay mo ako. Thank you for making me do this kahit hindi mo naman ako inutusan.</p>  
+<p style="font-weight:bold;margin-top:18px;">I love you, my baby abby! 😚😚😚💗</p>  
+<p style="margin-top:10px;">Love, 😌<br>Cebby — baliw na baliw pa rin sayo</p>  <button id="closeLetter" style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
 
-<button id="closeLetter" style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
-</div>`;
-document.body.appendChild(letter);
-
-
-// ⭐ OPEN/CLOSE LOGIC — 10 TAPS
+</div>`;  
+document.body.appendChild(letter);  // ⭐ OPEN/CLOSE LOGIC — 10 TAPS
 let taps=0;
 let letterOpen=false;
 
 document.addEventListener("click", function(e){
 
-  if(e.target && e.target.id==="closeLetter"){
-    letter.style.display="none";
-    letterOpen=false;
-    taps=0;
-    return;
-  }
+if(e.target && e.target.id==="closeLetter"){
+letter.style.display="none";
+letterOpen=false;
+taps=0;
+return;
+}
 
-  if(letterOpen) return;
+if(letterOpen) return;
 
-  taps++;
-  if(taps>=10){
-    letter.style.display="flex";
-    letterOpen=true;
-  }
+taps++;
+if(taps>=10){
+letter.style.display="flex";
+letterOpen=true;
+}
 
 });
 
