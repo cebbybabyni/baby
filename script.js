@@ -167,6 +167,7 @@ setInterval(()=>{
 /* 💌 SECRET LOVE LETTER EASTER EGG (YES PAGE ONLY) */
 
 const letter = document.createElement("div");
+letter.id = "loveLetter";
 letter.style.position = "fixed";
 letter.style.inset = "0";
 letter.style.background = "rgba(0,0,0,.75)";
@@ -210,7 +211,7 @@ Thank you, binuhay mo ako. Thank you for making me do this kahit hindi mo naman 
 
 <p style="text-align:right">Swerte mo naman 😌<br>Ikaw ang kauna-unahang ginawan ko nito hahaha</p>
 
-<button onclick="this.parentElement.parentElement.style.display='none'"
+<button onclick="document.getElementById('loveLetter').style.display='none'"
 style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">
 Close 💌
 </button>
