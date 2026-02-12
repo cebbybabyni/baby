@@ -91,27 +91,6 @@ let volume=0;
 const fade=setInterval(()=>{ if(volume<0.6){volume+=0.03;music.volume=volume;} else clearInterval(fade); },300);
 
 
-// 💥 random heart bursts on YES page
-setInterval(()=>{
-const centerX=Math.random()*window.innerWidth;
-const centerY=Math.random()*window.innerHeight*0.8;
-for(let i=0;i<20;i++){
-let heart=document.createElement("div");
-heart.innerHTML=["💓","💕","💗","💞","💖"][Math.floor(Math.random()*5)];
-heart.style.position="fixed";
-heart.style.left=centerX+"px";
-heart.style.top=centerY+"px";
-heart.style.fontSize="22px";
-document.body.appendChild(heart);
-const angle=Math.random()*2*Math.PI;
-const distance=Math.random()*200+50;
-const x=Math.cos(angle)*distance;
-const y=Math.sin(angle)*distance;
-heart.animate([{transform:"translate(0,0)",opacity:1},{transform:`translate(${x}px,${y}px) scale(1.6)`,opacity:0}],{duration:1400,easing:"ease-out"});
-setTimeout(()=>heart.remove(),1400);
-}},1200);
-
-
 // 💌 EASTER EGG LETTER
 const letter=document.createElement("div");
 letter.style.position="fixed";
@@ -126,49 +105,36 @@ letter.style.alignItems= window.innerWidth>=768 ? "center":"flex-end";
 letter.style.overflowY="auto";
 
 letter.innerHTML=`
-<div style="background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">
+<div style="background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;">
 <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, babyyy! 💖</h2>
-
-<p>So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>
-<p>Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers. Dati akala ko puro games lang siya, pero hindi pala. This was my first love. Ito yung bumuhay sakin noon, at dito ko rin nakuha yung first paycheck ko.</p>
-<p>Kung ano man narating ko ngayon, nagsimula lahat sa basic HTML na ’to 🥹</p>
-<p>Kaya thank you talaga baby. Thank you sa buhay mo, at thank you rin sa dad mo na hindi ka niya pinutok sa tiyan ng mom mo 🤣</p>
-<p>Thank you kasi dumating ka sa buhay ko. Thank you kasi kahit nabuburnout ako sa work, nung naalala ko ’to parang gusto ko pang mag-extend ng mga five years eme haha. Thank you, binuhay mo ako. Thank you for making me do this kahit hindi mo naman ako inutusan.</p>
-<p style="font-weight:bold;margin-top:18px;">I love you, my baby abby! 😚😚😚💗</p>
-<p style="margin-top:10px;">Love, 😌<br>Cebby — baliw na baliw pa rin sayo</p>
-
+<p>So ayun... I love you 💖</p>
 <button id="closeLetter" style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
 </div>`;
 document.body.appendChild(letter);
 
-
-// ⭐ OPEN/CLOSE LOGIC — 10 TAPS
 let taps=0;
 let letterOpen=false;
 
 document.addEventListener("click", function(e){
-
   if(e.target && e.target.id==="closeLetter"){
     letter.style.display="none";
     letterOpen=false;
     taps=0;
     return;
   }
-
   if(letterOpen) return;
-
   taps++;
   if(taps>=10){
     letter.style.display="flex";
     letterOpen=true;
   }
-
 });
 
 
-/* 🦋 LIVE FLYING BUTTERFLIES */
+/* 🦋 BUTTERFLIES — FIXED */
 setInterval(()=>{
   if(!letterOpen) return;
+
   const butterfly=document.createElement("div");
   butterfly.innerHTML="🦋";
   butterfly.style.position="fixed";
@@ -176,25 +142,27 @@ setInterval(()=>{
   butterfly.style.top=Math.random()*80+"vh";
   butterfly.style.fontSize="26px";
   butterfly.style.pointerEvents="none";
-  butterfly.style.zIndex="9999";
+  butterfly.style.zIndex="100000"; // FIXED HERE
+
   document.body.appendChild(butterfly);
 
-  const midY = Math.random()*60 + 10;
+  const midY=Math.random()*60+10;
 
   butterfly.animate([
-    { transform:`translate(0,0)` },
-    { transform:`translate(40vw,-${midY}px)` },
-    { transform:`translate(80vw,${midY}px)` },
-    { transform:`translate(120vw,0px)` }
-  ],{ duration:12000, easing:"ease-in-out" });
+    {transform:`translate(0,0)`},
+    {transform:`translate(40vw,-${midY}px)`},
+    {transform:`translate(80vw,${midY}px)`},
+    {transform:`translate(120vw,0px)`}
+  ],{duration:12000,easing:"ease-in-out"});
 
   butterfly.animate([
-    { transform:"scale(1)" },
-    { transform:"scale(1.2)" },
-    { transform:"scale(1)" }
-  ],{ duration:600, iterations:Infinity });
+    {transform:"scale(1)"},
+    {transform:"scale(1.2)"},
+    {transform:"scale(1)"}
+  ],{duration:600,iterations:Infinity});
 
   setTimeout(()=>butterfly.remove(),12000);
+
 },3500);
 
 };
