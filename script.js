@@ -243,16 +243,20 @@ const waitForYesPage = setInterval(() => {
 
   let secretTaps = 0;
 
-  yesPage.addEventListener("click", function countSecretTap(){
-    secretTaps++;
-    console.log("secret taps:", secretTaps);
+function countSecretTap(){
+  secretTaps++;
+  console.log("secret taps:", secretTaps);
 
-    if(secretTaps >= 5){
-      letter.style.display = "flex";
-      yesPage.removeEventListener("click", countSecretTap);
-    }
-  });
+  if(secretTaps >= 5){
+    letter.style.display = "flex";
+    yesPage.removeEventListener("click", countSecretTap);
+    yesPage.removeEventListener("touchstart", countSecretTap);
+  }
+}
 
+// listen to BOTH desktop + mobile taps
+yesPage.addEventListener("click", countSecretTap);
+yesPage.addEventListener("touchstart", countSecretTap);
 }, 50);
 };
 }); // closes yesBtn IF
