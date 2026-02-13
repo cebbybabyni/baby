@@ -91,6 +91,7 @@ let j=0;
 function typeLove(){ if(j<msg.length){document.getElementById("loveMsg").innerHTML+=msg.charAt(j); j++; setTimeout(typeLove,40);} }
 typeLove();
 
+
 // 🎵 MUSIC
 const music=new Audio("music.mp3");
 music.loop=true;
@@ -138,33 +139,35 @@ document.body.appendChild(letter);
 
 let letterOpen=false;
 
-// 🌸 PETALS slow fall to bottom
+// 🌸 SLOW PETALS TO BOTTOM
 function spawnPetal(){
  if(!letterOpen) return;
  const layer=document.getElementById("fxLayer");
  const card=document.getElementById("letterCard");
  const rect=card.getBoundingClientRect();
- const travel=rect.height+120;
+ const travel=rect.height+160;
 
  const petal=document.createElement("div");
  petal.innerHTML="🌸";
  petal.style.position="absolute";
- petal.style.left=Math.random()*90+"%";
- petal.style.top="-40px";
+ petal.style.left=Math.random()*95+"%";
+ petal.style.top="-50px";
+ petal.style.fontSize="22px";
+ petal.style.opacity="0.7";
  layer.appendChild(petal);
 
- const drift=(Math.random()*120)-60;
- const rotate=Math.random()*360;
+ const drift=(Math.random()*160)-80;
+ const rotate=Math.random()*720;
 
  petal.animate([
   {transform:"translate(0,0) rotate(0deg)"},
   {transform:`translate(${drift}px,${travel}px) rotate(${rotate}deg)`}
- ],{duration:14000,easing:"linear"});
+ ],{duration:18000,easing:"linear"});
 
- setTimeout(()=>petal.remove(),14000);
+ setTimeout(()=>petal.remove(),18000);
 }
 
-// 🦋 BIG BUTTERFLY random flying
+// 🦋 COLORFUL BUTTERFLY WEBM
 function spawnButterfly(){
  if(!letterOpen || window.butterflyAlive) return;
  window.butterflyAlive=true;
@@ -176,27 +179,32 @@ function spawnButterfly(){
  butterfly.muted=true;
  butterfly.loop=true;
  butterfly.playsInline=true;
+
+ const hues=[0,40,80,120,160,200,240,280,320];
+ const hue=hues[Math.floor(Math.random()*hues.length)];
+
  butterfly.style.position="absolute";
- butterfly.style.width="220px";
+ butterfly.style.width="240px";
+ butterfly.style.filter=`hue-rotate(${hue}deg) saturate(220%) brightness(1.1)`;
  butterfly.style.left=Math.random()*70+"%";
  butterfly.style.top=Math.random()*70+"%";
  layer.appendChild(butterfly);
 
- const moveX=(Math.random()*400)-200;
- const moveY=(Math.random()*300)-150;
+ const moveX=(Math.random()*500)-250;
+ const moveY=(Math.random()*350)-175;
+ const moveX2=(Math.random()*500)-250;
+ const moveY2=(Math.random()*350)-175;
 
  butterfly.animate([
   {transform:"translate(0,0)"},
-  {transform:`translate(${moveX}px,${moveY}px)`}
- ],{duration:16000,easing:"ease-in-out"});
+  {transform:`translate(${moveX}px,${moveY}px)`},
+  {transform:`translate(${moveX2}px,${moveY2}px)`}
+ ],{duration:18000,easing:"ease-in-out"});
 
- setTimeout(()=>{
-  butterfly.remove();
-  window.butterflyAlive=false;
- },16000);
+ setTimeout(()=>{butterfly.remove();window.butterflyAlive=false;},18000);
 }
 
-// open after 10 taps
+// tap logic
 let taps=0;
 document.addEventListener("click", function(e){
  if(e.target.id==="closeLetter"){letter.style.display="none";letterOpen=false;taps=0;return;}
@@ -205,8 +213,8 @@ document.addEventListener("click", function(e){
    letter.style.display="flex";
    letterOpen=true;
    spawnButterfly();
-   setInterval(spawnPetal,5000);
-   setInterval(spawnButterfly,16000);
+   setInterval(spawnPetal,7000);
+   setInterval(spawnButterfly,18000);
  }
 });
 
