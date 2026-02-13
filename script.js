@@ -80,13 +80,11 @@ noBtn.onclick=move;
 }
 
 
-// ⭐ GLOBAL CLICK HANDLER (YES + EASTER EGG)
+// ⭐ GLOBAL CLICK HANDLER
 document.addEventListener("click", function(e){
 
 // 💚 YES BUTTON
 if(e.target && e.target.id==="yesBtn"){
-
- if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
 
  document.body.innerHTML=`
  <div style="padding:30px">  
@@ -95,25 +93,18 @@ if(e.target && e.target.id==="yesBtn"){
  <p id="loveMsg"></p>  
  </div>`;
 
- // typing love message
  const msg="You just made me the happiest person alive. I can't wait to spend Valentine's Day with you 🌹 You're stuck with me now 😌💖";
  let j=0;
- function typeLove(){
-  if(j<msg.length){
-    document.getElementById("loveMsg").innerHTML+=msg.charAt(j);
-    j++;
-    setTimeout(typeLove,40);
-  }}
+ function typeLove(){ if(j<msg.length){document.getElementById("loveMsg").innerHTML+=msg.charAt(j); j++; setTimeout(typeLove,40);} }
  typeLove();
 
- // music fade in
  const music=new Audio("music.mp3");
  music.loop=true; music.volume=0; music.play();
  let volume=0;
  setInterval(()=>{ if(volume<0.6){volume+=0.03;music.volume=volume;} },300);
 
 
- // 💌 CREATE EASTER EGG AFTER YES PAGE LOADS
+ // 💌 CREATE LETTER AFTER YES
  const letter=document.createElement("div");
  letter.style.position="fixed";
  letter.style.inset="0";
@@ -141,7 +132,7 @@ if(e.target && e.target.id==="yesBtn"){
  document.body.appendChild(letter);
 
 
- // 🌸 PETALS
+ // 🌸 FEWER PETALS
  function spawnPetal(){
   if(!letterOpen) return;
   const card=document.getElementById("letterCard");
@@ -155,7 +146,7 @@ if(e.target && e.target.id==="yesBtn"){
   petal.style.position="fixed";
   petal.style.top=startY+"px";
   petal.style.left=rect.left+Math.random()*rect.width+"px";
-  petal.style.fontSize=(Math.random()*10+18)+"px";
+  petal.style.fontSize=(Math.random()*8+16)+"px";
   petal.style.pointerEvents="none";
   petal.style.zIndex="100000";
   document.body.appendChild(petal);
@@ -168,7 +159,23 @@ if(e.target && e.target.id==="yesBtn"){
   setTimeout(()=>petal.remove(),9000);
  }
 
- // ⭐ TAP 10 TIMES
+ // 🦋 BUTTERFLIES
+ function flyButterfly(){
+  if(!letterOpen) return;
+  const card=document.getElementById("letterCard");
+  const butterfly=document.createElement("video");
+  butterfly.src="butterfly.webm";
+  butterfly.autoplay=true; butterfly.muted=true; butterfly.playsInline=true;
+  butterfly.style.position="absolute";
+  butterfly.style.width="220px";
+  butterfly.style.pointerEvents="none";
+  butterfly.style.left=Math.random()*70+"%";
+  butterfly.style.top=Math.random()*70+"%";
+  card.appendChild(butterfly);
+  butterfly.animate([{transform:"translate(0,0)"},{transform:`translate(${(Math.random()*120)-60}px, ${(Math.random()*120)-60}px)`}],{duration:9000});
+  setTimeout(()=>butterfly.remove(),9000);
+ }
+
  let taps=0;
  let letterOpen=false;
 
@@ -179,7 +186,9 @@ if(e.target && e.target.id==="yesBtn"){
   if(taps>=10){
     letter.style.display="flex";
     letterOpen=true;
-    setInterval(spawnPetal,400);
+    setInterval(spawnPetal,1500); // 🌸 slower spawn
+    flyButterfly();
+    setInterval(flyButterfly,9000);
   }
  });
 
