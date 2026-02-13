@@ -244,21 +244,25 @@ document.addEventListener("click",function(e){
  }
 });
 
-// GINAYUMA TEXT CHANGE (fixed)
-setTimeout(() => {
-  const text = document.getElementById("ginayumaText");
-
-  // fade out the ginayuma text
-  text.classList.remove("fadeIn");
-  text.classList.add("fadeOut");
+// FIXED TEXT CHANGE (mobile safe)
+window.addEventListener("load", function(){
 
   setTimeout(() => {
-    text.innerHTML = "Will you be my Valentine? 💖";
-    text.classList.remove("fadeOut");
-    text.classList.add("fadeIn");
-  }, 900);
+    const text = document.getElementById("ginayumaText");
+    if(!text) return; // safety
 
-}, 2500);
+    text.classList.remove("fadeIn");
+    text.classList.add("fadeOut");
+
+    setTimeout(() => {
+      text.innerHTML = "Will you be my Valentine? 💖";
+      text.classList.remove("fadeOut");
+      text.classList.add("fadeIn");
+    }, 900);
+
+  }, 3000); // waits 3 seconds AFTER full page load
+
+});
 
 };
 });
