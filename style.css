@@ -29,6 +29,7 @@ h1{
 }
 
 #typing{ font-size:clamp(22px, 5vw, 32px); margin-bottom:6px; }
+#question{ font-size:clamp(26px,6vw,36px); }
 
 p{
   color:#555;
@@ -93,8 +94,13 @@ button{
   width:min(220px,60vw);
   border-radius:20px;
   margin:15px;
-  margin-bottom:0; /* ⭐ gap fix */
   box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+/* ================= FLOATING HEARTS ================= */
+@keyframes float{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-110vh);opacity:0;}
 }
 
 /* ================= YES PAGE ================= */
@@ -149,7 +155,7 @@ button{
 .bigLine{ font-size:22px; font-weight:bold; text-align:center; }
 .sign{ text-align:right; margin-top:15px; }
 
-/* ================= PETALS ================= */
+/* ================= 🌸 PETALS (NEW) ================= */
 .petal{
   position:fixed;
   pointer-events:none;
@@ -158,23 +164,11 @@ button{
   filter:blur(.2px);
 }
 
-/* ================= BUTTERFLY ================= */
+/* ================= 🦋 BUTTERFLY (NEW) ================= */
 .butterfly{
   position:absolute;
   width:260px;
   pointer-events:none;
   z-index:5;
   filter:saturate(1.4) contrast(1.1);
-}
-
-/* ================= QUESTION FADE ================= */
-.question{
-  opacity:0;
-  transition:opacity 1.2s ease;
-  margin-top:0;                 /* ⭐ removes big gap */
-  font-size:clamp(26px,6vw,36px);
-}
-
-.question.show{
-  opacity:1;
 }
