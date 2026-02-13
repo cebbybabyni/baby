@@ -72,13 +72,11 @@ if(e.target && e.target.id==="yesBtn"){
  <p id="loveMsg"></p>  
  </div>`;
 
- // typing love message
  const msg="You just made me the happiest person alive. I can't wait to spend Valentine's Day with you 🌹 You're stuck with me now 😌💖";
  let j=0;
  function typeLove(){ if(j<msg.length){document.getElementById("loveMsg").innerHTML+=msg.charAt(j); j++; setTimeout(typeLove,40);} }
  typeLove();
 
- // music
  const music=new Audio("music.mp3");
  music.loop=true; music.volume=0; music.play();
  let volume=0;
@@ -106,7 +104,8 @@ if(e.target && e.target.id==="yesBtn"){
  }
  setInterval(heartBurst,2000);
 
- // 💌 LETTER
+
+ // 💌 EASTER EGG LETTER WITH FULL MESSAGE
  const letter=document.createElement("div");
  letter.style.position="fixed";
  letter.style.inset="0";
@@ -116,47 +115,38 @@ if(e.target && e.target.id==="yesBtn"){
  letter.style.zIndex="99999";
  letter.style.justifyContent="center";
  letter.style.alignItems="center";
- letter.innerHTML=`<div id="letterCard" style="position:relative; z-index:100001; background:#fffafc;width:92%;max-width:420px;padding:26px;border-radius:26px;font-family:Poppins;text-align:justify;">
- <h2 style="text-align:center;color:#ff4fa3">Hallu, babyyy! 💖</h2>
- <p>So ayun, sobrang HS-coded nito for me baby...</p>
- <button id="closeLetter" style="width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
+
+ letter.innerHTML=`
+ <div id="letterCard" style="position:relative;background:#fffafc;width:92%;max-width:420px;padding:26px;border-radius:26px;font-family:Poppins;line-height:1.7;text-align:justify;">
+ <h2 style="color:#ff4fa3;text-align:center">Hallu, babyyy! 💖</h2>
+
+ <p>So ayun… sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko ’to e — si OA na naman ako hahaha 😭🤣</p>
+
+ <p>Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers. Dati akala ko puro games lang siya… pero hindi pala. This was my first love. Ito yung bumuhay sakin noon, at dito ko rin nakuha yung first paycheck ko.</p>
+
+ <p>Kung ano man narating ko ngayon, nagsimula lahat sa basic HTML na ’to 🥹</p>
+
+ <p>Kaya thank you talaga baby. Thank you sa buhay mo, at thank you rin sa dad mo na hindi ka niya pinutok sa tiyan ng mom mo 🤣</p>
+
+ <p>Thank you kasi dumating ka sa buhay ko. Thank you kasi kahit nabuburnout ako sa work, nung naalala ko ’to parang gusto ko pang mag-extend ng mga five years eme haha.</p>
+
+ <p>Thank you… binuhay mo ako. Thank you for making me do this kahit hindi mo naman ako inutusan. Thank you for being my inspiration without even trying.</p>
+
+ <p>Sobrang mais ko na ba? HAHAHAHAHA OKI BYE NA GAROD!</p>
+
+ <p style="font-weight:bold;">I love you, my baby abby! 💗😚😚😚</p>
+
+ <p style="text-align:right;">Love,<br>Cebby — baliw na baliw pa rin sayo 😵‍💫</p>
+
+ <button id="closeLetter" style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
  </div>`;
  document.body.appendChild(letter);
 
- // 🌈 COLORFUL BUTTERFLY
- function flyButterfly(){
-  if(!letterOpen) return;
-  const card=document.getElementById("letterCard");
-  const butterfly=document.createElement("video");
-  butterfly.src="butterfly.webm";
-  butterfly.autoplay=true; butterfly.muted=true; butterfly.playsInline=true;
-
-  const hue=Math.floor(Math.random()*360); // random color
-  butterfly.style.filter=`hue-rotate(${hue}deg) saturate(260%) brightness(105%)`;
-
-  butterfly.style.position="absolute";
-  butterfly.style.width="230px";
-  butterfly.style.left=Math.random()*70+"%";
-  butterfly.style.top=Math.random()*70+"%";
-  card.appendChild(butterfly);
-
-  butterfly.animate([{transform:"translate(0,0)"},{transform:`translate(${(Math.random()*120)-60}px, ${(Math.random()*120)-60}px)`}],{duration:9000});
-  setTimeout(()=>butterfly.remove(),9000);
- }
-
  let taps=0;
- let letterOpen=false;
-
  document.addEventListener("click", function(e){
-  if(e.target && e.target.id==="closeLetter"){letter.style.display="none";letterOpen=false;taps=0;return;}
-  if(letterOpen) return;
+  if(e.target && e.target.id==="closeLetter"){ letter.style.display="none"; taps=0; return; }
   taps++;
-  if(taps>=10){
-   letter.style.display="flex";
-   letterOpen=true;
-   flyButterfly();
-   setInterval(flyButterfly,9000);
-  }
+  if(taps>=10) letter.style.display="flex";
  });
 
 }
