@@ -174,7 +174,7 @@ letter.innerHTML=`
 document.body.appendChild(letter);
 
 
-//////////////// PETALS INSIDE LETTER (FINAL FIX) ////////////////////
+//////////////// REAL CHERRY BLOSSOM FALL ////////////////////
 function spawnPetal(){
 
  if(!letterOpen) return;
@@ -182,31 +182,33 @@ function spawnPetal(){
  const card = document.getElementById("letterCard");
  if(!card) return;
 
+ const cardHeight = card.scrollHeight; // ⭐ real paper height
+
  const petal=document.createElement("div");
  petal.innerHTML="🌸";
 
- // attach to letter paper
  card.appendChild(petal);
 
  petal.style.position="absolute";
  petal.style.left=Math.random()*100+"%";
- petal.style.top="-30px";
- petal.style.fontSize="20px";
+ petal.style.top="-40px";
+ petal.style.fontSize=(Math.random()*6+18)+"px";
  petal.style.pointerEvents="none";
  petal.style.zIndex="0";
 
- const drift=(Math.random()*60)-30;
- const rotate=Math.random()*360;
+ const drift=(Math.random()*80)-40;   // side sway
+ const rotate=Math.random()*720;      // spin while falling
+ const fallDistance = cardHeight + 120; // ⭐ reach bottom!
 
  petal.animate([
-   { transform:`translate(0,0) rotate(0deg)`, opacity:0.9 },
-   { transform:`translate(${drift}px,120%) rotate(${rotate}deg)`, opacity:0 }
+   { transform:"translate(0,0) rotate(0deg)", opacity:0.95 },
+   { transform:`translate(${drift}px,${fallDistance}px) rotate(${rotate}deg)`, opacity:0 }
  ],{
-   duration:16000,
+   duration:20000,   // slower romantic fall 🌸
    easing:"linear"
  });
 
- setTimeout(()=>petal.remove(),16000);
+ setTimeout(()=>petal.remove(),20000);
 }
 
 
