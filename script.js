@@ -244,5 +244,19 @@ document.addEventListener("click",function(e){
  }
 });
 
+// 💖 ADD YOUR GINAYUMA CODE HERE (BOTTOM OF SCRIPT)
+setTimeout(() => {
+  const text = document.getElementById("ginayumaText");
+
+  text.classList.add("fadeOut");
+
+  setTimeout(() => {
+    text.innerHTML = "Will you be my Valentine? 💖";
+    text.classList.remove("fadeOut");
+    text.classList.add("fadeIn");
+  }, 800);
+
+}, 3500);
+
 };
 });
