@@ -172,3 +172,9 @@ button{
   z-index:5;
   filter:saturate(1.4) contrast(1.1);
 }
+
+#ginayumaText{
+  text-align:center;
+  font-size:clamp(18px,6vw,36px);
+  transition:all .8s ease;
+}
