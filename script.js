@@ -141,7 +141,7 @@ letter.innerHTML=`
 document.body.appendChild(letter);
 
 
-// 🌸 PETALS INSIDE LETTER
+// 🌸 PETALS FULL FALL TOP → BOTTOM
 function spawnPetal(){
  if(!letterOpen) return;
  const card=document.getElementById("letterCard");
@@ -149,7 +149,7 @@ function spawnPetal(){
  const petal=document.createElement("div");
  petal.innerHTML="🌸";
  petal.style.position="absolute";
- petal.style.top="-40px";
+ petal.style.top="-60px";
  petal.style.left=Math.random()*100+"%";
  petal.style.fontSize=(Math.random()*10+18)+"px";
  petal.style.pointerEvents="none";
@@ -157,7 +157,7 @@ function spawnPetal(){
  card.appendChild(petal);
  petal.animate([
   { transform:"translate(0,0) rotate(0deg)", opacity:1 },
-  { transform:`translate(${(Math.random()*120)-60}px,110%) rotate(${Math.random()*360}deg)`, opacity:0 }
+  { transform:`translate(${(Math.random()*120)-60}px,140%) rotate(${Math.random()*360}deg)`, opacity:0 }
  ],{ duration:9000, easing:"linear" });
  setTimeout(()=>petal.remove(),9000);
 }
@@ -204,5 +204,4 @@ document.addEventListener("click", function(e){
 });
 
 };
-
 });
