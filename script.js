@@ -153,24 +153,41 @@ let taps=0;
 let letterOpen=false;
 
 
+// 🌸 CHERRY BLOSSOM PETALS
+function spawnPetal(){
+  if(!letterOpen) return;
+  const petal=document.createElement("div");
+  petal.innerHTML="🌸";
+  petal.style.position="fixed";
+  petal.style.top="-40px";
+  petal.style.left=Math.random()*100+"vw";
+  petal.style.fontSize=(Math.random()*10+18)+"px";
+  petal.style.pointerEvents="none";
+  petal.style.zIndex="999999";
+  document.body.appendChild(petal);
+  const drift=(Math.random()*200)-100;
+  const rotate=Math.random()*360;
+  petal.animate([
+    { transform:"translate(0,0) rotate(0deg)", opacity:1 },
+    { transform:`translate(${drift}px,110vh) rotate(${rotate}deg)`, opacity:0 }
+  ],{ duration:9000, easing:"linear" });
+  setTimeout(()=>petal.remove(),9000);
+}
+
+
 // 🦋 RANDOM COLOR BUTTERFLY
 function flyRealButterfly(){
-
   const card=document.getElementById("letterCard");
   if(!card) return;
-
   const butterfly=document.createElement("video");
   butterfly.src="butterfly.webm";
   butterfly.autoplay=true;
   butterfly.muted=true;
   butterfly.playsInline=true;
-
   const colors=[0,40,90,140,190,230,280,320];
   const hue=colors[Math.floor(Math.random()*colors.length)];
-
   butterfly.style.position="absolute";
   butterfly.style.width="230px";
-  butterfly.style.height="auto";
   butterfly.style.pointerEvents="none";
   butterfly.style.background="transparent";
   butterfly.style.objectFit="contain";
@@ -178,51 +195,26 @@ function flyRealButterfly(){
   butterfly.style.filter=`hue-rotate(${hue}deg) saturate(260%) contrast(115%) brightness(100%)`;
   butterfly.style.left=Math.random()*70+"%";
   butterfly.style.top=Math.random()*70+"%";
-
   card.appendChild(butterfly);
-
-  const x1=(Math.random()*80)-40;
-  const y1=(Math.random()*80)-40;
-  const x2=(Math.random()*80)-40;
-  const y2=(Math.random()*80)-40;
-  const x3=(Math.random()*80)-40;
-  const y3=(Math.random()*80)-40;
-
   butterfly.animate([
     { transform:"translate(0,0)" },
-    { transform:`translate(${x1}px, ${y1}px)` },
-    { transform:`translate(${x2}px, ${y2}px)` },
-    { transform:`translate(${x3}px, ${y3}px)` }
+    { transform:`translate(${(Math.random()*80)-40}px, ${(Math.random()*80)-40}px)` },
+    { transform:`translate(${(Math.random()*80)-40}px, ${(Math.random()*80)-40}px)` }
   ],{ duration:9000, easing:"ease-in-out" });
-
   setTimeout(()=>butterfly.remove(),9000);
 }
 
 document.addEventListener("click", function(e){
-
-if(e.target && e.target.id==="closeLetter"){
-letter.style.display="none";
-letterOpen=false;
-taps=0;
-return;
-}
-
+if(e.target && e.target.id==="closeLetter"){ letter.style.display="none"; letterOpen=false; taps=0; return; }
 if(letterOpen) return;
-
 taps++;
 if(taps>=10){
 letter.style.display="flex";
 letterOpen=true;
 flyRealButterfly();
+setInterval(flyRealButterfly,9000);
+setInterval(spawnPetal,400);
 }
-
 });
-
-setInterval(()=>{
-if(!letterOpen) return;
-flyRealButterfly();
-},9000);
 
 };
-
-});
