@@ -138,28 +138,31 @@ letter.innerHTML=`
 </div>`;
 document.body.appendChild(letter);
 
-//////////////// 🌸 SLOW PETALS INSIDE LETTER (added)
-let letterOpen=false;
-let butterflyAlive=false;
-
+// 🌸 FINAL PETALS (FULL HEIGHT)
 function spawnPetal(){
  if(!letterOpen) return;
  const card=document.getElementById("letterCard");
+ const rect=card.getBoundingClientRect();
+ const startY=rect.top-60;
+ const endY=rect.bottom+60;
+ const travel=endY-startY;
+
  const petal=document.createElement("div");
  petal.innerHTML="🌸";
- petal.style.position="absolute";
- petal.style.left=Math.random()*90+"%";
- petal.style.top="-40px";
- petal.style.fontSize="15px";
+ petal.style.position="fixed";
+ petal.style.top=startY+"px";
+ petal.style.left=rect.left+Math.random()*rect.width+"px";
+ petal.style.fontSize=(Math.random()*10+18)+"px";
  petal.style.pointerEvents="none";
- card.appendChild(petal);
+ petal.style.zIndex="100000";
+ document.body.appendChild(petal);
 
- const cardHeight = card.scrollHeight;
  petal.animate([
-  {transform:"translateY(0)"},{transform:`translateY(${cardHeight}px)`}
- ],{duration:12000,easing:"linear"});
+ {transform:"translate(0,0)",opacity:1},
+ {transform:`translate(${(Math.random()*160)-80}px,${travel}px)`,opacity:0}
+ ],{duration:9000,easing:"linear"});
 
- setTimeout(()=>petal.remove(),12000);
+ setTimeout(()=>petal.remove(),9000);
 }
 
 //////////////// 🦋 ONE RANDOM BUTTERFLY (added)
