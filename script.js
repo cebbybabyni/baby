@@ -3,7 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
 // typing intro
 const text="To: Jeam Abby Keith Panganiban 😊";
 let i=0;
-function type(){ if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i); i++; setTimeout(type,50);} }
+function type(){ 
+  const el=document.getElementById("typing");
+  if(!el) return;
+  if(i<text.length){
+    el.innerHTML+=text.charAt(i);
+    i++;
+    setTimeout(type,50);
+  }
+}
 type();
 
 
@@ -18,12 +26,15 @@ heart.style.top=e.clientY+"px";
 heart.style.fontSize=(Math.random()*10+18)+"px";
 heart.style.pointerEvents="none";
 document.body.appendChild(heart);
+
 const x=(Math.random()-0.5)*200;
 const y=(Math.random()-0.5)*200;
+
 heart.animate([
 {transform:"translate(0,0) scale(1)",opacity:1},
 {transform:`translate(${x}px,${y}px) scale(1.8)`,opacity:0}
 ],{duration:1200,easing:"ease-out"});
+
 setTimeout(()=>heart.remove(),1200);
 }
 });
@@ -40,16 +51,20 @@ heart.style.fontSize=(Math.random()*12+16)+"px";
 heart.style.opacity="0.6";
 heart.style.pointerEvents="none";
 document.body.appendChild(heart);
+
 heart.animate([
 { transform:"translateY(0)", opacity:0.6 },
 { transform:"translateY(-120vh)", opacity:0 }
 ],{duration:9000,easing:"linear"});
+
 setTimeout(()=>heart.remove(),9000);
 },1200);
 
 
-// runaway NO button
+// runaway NO button (CRASH FIXED)
 const noBtn=document.getElementById("noBtn");
+if(noBtn){
+
 const msgs=["sure na yarn, baby? 🥺","aww, that hurts my feelings, baby 😭","it's a love story, baby, just say, YES 🥰","oops, wrong button nganiii 🙄","say YES to heaven 😇","nye nyee nyeee 🤪","baby, be serious pls 😤","i love you, my princess 😍","stappph playing, baby 😆","click YES na garod 😌💕","yieee, enjoy yarn syaaa 😚","halla si oa hahaha 🤣","how are u so pretty, baby 🥹","baby, please? 🥺👉👈","wilab na wilab sayo 😝"];
 
 function move(){
@@ -62,12 +77,16 @@ noBtn.style.position="fixed";
 noBtn.style.left=x+"px";
 noBtn.style.top=y+"px";
 }
+
 noBtn.onmouseover=move;
 noBtn.onclick=move;
+}
 
 
 // 💚 YES PAGE
-document.getElementById("yesBtn").onclick=()=>{
+const yesBtn=document.getElementById("yesBtn");
+if(yesBtn){
+yesBtn.onclick=()=>{
 
 if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
 
@@ -80,13 +99,18 @@ document.body.innerHTML=`
 
 const msg="You just made me the happiest person alive. I can't wait to spend Valentine's Day with you 🌹 You're stuck with me now 😌💖";
 let j=0;
-function typeLove(){ if(j<msg.length){document.getElementById("loveMsg").innerHTML+=msg.charAt(j); j++; setTimeout(typeLove,40);} }
+function typeLove(){
+if(j<msg.length){
+document.getElementById("loveMsg").innerHTML+=msg.charAt(j);
+j++;
+setTimeout(typeLove,40);
+}}
 typeLove();
 
 const music=new Audio("music.mp3");
 music.loop=true; music.volume=0; music.play();
 let volume=0;
-const fade=setInterval(()=>{ if(volume<0.6){volume+=0.03;music.volume=volume;} else clearInterval(fade); },300);
+setInterval(()=>{ if(volume<0.6){volume+=0.03;music.volume=volume;} },300);
 
 
 // 💌 EASTER EGG LETTER
@@ -103,7 +127,7 @@ letter.style.alignItems= window.innerWidth>=768 ? "center":"flex-end";
 letter.style.overflowY="auto";
 
 letter.innerHTML=`
-<div id="letterCard" style="position:relative; background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;">
+<div id="letterCard" style="position:relative; z-index:100001; background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;">
 <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, babyyy! 💖</h2>
 <p>So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>
 <p>Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers. Dati akala ko puro games lang siya, pero hindi pala. This was my first love. Ito yung bumuhay sakin noon, at dito ko rin nakuha yung first paycheck ko.</p>
@@ -117,57 +141,31 @@ letter.innerHTML=`
 document.body.appendChild(letter);
 
 
-// 🌸 PHYSICS CORRECT PETALS
+// 🌸 FINAL PETALS (FULL HEIGHT)
 function spawnPetal(){
-
  if(!letterOpen) return;
+ const card=document.getElementById("letterCard");
+ const rect=card.getBoundingClientRect();
+ const startY=rect.top-60;
+ const endY=rect.bottom+60;
+ const travel=endY-startY;
 
- const card = document.getElementById("letterCard");
- if(!card) return;
-
- const rect = card.getBoundingClientRect();
- const startY = rect.top - 60;
- const endY   = rect.bottom + 60;
- const travel = endY - startY;
-
- const petal = document.createElement("div");
+ const petal=document.createElement("div");
  petal.innerHTML="🌸";
  petal.style.position="fixed";
  petal.style.top=startY+"px";
- petal.style.left=rect.left + Math.random()*rect.width + "px";
+ petal.style.left=rect.left+Math.random()*rect.width+"px";
  petal.style.fontSize=(Math.random()*10+18)+"px";
  petal.style.pointerEvents="none";
- petal.style.zIndex="99998";
-
+ petal.style.zIndex="100000";
  document.body.appendChild(petal);
 
- const drift=(Math.random()*160)-80;
- const rotate=Math.random()*360;
-
  petal.animate([
-   { transform:"translate(0,0) rotate(0deg)", opacity:1 },
-   { transform:`translate(${drift}px, ${travel}px) rotate(${rotate}deg)`, opacity:0 }
- ],{ duration:9000, easing:"linear" });
+ {transform:"translate(0,0)",opacity:1},
+ {transform:`translate(${(Math.random()*160)-80}px,${travel}px)`,opacity:0}
+ ],{duration:9000,easing:"linear"});
 
  setTimeout(()=>petal.remove(),9000);
-}
-
-
-// 🦋 butterflies
-function flyRealButterfly(){
- const card=document.getElementById("letterCard");
- if(!card) return;
- const butterfly=document.createElement("video");
- butterfly.src="butterfly.webm";
- butterfly.autoplay=true; butterfly.muted=true; butterfly.playsInline=true;
- butterfly.style.position="absolute";
- butterfly.style.width="230px";
- butterfly.style.pointerEvents="none";
- butterfly.style.left=Math.random()*70+"%";
- butterfly.style.top=Math.random()*70+"%";
- card.appendChild(butterfly);
- butterfly.animate([{transform:"translate(0,0)"},{transform:`translate(${(Math.random()*80)-40}px, ${(Math.random()*80)-40}px)`}],{duration:9000});
- setTimeout(()=>butterfly.remove(),9000);
 }
 
 
@@ -176,16 +174,17 @@ let taps=0;
 let letterOpen=false;
 
 document.addEventListener("click", function(e){
- if(e.target && e.target.id==="closeLetter"){ letter.style.display="none"; letterOpen=false; taps=0; return; }
+ if(e.target && e.target.id==="closeLetter"){letter.style.display="none";letterOpen=false;taps=0;return;}
  if(letterOpen) return;
  taps++;
  if(taps>=10){
   letter.style.display="flex";
   letterOpen=true;
-  flyRealButterfly();
-  setInterval(flyRealButterfly,9000);
   setInterval(spawnPetal,400);
  }
 });
+
+};
+}
 
 });
