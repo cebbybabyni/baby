@@ -128,8 +128,6 @@ letter.style.overflowY="auto";
 
 letter.innerHTML=`
 <div id="letterCard" style="position:relative; z-index:100000; background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">
-<div id="petalLayer" style="position:absolute; inset:0; overflow:hidden; z-index:0;"></div>
-
 <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, babyyy! 💖</h2>
 <p>So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>
 <p>Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers. Dati akala ko puro games lang siya, pero hindi pala. This was my first love. Ito yung bumuhay sakin noon, at dito ko rin nakuha yung first paycheck ko.</p>
@@ -138,29 +136,26 @@ letter.innerHTML=`
 <p>Thank you kasi dumating ka sa buhay ko. Thank you kasi kahit nabuburnout ako sa work, nung naalala ko ’to parang gusto ko pang mag-extend ng mga five years eme haha. Thank you, binuhay mo ako. Thank you for making me do this kahit hindi mo naman ako inutusan.</p>
 <p style="font-weight:bold;margin-top:18px;">I love you, my baby abby! 😚😚😚💗</p>
 <p style="margin-top:10px;">Love, 😌<br>Cebby — baliw na baliw pa rin sayo</p>
-
 <button id="closeLetter" style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
 </div>`;
 document.body.appendChild(letter);
 
 
-// 🌸 petals INSIDE letter but behind text
+// 🌸 FULL SCREEN FALLING PETALS
 function spawnPetal(){
  if(!letterOpen) return;
- const layer=document.getElementById("petalLayer");
- if(!layer) return;
  const petal=document.createElement("div");
  petal.innerHTML="🌸";
- petal.style.position="absolute";
+ petal.style.position="fixed";
  petal.style.top="-40px";
- petal.style.left=Math.random()*100+"%";
+ petal.style.left=Math.random()*100+"vw";
  petal.style.fontSize=(Math.random()*10+18)+"px";
  petal.style.pointerEvents="none";
- petal.style.zIndex="0";
- layer.appendChild(petal);
+ petal.style.zIndex="99998";
+ document.body.appendChild(petal);
  petal.animate([
   { transform:"translate(0,0) rotate(0deg)", opacity:1 },
-  { transform:`translate(${(Math.random()*120)-60}px,110%) rotate(${Math.random()*360}deg)`, opacity:0 }
+  { transform:`translate(${(Math.random()*200)-100}px,110vh) rotate(${Math.random()*360}deg)`, opacity:0 }
  ],{ duration:9000, easing:"linear" });
  setTimeout(()=>petal.remove(),9000);
 }
