@@ -244,24 +244,23 @@ document.addEventListener("click",function(e){
  }
 });
 
-// 💖 FINAL BULLETPROOF TEXT CHANGE
-function changeToValentine(){
-  const el = document.getElementById("ginayumaText");
-  if(!el) return;
+// 💖 TEXT CHANGE (OUTSIDE ALL SCRIPTS)
+window.addEventListener("load", function(){
 
-  el.classList.add("fadeOut");
+  setTimeout(function(){
 
-  setTimeout(()=>{
-    el.innerHTML = "Will you be my Valentine? 💖";
-    el.classList.remove("fadeOut");
-    el.classList.add("fadeIn");
-  },800);
-}
+    const el = document.getElementById("ginayumaText");
+    if(!el) return;
 
-// wait until EVERYTHING is fully ready
-window.onload = function(){
-  setTimeout(changeToValentine, 3500);
-};
+    el.classList.add("fadeOut");
 
-};
+    setTimeout(function(){
+      el.innerHTML = "Will you be my Valentine? 💖";
+      el.classList.remove("fadeOut");
+      el.classList.add("fadeIn");
+    },800);
+
+  },3500);
+
+});
 });
