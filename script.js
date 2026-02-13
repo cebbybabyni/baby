@@ -89,30 +89,6 @@ let volume=0;
 const fade=setInterval(()=>{ if(volume<0.6){volume+=0.03;music.volume=volume;} else clearInterval(fade); },300);
 
 
-// 💥 heart bursts on YES page
-setInterval(()=>{
-const centerX=Math.random()*window.innerWidth;
-const centerY=Math.random()*window.innerHeight*0.8;
-for(let i=0;i<20;i++){
-let heart=document.createElement("div");
-heart.innerHTML=["💓","💕","💗","💞","💖"][Math.floor(Math.random()*5)];
-heart.style.position="fixed";
-heart.style.left=centerX+"px";
-heart.style.top=centerY+"px";
-heart.style.fontSize="22px";
-document.body.appendChild(heart);
-const angle=Math.random()*2*Math.PI;
-const distance=Math.random()*200+50;
-const x=Math.cos(angle)*distance;
-const y=Math.sin(angle)*distance;
-heart.animate([
-{transform:"translate(0,0)",opacity:1},
-{transform:`translate(${x}px,${y}px) scale(1.6)`,opacity:0}
-],{duration:1400,easing:"ease-out"});
-setTimeout(()=>heart.remove(),1400);
-}},1200);
-
-
 // 💌 EASTER EGG LETTER
 const letter=document.createElement("div");
 letter.style.position="fixed";
@@ -141,7 +117,7 @@ letter.innerHTML=`
 document.body.appendChild(letter);
 
 
-// 🌸 PETALS FULL FALL TOP → BOTTOM
+// 🌸 PETALS USING REAL LETTER HEIGHT
 function spawnPetal(){
  if(!letterOpen) return;
  const card=document.getElementById("letterCard");
@@ -155,10 +131,16 @@ function spawnPetal(){
  petal.style.pointerEvents="none";
  petal.style.zIndex="0";
  card.appendChild(petal);
+
+ const cardHeight = card.scrollHeight;
+ const drift = (Math.random()*120)-60;
+ const rotate = Math.random()*360;
+
  petal.animate([
-  { transform:"translate(0,0) rotate(0deg)", opacity:1 },
-  { transform:`translate(${(Math.random()*120)-60}px,140%) rotate(${Math.random()*360}deg)`, opacity:0 }
+   { transform:"translate(0,0) rotate(0deg)", opacity:1 },
+   { transform:`translate(${drift}px, ${cardHeight+80}px) rotate(${rotate}deg)`, opacity:0 }
  ],{ duration:9000, easing:"linear" });
+
  setTimeout(()=>petal.remove(),9000);
 }
 
@@ -175,9 +157,7 @@ function flyRealButterfly(){
  butterfly.style.position="absolute";
  butterfly.style.width="230px";
  butterfly.style.pointerEvents="none";
- butterfly.style.background="transparent";
- butterfly.style.objectFit="contain";
- butterfly.style.filter=`hue-rotate(${hue}deg) saturate(260%) contrast(115%)`;
+ butterfly.style.filter=`hue-rotate(${hue}deg) saturate(260%)`;
  butterfly.style.left=Math.random()*70+"%";
  butterfly.style.top=Math.random()*70+"%";
  card.appendChild(butterfly);
@@ -203,5 +183,4 @@ document.addEventListener("click", function(e){
  }
 });
 
-};
 });
