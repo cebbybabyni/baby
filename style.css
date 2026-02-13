@@ -174,13 +174,10 @@ button{
 }
 
 #ginayumaText{
-  text-align:center;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  font-size:clamp(16px, 5.5vw, 36px); /* ⭐ smaller */
-  padding:0 10px;
+  font-size:38px;
+  color:#ff4d88;
   margin:10px 0 15px;
+  transition:all .8s ease;
 }
 
 /* ============================= */
@@ -202,10 +199,10 @@ p{
 
 #ginayumaText{
   text-align:center;
-  white-space:nowrap;          /* ⭐ prevents line break */
-  overflow:hidden;             
-  text-overflow:ellipsis;      /* prevents overflow on super tiny phones */
-  font-size:clamp(18px, 6vw, 38px);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-size:clamp(16px, 5.5vw, 36px); /* ⭐ smaller */
   padding:0 10px;
   margin:10px 0 15px;
 }
