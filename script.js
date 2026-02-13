@@ -100,24 +100,14 @@ letter.style.background="rgba(0,0,0,.65)";
 letter.style.backdropFilter="blur(6px)";
 letter.style.display="none";
 letter.style.zIndex="99999";
-letter.style.padding="24px";
+letter.style.padding="20px";
 letter.style.justifyContent="center";
-letter.style.alignItems="center";
+letter.style.alignItems= window.innerWidth>=768 ? "center":"flex-end";
+letter.style.overflowY="auto";
 
 letter.innerHTML=`
-<div style="
-background:#fffafc;
-width:100%;
-max-width:420px;
-max-height:90vh;
-padding:26px 22px 24px;
-font-family:Poppins;
-line-height:1.7;
-overflow-y:auto;
-box-shadow:0 20px 60px rgba(0,0,0,.25);
-border-radius:26px;
-text-align:justify;
-">
+<div style="background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">  
+
 
 <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, my babyyy! 💖</h2>
 
