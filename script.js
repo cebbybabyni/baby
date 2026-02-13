@@ -127,7 +127,7 @@ letter.style.alignItems= window.innerWidth>=768 ? "center":"flex-end";
 letter.style.overflowY="auto";
 
 letter.innerHTML=`
-<div id="letterCard" style="position:relative; z-index:100000; background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">
+<div id="letterCard" style="position:relative; background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;">
 <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, babyyy! 💖</h2>
 <p>So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>
 <p>Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers. Dati akala ko puro games lang siya, pero hindi pala. This was my first love. Ito yung bumuhay sakin noon, at dito ko rin nakuha yung first paycheck ko.</p>
@@ -141,9 +141,11 @@ letter.innerHTML=`
 document.body.appendChild(letter);
 
 
-// 🌸 PETALS ONLY INSIDE EASTER EGG
+// 🌸 PETALS INSIDE LETTER
 function spawnPetal(){
  if(!letterOpen) return;
+ const card=document.getElementById("letterCard");
+ if(!card) return;
  const petal=document.createElement("div");
  petal.innerHTML="🌸";
  petal.style.position="absolute";
@@ -152,10 +154,10 @@ function spawnPetal(){
  petal.style.fontSize=(Math.random()*10+18)+"px";
  petal.style.pointerEvents="none";
  petal.style.zIndex="0";
- letter.appendChild(petal);
+ card.appendChild(petal);
  petal.animate([
   { transform:"translate(0,0) rotate(0deg)", opacity:1 },
-  { transform:`translate(${(Math.random()*200)-100}px,110vh) rotate(${Math.random()*360}deg)`, opacity:0 }
+  { transform:`translate(${(Math.random()*120)-60}px,110%) rotate(${Math.random()*360}deg)`, opacity:0 }
  ],{ duration:9000, easing:"linear" });
  setTimeout(()=>petal.remove(),9000);
 }
