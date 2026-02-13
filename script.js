@@ -1,4 +1,4 @@
-3document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
 
 //////////////////// TYPING INTRO ////////////////////
 const text="To: Jeam Abby Keith Panganiban 😊";
