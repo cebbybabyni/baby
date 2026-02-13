@@ -117,28 +117,36 @@ letter.innerHTML=`
 document.body.appendChild(letter);
 
 
-// 🌸 PETALS USING REAL LETTER HEIGHT
+// 🌸 PHYSICS CORRECT PETALS
 function spawnPetal(){
+
  if(!letterOpen) return;
- const card=document.getElementById("letterCard");
+
+ const card = document.getElementById("letterCard");
  if(!card) return;
- const petal=document.createElement("div");
+
+ const rect = card.getBoundingClientRect();
+ const startY = rect.top - 60;
+ const endY   = rect.bottom + 60;
+ const travel = endY - startY;
+
+ const petal = document.createElement("div");
  petal.innerHTML="🌸";
- petal.style.position="absolute";
- petal.style.top="-60px";
- petal.style.left=Math.random()*100+"%";
+ petal.style.position="fixed";
+ petal.style.top=startY+"px";
+ petal.style.left=rect.left + Math.random()*rect.width + "px";
  petal.style.fontSize=(Math.random()*10+18)+"px";
  petal.style.pointerEvents="none";
- petal.style.zIndex="0";
- card.appendChild(petal);
+ petal.style.zIndex="99998";
 
- const cardHeight = card.scrollHeight;
- const drift = (Math.random()*120)-60;
- const rotate = Math.random()*360;
+ document.body.appendChild(petal);
+
+ const drift=(Math.random()*160)-80;
+ const rotate=Math.random()*360;
 
  petal.animate([
    { transform:"translate(0,0) rotate(0deg)", opacity:1 },
-   { transform:`translate(${drift}px, ${cardHeight+80}px) rotate(${rotate}deg)`, opacity:0 }
+   { transform:`translate(${drift}px, ${travel}px) rotate(${rotate}deg)`, opacity:0 }
  ],{ duration:9000, easing:"linear" });
 
  setTimeout(()=>petal.remove(),9000);
@@ -152,12 +160,9 @@ function flyRealButterfly(){
  const butterfly=document.createElement("video");
  butterfly.src="butterfly.webm";
  butterfly.autoplay=true; butterfly.muted=true; butterfly.playsInline=true;
- const colors=[0,40,90,140,190,230,280,320];
- const hue=colors[Math.floor(Math.random()*colors.length)];
  butterfly.style.position="absolute";
  butterfly.style.width="230px";
  butterfly.style.pointerEvents="none";
- butterfly.style.filter=`hue-rotate(${hue}deg) saturate(260%)`;
  butterfly.style.left=Math.random()*70+"%";
  butterfly.style.top=Math.random()*70+"%";
  card.appendChild(butterfly);
@@ -166,7 +171,7 @@ function flyRealButterfly(){
 }
 
 
-// ⭐ tap logic
+// tap logic
 let taps=0;
 let letterOpen=false;
 
