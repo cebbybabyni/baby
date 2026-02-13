@@ -174,7 +174,7 @@ letter.innerHTML=`
 document.body.appendChild(letter);
 
 
-//////////////// PETALS BEHIND LETTER TEXT ////////////////////
+//////////////// PETALS INSIDE LETTER ONLY ////////////////////
 function spawnPetal(){
 
  if(!letterOpen) return;
@@ -182,32 +182,30 @@ function spawnPetal(){
  const card = document.getElementById("letterCard");
  if(!card) return;
 
- const rect = card.getBoundingClientRect();
-
- const petal=document.createElement("div");
+ const petal = document.createElement("div");
  petal.innerHTML="🌸";
 
- petal.style.position="fixed";
- petal.style.left = rect.left + Math.random()*rect.width + "px";
- petal.style.top  = rect.top - 40 + "px";
- petal.style.fontSize="22px";
+ /* ⭐ attach to the LETTER CARD, not body */
+ card.appendChild(petal);
+
+ petal.style.position="absolute";
+ petal.style.left = Math.random()*90 + "%";
+ petal.style.top  = "-40px";
+ petal.style.fontSize = "20px";
  petal.style.pointerEvents="none";
 
- /* ⭐ THE IMPORTANT FIX */
- petal.style.zIndex="99990"; 
- /* letter = 99999 → petals now go BEHIND the letter */
-
- document.body.appendChild(petal);
+ /* ⭐ BEHIND TEXT BUT INSIDE PAPER */
+ petal.style.zIndex="0";
 
  petal.animate([
    { transform:"translateY(0) rotate(0deg)", opacity:0.9 },
-   { transform:`translateY(${rect.height+140}px) rotate(360deg)`, opacity:0 }
+   { transform:"translateY(110%) rotate(360deg)", opacity:0 }
  ],{
-   duration:16000,      // slower fall 🌸
+   duration:18000,   // slower & romantic 🌸
    easing:"linear"
  });
 
- setTimeout(()=>petal.remove(),16000);
+ setTimeout(()=>petal.remove(),18000);
 }
 
 
