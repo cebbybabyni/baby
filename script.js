@@ -153,7 +153,7 @@ let taps=0;
 let letterOpen=false;
 
 
-// 🦋 UPDATED BUTTERFLY
+// 🦋 FINAL BUTTERFLY FUNCTION
 function flyRealButterfly(){
 
   const card=document.getElementById("letterCard");
@@ -167,10 +167,11 @@ function flyRealButterfly(){
 
   butterfly.style.position="absolute";
   butterfly.style.width="180px";
+  butterfly.style.height="auto";
   butterfly.style.pointerEvents="none";
-  butterfly.style.mixBlendMode="screen";
-  butterfly.style.filter="brightness(1.1) contrast(1.2) saturate(1.2)";
-  butterfly.style.opacity="0.95";
+  butterfly.style.background="transparent";
+  butterfly.style.objectFit="contain";
+  butterfly.style.isolation="isolate";
   butterfly.style.left=Math.random()*70+"%";
   butterfly.style.top=Math.random()*70+"%";
 
@@ -184,14 +185,11 @@ function flyRealButterfly(){
   const y3=(Math.random()*80)-40;
 
   butterfly.animate([
-    { transform:"translate(0,0) scale(1)" },
-    { transform:`translate(${x1}px, ${y1}px) scale(1.1)` },
-    { transform:`translate(${x2}px, ${y2}px) scale(1.05)` },
-    { transform:`translate(${x3}px, ${y3}px) scale(1.1)` }
-  ],{
-    duration:9000,
-    easing:"ease-in-out"
-  });
+    { transform:"translate(0,0)" },
+    { transform:`translate(${x1}px, ${y1}px)` },
+    { transform:`translate(${x2}px, ${y2}px)` },
+    { transform:`translate(${x3}px, ${y3}px)` }
+  ],{ duration:9000, easing:"ease-in-out" });
 
   setTimeout(()=>butterfly.remove(),9000);
 }
