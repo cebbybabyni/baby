@@ -119,7 +119,9 @@ letter.style.alignItems= window.innerWidth>=768 ? "center":"flex-end";
 letter.style.overflowY="auto";
 
 letter.innerHTML=`
-<div id="letterCard" style="position:relative; z-index:2; background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">  
+<div id="letterCard" style="position:relative;background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;">
+
+<div id="fxLayer" style="position:absolute; inset:0; z-index:1; pointer-events:none;"></div>
 
 <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, my babyyy! 💖</h2>
 
@@ -140,11 +142,12 @@ document.body.appendChild(letter);
 
 let letterOpen=false;
 
-//////////////// PETALS (behind text)
+
+// 🌸 PETALS (behind text)
 function spawnPetal(){
  if(!letterOpen) return;
- const card=document.getElementById("letterCard");
- if(!card) return;
+ const layer=document.getElementById("fxLayer");
+ if(!layer) return;
 
  const petal=document.createElement("div");
  petal.innerHTML="🌸";
@@ -153,40 +156,42 @@ function spawnPetal(){
  petal.style.top="-40px";
  petal.style.fontSize="22px";
  petal.style.opacity="0.6";
- petal.style.zIndex="0"; // behind text
- card.appendChild(petal);
+ layer.appendChild(petal);
 
  petal.animate([
-  {transform:"translateY(0) rotate(0deg)"},
-  {transform:`translateY(${card.offsetHeight+100}px) rotate(360deg)`}
- ],{duration:14000,easing:"linear"});
+  {transform:"translateY(0)"},
+  {transform:"translateY(520px)"}
+ ],{duration:9000,easing:"linear"});
 
- setTimeout(()=>petal.remove(),14000);
+ setTimeout(()=>petal.remove(),9000);
 }
 
-//////////////// BUTTERFLY ONE AT A TIME
+
+// 🦋 ONE BUTTERFLY AT A TIME
 function spawnButterfly(){
  if(!letterOpen || window.butterflyAlive) return;
  window.butterflyAlive=true;
 
- const card=document.getElementById("letterCard");
- const b=document.createElement("video");
- b.src="butterfly.webm";
- b.autoplay=true; b.muted=true; b.playsInline=true;
- b.style.position="absolute";
- b.style.width="220px";
- b.style.pointerEvents="none";
- b.style.left=Math.random()*80+"%";
- b.style.top=Math.random()*60+"%";
- b.style.filter=`hue-rotate(${Math.random()*360}deg) saturate(250%)`;
- card.appendChild(b);
+ const layer=document.getElementById("fxLayer");
+ if(!layer) return;
 
- b.animate([
+ const butterfly=document.createElement("div");
+ butterfly.innerHTML="🦋";
+ butterfly.style.position="absolute";
+ butterfly.style.fontSize="42px";
+ butterfly.style.left=Math.random()*80+"%";
+ butterfly.style.top=Math.random()*80+"%";
+ layer.appendChild(butterfly);
+
+ butterfly.animate([
   {transform:"translate(0,0)"},
-  {transform:`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`}
+  {transform:`translate(${Math.random()*120-60}px, ${Math.random()*120-60}px)`}
  ],{duration:9000,easing:"ease-in-out"});
 
- setTimeout(()=>{b.remove();window.butterflyAlive=false;},9000);
+ setTimeout(()=>{
+  butterfly.remove();
+  window.butterflyAlive=false;
+ },9000);
 }
 
 
