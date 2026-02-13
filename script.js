@@ -14,7 +14,7 @@ function type(){
 type();
 
 
-// 💖 hearts burst anywhere clicked (FIRST PAGE ONLY)
+// 💖 hearts burst anywhere clicked (FIRST PAGE)
 document.addEventListener("click", function(e){
 for(let i=0;i<10;i++){
  let heart=document.createElement("div");
@@ -62,7 +62,7 @@ noBtn.onclick=move;
 // ⭐ GLOBAL CLICK HANDLER
 document.addEventListener("click", function(e){
 
-// 💚 YES BUTTON CLICK
+// 💚 YES BUTTON
 if(e.target && e.target.id==="yesBtn"){
 
  document.body.innerHTML=`
@@ -78,14 +78,13 @@ if(e.target && e.target.id==="yesBtn"){
  function typeLove(){ if(j<msg.length){document.getElementById("loveMsg").innerHTML+=msg.charAt(j); j++; setTimeout(typeLove,40);} }
  typeLove();
 
- // 🎵 music
+ // music
  const music=new Audio("music.mp3");
  music.loop=true; music.volume=0; music.play();
  let volume=0;
  setInterval(()=>{ if(volume<0.6){volume+=0.03;music.volume=volume;} },300);
 
-
- // 💥 RANDOM HEART BURSTS ON YES PAGE
+ // 💥 heart bursts on YES page
  function heartBurst(){
   const centerX=Math.random()*window.innerWidth;
   const centerY=Math.random()*window.innerHeight*0.8;
@@ -96,26 +95,18 @@ if(e.target && e.target.id==="yesBtn"){
    heart.style.left=centerX+"px";
    heart.style.top=centerY+"px";
    heart.style.fontSize="22px";
-   heart.style.pointerEvents="none";
    document.body.appendChild(heart);
-
    const angle=Math.random()*2*Math.PI;
    const distance=Math.random()*200+50;
    const x=Math.cos(angle)*distance;
    const y=Math.sin(angle)*distance;
-
-   heart.animate([
-    {transform:"translate(0,0)",opacity:1},
-    {transform:`translate(${x}px,${y}px) scale(1.6)`,opacity:0}
-   ],{duration:1400,easing:"ease-out"});
-
+   heart.animate([{transform:"translate(0,0)"},{transform:`translate(${x}px,${y}px) scale(1.6)`,opacity:0}],{duration:1400});
    setTimeout(()=>heart.remove(),1400);
   }
  }
- setInterval(heartBurst,2000); // 💥 YES PAGE ONLY
+ setInterval(heartBurst,2000);
 
-
- // 💌 CREATE LETTER
+ // 💌 LETTER
  const letter=document.createElement("div");
  letter.style.position="fixed";
  letter.style.inset="0";
@@ -123,83 +114,50 @@ if(e.target && e.target.id==="yesBtn"){
  letter.style.backdropFilter="blur(6px)";
  letter.style.display="none";
  letter.style.zIndex="99999";
- letter.style.padding="20px";
  letter.style.justifyContent="center";
- letter.style.alignItems= window.innerWidth>=768 ? "center":"flex-end";
- letter.style.overflowY="auto";
-
- letter.innerHTML=`
- <div id="letterCard" style="position:relative; z-index:100001; background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;">
- <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, babyyy! 💖</h2>
- <p>So ayun, sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>
- <p>Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers. Dati akala ko puro games lang siya, pero hindi pala. This was my first love. Ito yung bumuhay sakin noon, at dito ko rin nakuha yung first paycheck ko.</p>
- <p>Kung ano man narating ko ngayon, nagsimula lahat sa basic HTML na ’to 🥹</p>
- <p>Kaya thank you talaga baby. Thank you sa buhay mo, at thank you rin sa dad mo na hindi ka niya pinutok sa tiyan ng mom mo 🤣</p>
- <p>Thank you kasi dumating ka sa buhay ko. Thank you kasi kahit nabuburnout ako sa work, nung naalala ko ’to parang gusto ko pang mag-extend ng mga five years eme haha. Thank you, binuhay mo ako. Thank you for making me do this kahit hindi mo naman ako inutusan.</p>
- <p style="font-weight:bold;margin-top:18px;">I love you, my baby abby! 😚😚😚💗</p>
- <p style="margin-top:10px;">Love, 😌<br>Cebby — baliw na baliw pa rin sayo</p>
- <button id="closeLetter" style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
+ letter.style.alignItems="center";
+ letter.innerHTML=`<div id="letterCard" style="position:relative; z-index:100001; background:#fffafc;width:92%;max-width:420px;padding:26px;border-radius:26px;font-family:Poppins;text-align:justify;">
+ <h2 style="text-align:center;color:#ff4fa3">Hallu, babyyy! 💖</h2>
+ <p>So ayun, sobrang HS-coded nito for me baby...</p>
+ <button id="closeLetter" style="width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
  </div>`;
  document.body.appendChild(letter);
 
+ // 🌈 COLORFUL BUTTERFLY
+ function flyButterfly(){
+  if(!letterOpen) return;
+  const card=document.getElementById("letterCard");
+  const butterfly=document.createElement("video");
+  butterfly.src="butterfly.webm";
+  butterfly.autoplay=true; butterfly.muted=true; butterfly.playsInline=true;
 
-// 🌸 PETALS + 🦋 BUTTERFLIES ONLY INSIDE LETTER
-function spawnPetal(){
- if(!letterOpen) return;
- const card=document.getElementById("letterCard");
- const rect=card.getBoundingClientRect();
- const startY=rect.top-60;
- const endY=rect.bottom+60;
- const travel=endY-startY;
+  const hue=Math.floor(Math.random()*360); // random color
+  butterfly.style.filter=`hue-rotate(${hue}deg) saturate(260%) brightness(105%)`;
 
- const petal=document.createElement("div");
- petal.innerHTML="🌸";
- petal.style.position="fixed";
- petal.style.top=startY+"px";
- petal.style.left=rect.left+Math.random()*rect.width+"px";
- petal.style.fontSize=(Math.random()*8+16)+"px";
- petal.style.pointerEvents="none";
- petal.style.zIndex="100000";
- document.body.appendChild(petal);
+  butterfly.style.position="absolute";
+  butterfly.style.width="230px";
+  butterfly.style.left=Math.random()*70+"%";
+  butterfly.style.top=Math.random()*70+"%";
+  card.appendChild(butterfly);
 
- petal.animate([
-  {transform:"translate(0,0)",opacity:1},
-  {transform:`translate(${(Math.random()*160)-80}px,${travel}px)`,opacity:0}
- ],{duration:9000,easing:"linear"});
-
- setTimeout(()=>petal.remove(),9000);
-}
-
-function flyButterfly(){
- if(!letterOpen) return;
- const card=document.getElementById("letterCard");
- const butterfly=document.createElement("video");
- butterfly.src="butterfly.webm";
- butterfly.autoplay=true; butterfly.muted=true; butterfly.playsInline=true;
- butterfly.style.position="absolute";
- butterfly.style.width="220px";
- butterfly.style.pointerEvents="none";
- butterfly.style.left=Math.random()*70+"%";
- butterfly.style.top=Math.random()*70+"%";
- card.appendChild(butterfly);
- butterfly.animate([{transform:"translate(0,0)"},{transform:`translate(${(Math.random()*120)-60}px, ${(Math.random()*120)-60}px)`}],{duration:9000});
- setTimeout(()=>butterfly.remove(),9000);
-}
-
-let taps=0;
-let letterOpen=false;
-
-document.addEventListener("click", function(e){
- if(e.target && e.target.id==="closeLetter"){letter.style.display="none";letterOpen=false;taps=0;return;}
- if(letterOpen) return;
- taps++;
- if(taps>=10){
-  letter.style.display="flex";
-  letterOpen=true;
-  setInterval(spawnPetal,1500);
-  setInterval(flyButterfly,9000);
+  butterfly.animate([{transform:"translate(0,0)"},{transform:`translate(${(Math.random()*120)-60}px, ${(Math.random()*120)-60}px)`}],{duration:9000});
+  setTimeout(()=>butterfly.remove(),9000);
  }
-});
+
+ let taps=0;
+ let letterOpen=false;
+
+ document.addEventListener("click", function(e){
+  if(e.target && e.target.id==="closeLetter"){letter.style.display="none";letterOpen=false;taps=0;return;}
+  if(letterOpen) return;
+  taps++;
+  if(taps>=10){
+   letter.style.display="flex";
+   letterOpen=true;
+   flyButterfly();
+   setInterval(flyButterfly,9000);
+  }
+ });
 
 }
 
