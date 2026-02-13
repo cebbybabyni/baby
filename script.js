@@ -265,4 +265,3 @@ window.addEventListener("load", function(){
   },3500);
 
 });
-});
