@@ -153,7 +153,7 @@ let taps=0;
 let letterOpen=false;
 
 
-// 🦋 FINAL BUTTERFLY
+// 🦋 BLUE BUTTERFLY
 function flyRealButterfly(){
 
   const card=document.getElementById("letterCard");
@@ -172,7 +172,7 @@ function flyRealButterfly(){
   butterfly.style.background="transparent";
   butterfly.style.objectFit="contain";
   butterfly.style.isolation="isolate";
-  butterfly.style.filter="saturate(160%) contrast(120%) brightness(95%)";
+  butterfly.style.filter="hue-rotate(190deg) saturate(220%) contrast(120%) brightness(95%)";
   butterfly.style.left=Math.random()*70+"%";
   butterfly.style.top=Math.random()*70+"%";
 
