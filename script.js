@@ -91,6 +91,11 @@ let j=0;
 function typeLove(){ if(j<msg.length){document.getElementById("loveMsg").innerHTML+=msg.charAt(j); j++; setTimeout(typeLove,40);} }
 typeLove();
 
+// music fade in
+const music=new Audio("music.mp3");
+music.loop=true; music.volume=0; music.play();
+let volume=0;
+const fade=setInterval(()=>{ if(volume<0.6){volume+=0.03;music.volume=volume;} else clearInterval(fade); },300);
 
 // 💌 EASTER EGG LETTER
 const letter=document.createElement("div");
