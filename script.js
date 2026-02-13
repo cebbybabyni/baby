@@ -91,7 +91,6 @@ let j=0;
 function typeLove(){ if(j<msg.length){document.getElementById("loveMsg").innerHTML+=msg.charAt(j); j++; setTimeout(typeLove,40);} }
 typeLove();
 
-
 // 🎵 MUSIC
 const music=new Audio("music.mp3");
 music.loop=true;
@@ -123,7 +122,6 @@ letter.innerHTML=`
 <div id="fxLayer" style="position:absolute; inset:0; pointer-events:none;"></div>
 
 <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, my babyyy! 💖</h2>
-
 <p>So ayun… sobrang HS-coded nito for me baby. Ang nostalgic niya sobra. Naluluha nga ako habang ginagawa ko to e, si OA na naman ako hahaha 😭🤣</p>
 <p>Ito pala yung sinasabi ko baby na may na-realize ako. Dito talaga nagsimula yung interest ko sa computers. Dati akala ko puro games lang siya… pero hindi pala. This was my first love. Ito yung bumuhay sakin noon, at dito ko rin nakuha yung first paycheck ko.</p>
 <p>Kung ano man narating ko ngayon, nagsimula lahat sa basic HTML na to 🥹</p>
@@ -134,22 +132,19 @@ letter.innerHTML=`
 <p>Sobrang mais ko na ba? HAHAHAHAHA OKI BYE NA GAROD!</p>
 <p style="font-weight:bold;margin-top:18px;">I love you, my baby abby! 💗😚😚😚</p>
 <p style="margin-top:10px;">Love,<br>Cebby — baliw na baliw pa rin sayo 😵‍💫</p>
-
 <button id="closeLetter" style="margin-top:15px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
 </div>`;
 document.body.appendChild(letter);
 
 let letterOpen=false;
 
-// 🌸 PETALS reach bottom
+// 🌸 PETALS slow fall to bottom
 function spawnPetal(){
  if(!letterOpen) return;
  const layer=document.getElementById("fxLayer");
  const card=document.getElementById("letterCard");
- if(!layer || !card) return;
-
  const rect=card.getBoundingClientRect();
- const travel=rect.height+80;
+ const travel=rect.height+120;
 
  const petal=document.createElement("div");
  petal.innerHTML="🌸";
@@ -158,15 +153,18 @@ function spawnPetal(){
  petal.style.top="-40px";
  layer.appendChild(petal);
 
- petal.animate([
-  {transform:"translateY(0)"},
-  {transform:`translateY(${travel}px)`}
- ],{duration:10000,easing:"linear"});
+ const drift=(Math.random()*120)-60;
+ const rotate=Math.random()*360;
 
- setTimeout(()=>petal.remove(),10000);
+ petal.animate([
+  {transform:"translate(0,0) rotate(0deg)"},
+  {transform:`translate(${drift}px,${travel}px) rotate(${rotate}deg)`}
+ ],{duration:14000,easing:"linear"});
+
+ setTimeout(()=>petal.remove(),14000);
 }
 
-// 🦋 REAL BUTTERFLY WEBM
+// 🦋 BIG BUTTERFLY random flying
 function spawnButterfly(){
  if(!letterOpen || window.butterflyAlive) return;
  window.butterflyAlive=true;
@@ -179,23 +177,26 @@ function spawnButterfly(){
  butterfly.loop=true;
  butterfly.playsInline=true;
  butterfly.style.position="absolute";
- butterfly.style.width="160px";
- butterfly.style.left=Math.random()*80+"%";
+ butterfly.style.width="220px";
+ butterfly.style.left=Math.random()*70+"%";
  butterfly.style.top=Math.random()*70+"%";
  layer.appendChild(butterfly);
 
+ const moveX=(Math.random()*400)-200;
+ const moveY=(Math.random()*300)-150;
+
  butterfly.animate([
   {transform:"translate(0,0)"},
-  {transform:`translate(${Math.random()*200-100}px,${Math.random()*160-80}px)`}
- ],{duration:12000,easing:"ease-in-out"});
+  {transform:`translate(${moveX}px,${moveY}px)`}
+ ],{duration:16000,easing:"ease-in-out"});
 
  setTimeout(()=>{
   butterfly.remove();
   window.butterflyAlive=false;
- },12000);
+ },16000);
 }
 
-// tap open
+// open after 10 taps
 let taps=0;
 document.addEventListener("click", function(e){
  if(e.target.id==="closeLetter"){letter.style.display="none";letterOpen=false;taps=0;return;}
@@ -204,8 +205,8 @@ document.addEventListener("click", function(e){
    letter.style.display="flex";
    letterOpen=true;
    spawnButterfly();
-   setInterval(spawnPetal,8000);
-   setInterval(spawnButterfly,15000);
+   setInterval(spawnPetal,5000);
+   setInterval(spawnButterfly,16000);
  }
 });
 
