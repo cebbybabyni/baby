@@ -92,7 +92,7 @@ function typeLove(){ if(j<msg.length){document.getElementById("loveMsg").innerHT
 typeLove();
 
 
-// 🎵 SAFE MUSIC FIX (ADDED)
+// 🎵 SAFE MUSIC FIX (added only)
 const music=new Audio("music.mp3");
 music.loop=true;
 music.volume=0;
@@ -102,9 +102,7 @@ music.play().then(()=>{
    if(volume<0.6){volume+=0.03;music.volume=volume;}
    else clearInterval(fade);
  },300);
-}).catch(()=>{
- document.addEventListener("click",()=>music.play(),{once:true});
-});
+}).catch(()=>{document.addEventListener("click",()=>music.play(),{once:true});});
 
 
 // 💌 EASTER EGG LETTER
@@ -121,7 +119,7 @@ letter.style.alignItems= window.innerWidth>=768 ? "center":"flex-end";
 letter.style.overflowY="auto";
 
 letter.innerHTML=`
-<div id="letterCard" style="background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">  
+<div id="letterCard" style="position:relative;background:#fffafc;width:92%;max-width:420px;max-height:82vh;margin:auto;padding:26px 22px 24px;font-family:Poppins;line-height:1.7;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);border-radius:26px;text-align:justify;text-justify:inter-word;">  
 
 <h2 style="color:#ff4fa3;text-align:center;margin-bottom:22px;font-size:24px;">Hallu, my babyyy! 💖</h2>
 
@@ -140,26 +138,28 @@ letter.innerHTML=`
 </div>`;
 document.body.appendChild(letter);
 
-//////////////// 🌸 PETALS (ADDED)
+
+//////////////// 🌸 PETALS INSIDE LETTER (added)
 let letterOpen=false;
+let petalInterval=null;
+let butterflyInterval=null;
+
 function spawnPetal(){
  if(!letterOpen) return;
  const card=document.getElementById("letterCard");
- const rect=card.getBoundingClientRect();
  const petal=document.createElement("div");
  petal.innerHTML="🌸";
- petal.style.position="fixed";
- petal.style.left=rect.left+Math.random()*rect.width+"px";
- petal.style.top=(rect.top-40)+"px";
- petal.style.fontSize="18px";
+ petal.style.position="absolute";
+ petal.style.left=Math.random()*90+"%";
+ petal.style.top="-40px";
+ petal.style.fontSize="16px";
  petal.style.pointerEvents="none";
- petal.style.zIndex="99998";
- document.body.appendChild(petal);
- petal.animate([{transform:"translateY(0)"},{transform:`translateY(${rect.height+120}px)`}],{duration:9000});
- setTimeout(()=>petal.remove(),9000);
+ card.appendChild(petal);
+ petal.animate([{transform:"translateY(0)"},{transform:"translateY(120%)"}],{duration:8000});
+ setTimeout(()=>petal.remove(),8000);
 }
 
-//////////////// 🦋 BUTTERFLIES (ADDED)
+//////////////// 🦋 ONE BUTTERFLY ONLY (added)
 function spawnButterfly(){
  if(!letterOpen) return;
  const card=document.getElementById("letterCard");
@@ -172,23 +172,35 @@ function spawnButterfly(){
  butterfly.style.width="220px";
  butterfly.style.filter=`hue-rotate(${Math.random()*360}deg) saturate(260%)`;
  butterfly.style.pointerEvents="none";
- butterfly.style.left=Math.random()*70+"%";
- butterfly.style.top=Math.random()*70+"%";
+ butterfly.style.left="20%";
+ butterfly.style.top="20%";
  card.appendChild(butterfly);
- butterfly.animate([{transform:"translate(0,0)"},{transform:`translate(${Math.random()*120-60}px,${Math.random()*120-60}px)`}],{duration:9000});
+ butterfly.animate([
+  {transform:"translate(0,0)"},
+  {transform:"translate(120px,-60px)"},
+  {transform:"translate(-60px,80px)"},
+  {transform:"translate(80px,40px)"}
+ ],{duration:9000});
  setTimeout(()=>butterfly.remove(),9000);
 }
+
 
 // open after 10 taps
 let taps=0;
 document.addEventListener("click", function(e){
- if(e.target.id==="closeLetter"){letter.style.display="none";letterOpen=false;taps=0;return;}
+ if(e.target.id==="closeLetter"){
+   letter.style.display="none";
+   letterOpen=false;
+   taps=0;
+   return;
+ }
  taps++;
  if(taps>=10){
    letter.style.display="flex";
    letterOpen=true;
-   setInterval(spawnPetal,2500);
-   setInterval(spawnButterfly,9000);
+   spawnButterfly();
+   petalInterval=setInterval(spawnPetal,3000);
+   butterflyInterval=setInterval(spawnButterfly,10000);
  }
 });
 
