@@ -207,14 +207,14 @@ button{
   to{ transform:translateY(-12px) rotate(4deg); }
 }
 
-./* TOP CORNERS */
-.n1{ top:70px; left:10px; background:#fff3b0; }
-.n2{ top:70px; right:10px; background:#caffbf; }
+/* TOP CORNERS (lowered so not near browser bar) */
+.n1{ top:120px; left:15px; background:#fff3b0; }
+.n2{ top:120px; right:15px; background:#caffbf; }
 
-/* MID SIDE NOTES */
-.n3{ top:38%; left:10px; background:#ffd6e6; }
-.n4{ top:38%; right:10px; background:#bde0fe; }
+/* SIDE NOTES (moved higher so not near title) */
+.n3{ top:30%; left:15px; background:#ffd6e6; }
+.n4{ top:30%; right:15px; background:#bde0fe; }
 
-/* BOTTOM CORNERS */
-.n5{ bottom:80px; left:10px; background:#ffc6ff; }
-.n6{ bottom:80px; right:10px; background:#ffdfba; }
+/* BOTTOM CORNERS (moved further down) */
+.n5{ bottom:120px; left:15px; background:#ffc6ff; }
+.n6{ bottom:120px; right:15px; background:#ffdfba; }
