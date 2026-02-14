@@ -179,11 +179,11 @@ button{
   transition:all .8s ease;
 }
 
-/* STICKY NOTES */
 .sticky-notes{
-  position:absolute;
+  position:fixed;   /* ⭐ important change */
   inset:0;
   pointer-events:none;
+  z-index:0;
 }
 
 .note{
