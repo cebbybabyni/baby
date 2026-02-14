@@ -104,11 +104,11 @@ document.body.innerHTML=`
 
 <!-- 🌸 STICKY NOTES IN BACKGROUND -->
 <div class="sticky-notes">
-  <div class="note n1">Best day ever 💕</div>
-  <div class="note n2">Happy Valentine’s 💌</div>
+  <div class="note n1">My baby, Abby! 💕</div>
+  <div class="note n2">Happy Valentine’s Day! 💌</div>
   <div class="note n3">I love you 🥹</div>
-  <div class="note n4">Miss you always 💖</div>
-  <div class="note n5">Next Valentine’s date 😆</div>
+  <div class="note n4">I miss you, always 💖</div>
+  <div class="note n5">Next Valentine’s date na tayo 😆</div>
   <div class="note n6">You make me happy 💞</div>
 </div>
 
@@ -178,7 +178,7 @@ letter.innerHTML=`
 <p>Thank you kasi dumating ka sa buhay ko. Thank you kasi kahit nabuburnout ako sa work, nung naalala ko to parang gusto ko pang mag-extend ng mga five years eme haha.</p>
 <p>Thank you… binuhay mo ako. Thank you for making me do this kahit hindi mo naman ako inutusan. Thank you for being my inspiration without even trying.</p>
 <p>Sobrang mais ko na ba? HAHAHAHAHA OKI BYE NA GAROD!</p>
-<p style="font-weight:bold;">I love you, my baby abby! 💗😚😚😚</p>
+<p style="font-weight:bold;">I love you, my baby Abby! 💗😚😚😚</p>
 <p>Love,<br>Cebby — baliw na baliw pa rin sayo 😵‍💫</p>
 
 <button id="closeLetter" style="margin-top:20px;width:100%;padding:12px;border:none;border-radius:30px;background:#ff4fa3;color:white;">Close 💌</button>
