@@ -180,10 +180,10 @@ button{
 }
 
 /* =========================================================
-   STICKY NOTES – YES PAGE FINAL (BIGGER VERSION v2)
+   ✨ UPGRADED STICKY NOTES – CUTE FLOATING VERSION
    ========================================================= */
 
-/* Container behind content */
+/* container behind content */
 .sticky-notes{
   position:fixed;
   inset:0;
@@ -191,7 +191,7 @@ button{
   pointer-events:none;
 }
 
-/* YES page content above notes */
+/* yes page content above notes */
 #yesScreen{
   position:fixed;
   inset:0;
@@ -204,29 +204,74 @@ button{
 }
 
 /* =========================================================
-   NOTE BUTTON STYLE (AUTO SIZE TO TEXT)
+   NOTE BASE STYLE (paper look)
    ========================================================= */
 
 .note{
   position:absolute;
-  padding:12px 18px;
-  border-radius:14px;
+  padding:14px 20px;
+  border-radius:16px;
   font-family:Poppins;
   font-size:16px;
   white-space:nowrap;
   width:fit-content;
   height:fit-content;
-  box-shadow:0 8px 18px rgba(0,0,0,.18);
-  opacity:.95;
+  color:#444;
+  font-weight:500;
+
+  /* paper shadow */
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.18),
+    inset 0 0 15px rgba(255,255,255,.4);
+
+  /* glossy highlight */
+  background-image:linear-gradient(
+    rgba(255,255,255,.35),
+    rgba(255,255,255,0)
+  );
+
+  animation:floatNote 6s ease-in-out infinite;
 }
 
-/* Colors */
-.n1{ background:#fff2a8; transform:rotate(-2deg);}
-.n2{ background:#ffd6ec; transform:rotate(-3deg);}
-.n3{ background:#d6f5ff; transform:rotate(-2deg);}
-.n4{ background:#e6ffd9; transform:rotate(3deg);}
-.n5{ background:#ffe1c9; transform:rotate(3deg);}
-.n6{ background:#f0d9ff; transform:rotate(2deg);}
+/* floating animation */
+@keyframes floatNote{
+  0%{ transform:translateY(0px) rotate(-2deg); }
+  50%{ transform:translateY(-8px) rotate(0deg); }
+  100%{ transform:translateY(0px) rotate(-2deg); }
+}
+
+/* cute tape */
+.note::before{
+  content:"";
+  position:absolute;
+  top:-10px;
+  left:50%;
+  transform:translateX(-50%) rotate(-5deg);
+  width:34px;
+  height:14px;
+  background:rgba(255,255,255,.65);
+  border-radius:4px;
+  box-shadow:0 2px 4px rgba(0,0,0,.15);
+}
+
+/* hover pop (desktop only) */
+@media (hover:hover){
+  .note:hover{
+    transform:scale(1.08) rotate(0deg);
+    box-shadow:0 14px 35px rgba(0,0,0,.25);
+  }
+}
+
+/* =========================================================
+   COLORS (soft pastel paper)
+   ========================================================= */
+
+.n1{ background:#fff3a6; }
+.n2{ background:#ffd8ef; }
+.n3{ background:#d9f4ff; }
+.n4{ background:#e4ffd6; }
+.n5{ background:#ffe4cc; }
+.n6{ background:#efd9ff; }
 
 /* =========================================================
    DESKTOP POSITIONS
@@ -235,76 +280,39 @@ button{
 .n1{ top:8%; left:18%; }
 .n4{ top:10%; right:18%; }
 
-/* n5 CENTER ABOVE GIF */
-.n5{
-  top:22%;
-  left:50%;
-  transform:translateX(-50%) rotate(3deg);
-}
-
-/* n2 CENTER BELOW TEXT (raised a bit) */
-.n2{
-  top:70%;
-  left:50%;
-  transform:translateX(-50%) rotate(-3deg);
-}
+.n5{ top:22%; left:50%; transform:translateX(-50%); }
+.n2{ top:70%; left:50%; transform:translateX(-50%); }
 
 .n3{ bottom:12%; left:22%; }
 .n6{ bottom:12%; right:22%; }
 
 /* =========================================================
-   TABLET / iPAD
+   TABLET
    ========================================================= */
 @media (max-width:1024px){
-
-  .note{
-    font-size:15px;
-    padding:11px 16px;
-  }
+  .note{ font-size:15px; padding:12px 16px; }
 
   .n1{ top:6%; left:10%; }
   .n4{ top:6%; right:10%; }
 
-  .n5{
-    top:20%;
-    left:50%;
-    transform:translateX(-50%) rotate(3deg);
-  }
-
-  .n2{
-    top:72%;
-    left:50%;
-    transform:translateX(-50%) rotate(-3deg);
-  }
+  .n5{ top:20%; left:50%; transform:translateX(-50%); }
+  .n2{ top:72%; left:50%; transform:translateX(-50%); }
 
   .n3{ bottom:10%; left:14%; }
   .n6{ bottom:10%; right:14%; }
 }
 
 /* =========================================================
-   MOBILE PHONES
+   MOBILE
    ========================================================= */
 @media (max-width:600px){
-
-  .note{
-    font-size:13px;
-    padding:9px 13px;
-  }
+  .note{ font-size:13px; padding:9px 13px; }
 
   .n1{ top:5%; left:6%; }
   .n4{ top:5%; right:6%; }
 
-  .n5{
-    top:18%;
-    left:50%;
-    transform:translateX(-50%) rotate(3deg);
-  }
-
-  .n2{
-    top:76%;
-    left:50%;
-    transform:translateX(-50%) rotate(-3deg);
-  }
+  .n5{ top:18%; left:50%; transform:translateX(-50%); }
+  .n2{ top:76%; left:50%; transform:translateX(-50%); }
 
   .n3{ bottom:8%; left:10%; }
   .n6{ bottom:8%; right:10%; }
