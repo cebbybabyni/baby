@@ -309,3 +309,16 @@ button{
   .n3{ bottom:8%; left:10%; }
   .n6{ bottom:8%; right:10%; }
 }
+
+/* ===============================
+   EASTER EGG ABOVE HEARTS
+   =============================== */
+
+#letterCard{
+  z-index:99999 !important;
+}
+
+/* the dark blurred overlay behind the card */
+body > div[style*="backdrop-filter"]{
+  z-index:99998 !important;
+}
