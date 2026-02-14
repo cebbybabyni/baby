@@ -112,22 +112,17 @@ document.body.innerHTML=`
   <div class="note n6">You make me happy 💞</div>
 </div>
 
-<div style="
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-">
+<div id="yesScreen">
+  <div id="yesContent">
 
-<img src="https://media3.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" 
-style="width:320px;max-width:85vw;border-radius:20px;margin-bottom:15px;">
+    <img src="https://media3.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
+    style="width:320px;max-width:85vw;border-radius:20px;margin-bottom:15px;">
 
-<h1 id="yesText" style="font-family:Pacifico;">She said YES gaizzz!!! 💕</h1>
+    <h1 id="yesText" style="font-family:Pacifico;">She said YES gaizzz!!! 💕</h1>
 
-</div>`;
+  </div>
+</div>
+`;
 
 //////////////// RANDOM HEART BURSTS ON YES PAGE ////////////////////
 setInterval(()=>{
