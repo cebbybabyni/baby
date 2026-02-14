@@ -245,7 +245,7 @@ let taps=0;
 document.addEventListener("click",function(e){
  if(e.target.id==="closeLetter"){letter.style.display="none";letterOpen=false;taps=0;return;}
  taps++;
- if(taps>=10){
+ if(taps>=24){
   letter.style.display="flex";
   letterOpen=true;
   spawnButterfly();
