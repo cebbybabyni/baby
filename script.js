@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+window.isYesPage = false;
+
 //////////////////// TYPING INTRO ////////////////////
 const text="To: Jeam Abby Keith Panganiban 😊";
 let i=0;
@@ -14,6 +16,14 @@ type();
 
 //////////////////// HEART BURST CLICK ////////////////////
 document.addEventListener("click", function(e){
+
+// allow burst ONLY on YES page
+if(!window.isYesPage) return;
+
+// stop burst inside easter egg letter
+const letterCheck = document.getElementById("letterCard");
+if(letterCheck && letterCheck.parentElement.style.display === "flex") return;
+
 for(let i=0;i<10;i++){
 let heart=document.createElement("div");
 heart.innerHTML=["💖","💗","💕","💘","❤️"][Math.floor(Math.random()*5)];
@@ -22,6 +32,7 @@ heart.style.left=e.clientX+"px";
 heart.style.top=e.clientY+"px";
 heart.style.fontSize=(Math.random()*10+18)+"px";
 heart.style.pointerEvents="none";
+heart.style.zIndex="9999";
 document.body.appendChild(heart);
 
 const x=(Math.random()-0.5)*200;
@@ -39,6 +50,11 @@ setTimeout(()=>heart.remove(),1200);
 
 //////////////////// FLOATING HEARTS ////////////////////
 setInterval(()=>{
+
+// stop floating hearts when easter egg is open
+const letterCheck = document.getElementById("letterCard");
+if(letterCheck && letterCheck.parentElement.style.display === "flex") return;
+
 let heart=document.createElement("div");
 heart.innerHTML=["💖","💕","💗","💘"][Math.floor(Math.random()*4)];
 heart.style.position="fixed";
@@ -47,6 +63,7 @@ heart.style.bottom="-30px";
 heart.style.fontSize=(Math.random()*12+16)+"px";
 heart.style.opacity="0.6";
 heart.style.pointerEvents="none";
+heart.style.zIndex="9999";
 document.body.appendChild(heart);
 
 heart.animate([
@@ -86,8 +103,9 @@ noBtn.onclick=move;
 
 //////////////////// YES PAGE ////////////////////
 yesBtn.onclick=()=>{
+window.isYesPage = true;
 
-// 🎵 MUSIC (mobile safe)
+// MUSIC
 const music=new Audio("music.mp3");
 music.loop=true;
 music.volume=0;
@@ -99,10 +117,8 @@ music.play().then(()=>{
  },300);
 }).catch(()=>{document.addEventListener("click",()=>music.play(),{once:true});});
 
-
 document.body.innerHTML=`
 
-<!-- 🌸 STICKY NOTES IN BACKGROUND -->
 <div class="sticky-notes">
   <div class="note n1">My baby, Abby! 💕</div>
   <div class="note n2">Happy Valentine’s Day! 💌</div>
@@ -114,12 +130,9 @@ document.body.innerHTML=`
 
 <div id="yesScreen">
   <div id="yesContent">
-
     <img src="https://media3.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
     style="width:320px;max-width:85vw;border-radius:20px;margin-bottom:15px;">
-
     <h1 id="yesText" style="font-family:Pacifico;">She said YES gaizzz!!! 💕</h1>
-
   </div>
 </div>
 `;
@@ -135,6 +148,7 @@ setInterval(()=>{
   heart.style.left=centerX+"px";
   heart.style.top=centerY+"px";
   heart.style.fontSize="22px";
+  heart.style.zIndex="9999";
   document.body.appendChild(heart);
   const angle=Math.random()*2*Math.PI;
   const distance=Math.random()*200+50;
@@ -147,7 +161,6 @@ setInterval(()=>{
   setTimeout(()=>heart.remove(),1400);
  }
 },2000);
-
 
 //////////////////// CREATE EASTER EGG LETTER ////////////////////
 const letter=document.createElement("div");
@@ -180,76 +193,13 @@ letter.innerHTML=`
 </div>`;
 document.body.appendChild(letter);
 
-
-//////////////// PERFECT LETTER-FIT PETALS ////////////////////
-let letterOpen = false;
-
-function spawnPetal(){
-
- if(!letterOpen) return;
-
- const card = document.getElementById("letterCard");
- if(!card) return;
-
- const cardHeight = card.scrollHeight; // full letter height
-
- const petal=document.createElement("div");
- petal.innerHTML="🌸";
-
- card.appendChild(petal);
-
- petal.style.position="absolute";
- petal.style.left=Math.random()*100+"%";
- petal.style.top="-40px";
- petal.style.fontSize=(Math.random()*6+18)+"px";
- petal.style.pointerEvents="none";
- petal.style.zIndex="0";
-
- const drift=(Math.random()*70)-35;   // soft left/right drift
- const rotate=Math.random()*720;
-
- /* ⭐ IMPORTANT FIX — stop inside letter */
- const fallDistance = cardHeight - 40;
-
- petal.animate([
-   { transform:"translate(0,0) rotate(0deg)", opacity:0.95 },
-   { transform:`translate(${drift}px,${fallDistance}px) rotate(${rotate}deg)`, opacity:0 }
- ],{
-   duration:20000,
-   easing:"linear"
- });
-
- setTimeout(()=>petal.remove(),20000);
-}
-
-
-//////////////// BUTTERFLY ////////////////////
-function spawnButterfly(){
- if(document.querySelector(".butterfly")) return;
- const card=document.getElementById("letterCard");
- const b=document.createElement("video");
- b.src="butterfly.webm";
- b.autoplay=true; b.loop=true; b.muted=true;
- b.className="butterfly";
- b.style.position="absolute";
- b.style.width="200px";
- b.style.left=Math.random()*70+"%";
- b.style.top=Math.random()*70+"%";
- b.style.filter=`hue-rotate(${Math.random()*360}deg) saturate(200%)`;
- card.appendChild(b);
-}
-
-
 //////////////// OPEN LETTER AFTER 10 TAPS ////////////////////
 let taps=0;
 document.addEventListener("click",function(e){
- if(e.target.id==="closeLetter"){letter.style.display="none";letterOpen=false;taps=0;return;}
+ if(e.target.id==="closeLetter"){letter.style.display="none";taps=0;return;}
  taps++;
  if(taps>=10){
   letter.style.display="flex";
-  letterOpen=true;
-  spawnButterfly();
-  setInterval(spawnPetal,5000);
  }
 });
 
