@@ -309,4 +309,23 @@ button{
   .n3{ bottom:8%; left:10%; }
   .n6{ bottom:8%; right:10%; }
 }
+
+/* =========================================
+   GLOBAL LAYER ORDER FIX
+   ========================================= */
+
+/* background sticky notes */
+.sticky-notes{
+  z-index:0 !important;
+}
+
+/* yes page content (gif + text) */
+#yesScreen{
+  z-index:5 !important;
+}
+
+/* ALL HEARTS (burst + floating) */
+body > div:not(.sticky-notes):not(#yesScreen){
+  z-index:9999 !important;
+}
  
