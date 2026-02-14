@@ -101,19 +101,23 @@ music.play().then(()=>{
 
 
 document.body.innerHTML=`
-<div style="padding:30px; max-width:520px;">
+<div style="padding:30px; max-width:520px; position:relative;">
+
 <img src="https://media3.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" 
 style="width:320px;max-width:85vw;border-radius:20px;margin-bottom:15px;">
 
+<div class="sticky-notes">
+  <div class="note n1">Best day ever 💕</div>
+  <div class="note n2">Happy Valentine’s 💌</div>
+  <div class="note n3">I love you 🥹</div>
+  <div class="note n4">Miss you always 💖</div>
+  <div class="note n5">Next Valentine’s date 😆</div>
+  <div class="note n6">You make me happy 💞</div>
+</div>
+
 <h1 id="yesText" style="font-family:Pacifico;">She said YES gaizzz!!! 💕</h1>
 
-<p id="loveMsg" style="
-text-align:left"></p>
 </div>`;
-
-const msg=`So you agree? Ginayuma mo nga ako? Hahaha joke lang po. Happy Valentine’s Day, baby! I love you. I miss you. You’re all I think about.
-
-Sana naman next Valentine’s magka-date na tayo ☺️`;
 let j=0;
 function typeLove(){
  if(j<msg.length){
