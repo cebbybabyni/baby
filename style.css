@@ -180,7 +180,7 @@ button{
 }
 
 /* =========================================================
-   STICKY NOTES (MESSAGE BUTTON STYLE) – YES PAGE
+   STICKY NOTES – YES PAGE FINAL (BIGGER VERSION)
    ========================================================= */
 
 /* Container behind content */
@@ -209,23 +209,22 @@ button{
 
 .note{
   position:absolute;
-  padding:10px 14px;
-  border-radius:12px;
+  padding:12px 18px;        /* bigger padding */
+  border-radius:14px;
   font-family:Poppins;
-  font-size:14px;
+  font-size:16px;           /* bigger text */
   white-space:nowrap;
   width:fit-content;
   height:fit-content;
-  box-shadow:0 6px 14px rgba(0,0,0,.15);
+  box-shadow:0 8px 18px rgba(0,0,0,.18);
   opacity:.95;
-  transform:rotate(-2deg);
 }
 
 /* Colors */
-.n1{ background:#fff2a8; }
+.n1{ background:#fff2a8; transform:rotate(-2deg);}
 .n2{ background:#ffd6ec; transform:rotate(-3deg);}
-.n3{ background:#d6f5ff; transform:rotate(-3deg);}
-.n4{ background:#e6ffd9; transform:rotate(4deg);}
+.n3{ background:#d6f5ff; transform:rotate(-2deg);}
+.n4{ background:#e6ffd9; transform:rotate(3deg);}
 .n5{ background:#ffe1c9; transform:rotate(3deg);}
 .n6{ background:#f0d9ff; transform:rotate(2deg);}
 
@@ -233,26 +232,24 @@ button{
    DESKTOP POSITIONS
    ========================================================= */
 
-/* left top */
 .n1{ top:8%; left:18%; }
-
-/* right top */
 .n4{ top:10%; right:18%; }
 
-/* n5 ABOVE GIF */
-.n5{ top:20%; right:22%; }
+/* n5 CENTER ABOVE GIF */
+.n5{
+  top:22%;
+  left:50%;
+  transform:translateX(-50%) rotate(3deg);
+}
 
-/* n2 BELOW "She said YES gaizzz" */
+/* n2 CENTER BELOW TEXT */
 .n2{
-  top:62%;
+  top:78%;
   left:50%;
   transform:translateX(-50%) rotate(-3deg);
 }
 
-/* bottom left */
 .n3{ bottom:12%; left:22%; }
-
-/* bottom right */
 .n6{ bottom:12%; right:22%; }
 
 /* =========================================================
@@ -261,17 +258,21 @@ button{
 @media (max-width:1024px){
 
   .note{
-    font-size:13px;
-    padding:9px 12px;
+    font-size:15px;
+    padding:11px 16px;
   }
 
   .n1{ top:6%; left:10%; }
   .n4{ top:6%; right:10%; }
 
-  .n5{ top:18%; right:10%; }
+  .n5{
+    top:20%;
+    left:50%;
+    transform:translateX(-50%) rotate(3deg);
+  }
 
   .n2{
-    top:65%;
+    top:80%;
     left:50%;
     transform:translateX(-50%) rotate(-3deg);
   }
@@ -286,17 +287,21 @@ button{
 @media (max-width:600px){
 
   .note{
-    font-size:11px;
-    padding:7px 10px;
+    font-size:13px;
+    padding:9px 13px;
   }
 
   .n1{ top:5%; left:6%; }
   .n4{ top:5%; right:6%; }
 
-  .n5{ top:16%; right:6%; }
+  .n5{
+    top:18%;
+    left:50%;
+    transform:translateX(-50%) rotate(3deg);
+  }
 
   .n2{
-    top:68%;
+    top:84%;
     left:50%;
     transform:translateX(-50%) rotate(-3deg);
   }
