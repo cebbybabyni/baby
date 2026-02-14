@@ -268,13 +268,18 @@ body{
   .n6{ bottom:140px; right:10px; }
 }
 
-/* 📲 TABLET FIX */
+/* 📲 TABLET SAFE POSITIONS */
 @media (min-width:601px) and (max-width:1024px){
 
-  .n3{ top:260px; }
-  .n4{ top:260px; }
+  /* top notes lower so not hidden by browser bar */
+  .n1{ top:140px; }
+  .n2{ top:140px; }
 
-  .n5{ bottom:120px; }
-  .n6{ bottom:120px; }
+  /* side notes above GIF */
+  .n3{ top:240px; }
+  .n4{ top:240px; }
+
+  /* bottom notes higher so no scrolling */
+  .n5{ bottom:140px; }
+  .n6{ bottom:140px; }
 }
-
