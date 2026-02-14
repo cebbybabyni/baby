@@ -309,9 +309,3 @@ button{
   .n3{ bottom:8%; left:10%; }
   .n6{ bottom:8%; right:10%; }
 }
-
-/* hearts always on top */
-body > div{
-  z-index:9999 !important;
-}
- 
