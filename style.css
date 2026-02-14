@@ -207,9 +207,14 @@ button{
   to{ transform:translateY(-12px) rotate(4deg); }
 }
 
-.n1{ top:-10px; left:-10px; background:#fff3b0; }
-.n2{ top:40px; right:-10px; background:#caffbf; }
-.n3{ top:220px; left:-15px; background:#ffd6e6; }
-.n4{ top:250px; right:-15px; background:#bde0fe; }
-.n5{ bottom:-20px; left:10px; background:#ffc6ff; }
-.n6{ bottom:-20px; right:10px; background:#ffdfba; }
+./* TOP CORNERS */
+.n1{ top:70px; left:10px; background:#fff3b0; }
+.n2{ top:70px; right:10px; background:#caffbf; }
+
+/* MID SIDE NOTES */
+.n3{ top:38%; left:10px; background:#ffd6e6; }
+.n4{ top:38%; right:10px; background:#bde0fe; }
+
+/* BOTTOM CORNERS */
+.n5{ bottom:80px; left:10px; background:#ffc6ff; }
+.n6{ bottom:80px; right:10px; background:#ffdfba; }
