@@ -218,3 +218,9 @@ button{
 /* BOTTOM CORNERS (moved further down) */
 .n5{ bottom:120px; left:15px; background:#ffc6ff; }
 .n6{ bottom:120px; right:15px; background:#ffdfba; }
+
+/* YES PAGE FULL SCREEN FIX */
+body{
+  min-height:100vh;
+  overflow:hidden; /* prevents scrolling */
+}
