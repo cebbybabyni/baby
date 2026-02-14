@@ -157,7 +157,7 @@ button{
 
 /* ================= 🌸 PETALS (NEW) ================= */
 .petal{
-  position:fixed;
+  position:absolute;
   pointer-events:none;
   z-index:99998;
   opacity:.85;
@@ -203,7 +203,8 @@ button{
   font-family:"Comic Sans MS", cursive;
   box-shadow:0 6px 14px rgba(0,0,0,0.15);
   animation: floatNote 4s ease-in-out infinite alternate;
-border:1px solid rgba(0,0,0,0.08); /* little paper edge */
+  border:1px solid rgba(0,0,0,0.08);
+  pointer-events:none;
 }
 
 /* 🎨 STICKY NOTE COLORS */
@@ -214,19 +215,10 @@ border:1px solid rgba(0,0,0,0.08); /* little paper edge */
 .n5{ background:#ffdfba; } /* peach */
 .n6{ background:#bde0fe; } /* baby blue */
 
-.note{
-  position:absolute;
-  pointer-events:none;
 }
 @keyframes floatNote{
   from{ transform:translateY(0px) rotate(-4deg); }
   to{ transform:translateY(-12px) rotate(4deg); }
-}
-
-/* YES PAGE FULL SCREEN FIX */
-body{
-  min-height:100vh;
-  overflow:hidden; /* prevents scrolling */
 }
 
 /* FULLSCREEN LOCK FOR YES PAGE */
