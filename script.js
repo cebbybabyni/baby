@@ -22,6 +22,7 @@ heart.style.left=e.clientX+"px";
 heart.style.top=e.clientY+"px";
 heart.style.fontSize=(Math.random()*10+18)+"px";
 heart.style.pointerEvents="none";
+heart.style.zIndex="100000";
 document.body.appendChild(heart);
 
 const x=(Math.random()-0.5)*200;
