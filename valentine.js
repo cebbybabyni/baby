@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function(){
         textEl.style.transform = "scale(1)";
       },800);
 
-    },1500);
+    },5000);
 
   },200);
 
