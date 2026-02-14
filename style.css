@@ -181,7 +181,6 @@ button{
 
 /* =========================================================
    STICKY NOTES (MESSAGE BUTTON STYLE) – YES PAGE
-   Fits text, stays away from GIF, responsive
    ========================================================= */
 
 /* Container behind content */
@@ -222,28 +221,38 @@ button{
   transform:rotate(-2deg);
 }
 
-/* Cute pastel colors */
+/* Colors */
 .n1{ background:#fff2a8; }
-.n2{ background:#ffd6ec; transform:rotate(3deg);}
+.n2{ background:#ffd6ec; transform:rotate(-3deg);}
 .n3{ background:#d6f5ff; transform:rotate(-3deg);}
 .n4{ background:#e6ffd9; transform:rotate(4deg);}
-.n5{ background:#ffe1c9; transform:rotate(-2deg);}
+.n5{ background:#ffe1c9; transform:rotate(3deg);}
 .n6{ background:#f0d9ff; transform:rotate(2deg);}
 
 /* =========================================================
-   DESKTOP POSITIONS (spread around empty spaces)
+   DESKTOP POSITIONS
    ========================================================= */
 
-/* Top area */
+/* left top */
 .n1{ top:8%; left:18%; }
+
+/* right top */
 .n4{ top:10%; right:18%; }
 
-/* Middle area (beside GIF) */
-.n2{ top:40%; left:6%; }
-.n5{ top:45%; right:6%; }
+/* n5 ABOVE GIF */
+.n5{ top:20%; right:22%; }
 
-/* Bottom area */
+/* n2 BELOW "She said YES gaizzz" */
+.n2{
+  top:62%;
+  left:50%;
+  transform:translateX(-50%) rotate(-3deg);
+}
+
+/* bottom left */
 .n3{ bottom:12%; left:22%; }
+
+/* bottom right */
 .n6{ bottom:12%; right:22%; }
 
 /* =========================================================
@@ -259,8 +268,13 @@ button{
   .n1{ top:6%; left:10%; }
   .n4{ top:6%; right:10%; }
 
-  .n2{ top:42%; left:2%; }
-  .n5{ top:42%; right:2%; }
+  .n5{ top:18%; right:10%; }
+
+  .n2{
+    top:65%;
+    left:50%;
+    transform:translateX(-50%) rotate(-3deg);
+  }
 
   .n3{ bottom:10%; left:14%; }
   .n6{ bottom:10%; right:14%; }
@@ -279,8 +293,13 @@ button{
   .n1{ top:5%; left:6%; }
   .n4{ top:5%; right:6%; }
 
-  .n2{ top:38%; left:1%; }
-  .n5{ top:38%; right:1%; }
+  .n5{ top:16%; right:6%; }
+
+  .n2{
+    top:68%;
+    left:50%;
+    transform:translateX(-50%) rotate(-3deg);
+  }
 
   .n3{ bottom:8%; left:10%; }
   .n6{ bottom:8%; right:10%; }
