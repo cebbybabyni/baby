@@ -11,6 +11,7 @@ function type(){
  }}
 type();
 
+
 //////////////////// HEART BURST CLICK ////////////////////
 document.addEventListener("click", function(e){
 for(let i=0;i<10;i++){
@@ -21,7 +22,6 @@ heart.style.left=e.clientX+"px";
 heart.style.top=e.clientY+"px";
 heart.style.fontSize=(Math.random()*10+18)+"px";
 heart.style.pointerEvents="none";
-heart.style.zIndex="9999"; // ⭐ added
 document.body.appendChild(heart);
 
 const x=(Math.random()-0.5)*200;
@@ -36,13 +36,9 @@ setTimeout(()=>heart.remove(),1200);
 }
 });
 
+
 //////////////////// FLOATING HEARTS ////////////////////
 setInterval(()=>{
-
-// ⭐ added stop when easter egg open
-const letterCheck1=document.getElementById("letterCard");
-if(letterCheck1 && letterCheck1.parentElement.style.display==="flex") return;
-
 let heart=document.createElement("div");
 heart.innerHTML=["💖","💕","💗","💘"][Math.floor(Math.random()*4)];
 heart.style.position="fixed";
@@ -51,7 +47,6 @@ heart.style.bottom="-30px";
 heart.style.fontSize=(Math.random()*12+16)+"px";
 heart.style.opacity="0.6";
 heart.style.pointerEvents="none";
-heart.style.zIndex="9999"; // ⭐ added
 document.body.appendChild(heart);
 
 heart.animate([
@@ -61,6 +56,7 @@ heart.animate([
 
 setTimeout(()=>heart.remove(),9000);
 },1200);
+
 
 //////////////////// BUTTONS ////////////////////
 const noBtn=document.getElementById("noBtn");
@@ -87,9 +83,11 @@ noBtn.style.top=y+"px";
 noBtn.onmouseover=move;
 noBtn.onclick=move;
 
+
 //////////////////// YES PAGE ////////////////////
 yesBtn.onclick=()=>{
 
+// 🎵 MUSIC (mobile safe)
 const music=new Audio("music.mp3");
 music.loop=true;
 music.volume=0;
@@ -101,7 +99,10 @@ music.play().then(()=>{
  },300);
 }).catch(()=>{document.addEventListener("click",()=>music.play(),{once:true});});
 
+
 document.body.innerHTML=`
+
+<!-- 🌸 STICKY NOTES IN BACKGROUND -->
 <div class="sticky-notes">
   <div class="note n1">My baby, Abby! 💕</div>
   <div class="note n2">Happy Valentine’s Day! 💌</div>
@@ -113,42 +114,40 @@ document.body.innerHTML=`
 
 <div id="yesScreen">
   <div id="yesContent">
+
     <img src="https://media3.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
     style="width:320px;max-width:85vw;border-radius:20px;margin-bottom:15px;">
+
     <h1 id="yesText" style="font-family:Pacifico;">She said YES gaizzz!!! 💕</h1>
+
   </div>
 </div>
 `;
 
 //////////////// RANDOM HEART BURSTS ON YES PAGE ////////////////////
 setInterval(()=>{
-
-// ⭐ added stop when easter egg open
-const letterCheck2=document.getElementById("letterCard");
-if(letterCheck2 && letterCheck2.parentElement.style.display==="flex") return;
-
-const centerX=Math.random()*window.innerWidth;
-const centerY=Math.random()*window.innerHeight*0.8;
-for(let i=0;i<20;i++){
- let heart=document.createElement("div");
- heart.innerHTML=["💓","💕","💗","💞","💖"][Math.floor(Math.random()*5)];
- heart.style.position="fixed";
- heart.style.left=centerX+"px";
- heart.style.top=centerY+"px";
- heart.style.fontSize="22px";
- heart.style.zIndex="9999"; // ⭐ added
- document.body.appendChild(heart);
- const angle=Math.random()*2*Math.PI;
- const distance=Math.random()*200+50;
- const x=Math.cos(angle)*distance;
- const y=Math.sin(angle)*distance;
- heart.animate([
-  {transform:"translate(0,0)",opacity:1},
-  {transform:`translate(${x}px,${y}px) scale(1.6)`,opacity:0}
- ],{duration:1400});
- setTimeout(()=>heart.remove(),1400);
-}
+ const centerX=Math.random()*window.innerWidth;
+ const centerY=Math.random()*window.innerHeight*0.8;
+ for(let i=0;i<20;i++){
+  let heart=document.createElement("div");
+  heart.innerHTML=["💓","💕","💗","💞","💖"][Math.floor(Math.random()*5)];
+  heart.style.position="fixed";
+  heart.style.left=centerX+"px";
+  heart.style.top=centerY+"px";
+  heart.style.fontSize="22px";
+  document.body.appendChild(heart);
+  const angle=Math.random()*2*Math.PI;
+  const distance=Math.random()*200+50;
+  const x=Math.cos(angle)*distance;
+  const y=Math.sin(angle)*distance;
+  heart.animate([
+   {transform:"translate(0,0)",opacity:1},
+   {transform:`translate(${x}px,${y}px) scale(1.6)`,opacity:0}
+  ],{duration:1400});
+  setTimeout(()=>heart.remove(),1400);
+ }
 },2000);
+
 
 //////////////////// CREATE EASTER EGG LETTER ////////////////////
 const letter=document.createElement("div");
@@ -181,18 +180,22 @@ letter.innerHTML=`
 </div>`;
 document.body.appendChild(letter);
 
+
 //////////////// PERFECT LETTER-FIT PETALS ////////////////////
-let letterOpen=false;
+let letterOpen = false;
 
 function spawnPetal(){
+
  if(!letterOpen) return;
- const card=document.getElementById("letterCard");
+
+ const card = document.getElementById("letterCard");
  if(!card) return;
 
- const cardHeight=card.scrollHeight;
+ const cardHeight = card.scrollHeight; // full letter height
 
  const petal=document.createElement("div");
  petal.innerHTML="🌸";
+
  card.appendChild(petal);
 
  petal.style.position="absolute";
@@ -202,17 +205,23 @@ function spawnPetal(){
  petal.style.pointerEvents="none";
  petal.style.zIndex="0";
 
- const drift=(Math.random()*70)-35;
+ const drift=(Math.random()*70)-35;   // soft left/right drift
  const rotate=Math.random()*720;
- const fallDistance=cardHeight-40;
+
+ /* ⭐ IMPORTANT FIX — stop inside letter */
+ const fallDistance = cardHeight - 40;
 
  petal.animate([
-  {transform:"translate(0,0) rotate(0deg)",opacity:0.95},
-  {transform:`translate(${drift}px,${fallDistance}px) rotate(${rotate}deg)`,opacity:0}
- ],{duration:20000,easing:"linear"});
+   { transform:"translate(0,0) rotate(0deg)", opacity:0.95 },
+   { transform:`translate(${drift}px,${fallDistance}px) rotate(${rotate}deg)`, opacity:0 }
+ ],{
+   duration:20000,
+   easing:"linear"
+ });
 
  setTimeout(()=>petal.remove(),20000);
 }
+
 
 //////////////// BUTTERFLY ////////////////////
 function spawnButterfly(){
@@ -230,6 +239,7 @@ function spawnButterfly(){
  card.appendChild(b);
 }
 
+
 //////////////// OPEN LETTER AFTER 10 TAPS ////////////////////
 let taps=0;
 document.addEventListener("click",function(e){
@@ -241,4 +251,7 @@ document.addEventListener("click",function(e){
   spawnButterfly();
   setInterval(spawnPetal,5000);
  }
+});
+
+};
 });
