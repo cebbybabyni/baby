@@ -178,3 +178,33 @@ button{
   font-size:clamp(18px,6vw,36px);
   transition:all .8s ease;
 }
+
+/* STICKY NOTES */
+.sticky-notes{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.note{
+  position:absolute;
+  width:120px;
+  padding:10px;
+  font-size:13px;
+  border-radius:10px;
+  font-family:"Comic Sans MS", cursive;
+  box-shadow:0 6px 14px rgba(0,0,0,0.15);
+  animation: floatNote 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatNote{
+  from{ transform:translateY(0px) rotate(-4deg); }
+  to{ transform:translateY(-12px) rotate(4deg); }
+}
+
+.n1{ top:-10px; left:-10px; background:#fff3b0; }
+.n2{ top:40px; right:-10px; background:#caffbf; }
+.n3{ top:220px; left:-15px; background:#ffd6e6; }
+.n4{ top:250px; right:-15px; background:#bde0fe; }
+.n5{ bottom:-20px; left:10px; background:#ffc6ff; }
+.n6{ bottom:-20px; right:10px; background:#ffdfba; }
