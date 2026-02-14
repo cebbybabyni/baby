@@ -157,7 +157,7 @@ button{
 
 /* ================= 🌸 PETALS (NEW) ================= */
 .petal{
-  position:absolute;
+  position:fixed;
   pointer-events:none;
   z-index:99998;
   opacity:.85;
@@ -177,81 +177,4 @@ button{
   text-align:center;
   font-size:clamp(18px,6vw,36px);
   transition:all .8s ease;
-}
-
-.sticky-notes{
-  position:fixed;   /* ⭐ THIS IS THE FIX */
-  top:0;
-  left:0;
-  width:100vw;
-  height:100vh;
-  pointer-events:none;
-  z-index:5;
-}
-
-#yesText{
-  position:relative;
-  z-index:1;
-}
-
-.note{
-  position:absolute;
-  width:120px;
-  padding:10px;
-  font-size:14px;
-  border-radius:10px;
-  font-family:"Comic Sans MS", cursive;
-  box-shadow:0 6px 14px rgba(0,0,0,0.15);
-  animation: floatNote 4s ease-in-out infinite alternate;
-  border:1px solid rgba(0,0,0,0.08);
-  pointer-events:none;
-}
-
-/* 🎨 STICKY NOTE COLORS */
-.n1{ background:#fff3a6; } /* yellow */
-.n2{ background:#ffd1dc; } /* pink */
-.n3{ background:#c9f7e8; } /* mint */
-.n4{ background:#d7c6ff; } /* lavender */
-.n5{ background:#ffdfba; } /* peach */
-.n6{ background:#bde0fe; } /* baby blue */
-
-}
-@keyframes floatNote{
-  from{ transform:translateY(0px) rotate(-4deg); }
-  to{ transform:translateY(-12px) rotate(4deg); }
-}
-
-/* FULLSCREEN LOCK FOR YES PAGE */
-#yesScreen{
-  position:fixed;
-  inset:0;
-  width:100vw;
-  height:100vh;
-  overflow:hidden;      /* prevents scroll on all devices */
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-/* centered content */
-#yesContent{
-  text-align:center;
-  padding:20px;
-}
-
-/* 💖 FLOAT AROUND CENTER (MOBILE) */
-@media (max-width:600px){
-
-  /* top floating notes */
-  .n1{ top:12%; left:8%; }
-  .n2{ top:12%; right:8%; }
-
-  /* mid floating notes near text */
-  .n3{ top:32%; left:5%; }
-  .n4{ top:32%; right:5%; }
-
-  /* bottom floating notes near heart 7 */
-  .n5{ top:70%; left:10%; }
-  .n6{ top:70%; right:10%; }
-
 }
