@@ -310,35 +310,5 @@ button{
   .n6{ bottom:8%; right:10%; }
 }
 
-/* =========================================================
-   GLOBAL LAYER ORDER (HEARTS ALWAYS ON TOP)
-   ========================================================= */
 
-/* Sticky notes stay behind */
-.sticky-notes{
-  z-index:0 !important;
-}
-
-/* YES page content (gif + text) */
-#yesScreen{
-  position:fixed;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  z-index:5 !important;
-  padding:20px;
-}
-
-/* Easter egg overlay background */
-#letterCard{
-  position:relative;
-  z-index:9000;
-}
-
-/* All hearts created by JS (heart burst + floating hearts) */
-body > div{
-  z-index:9999 !important;
-}
  
