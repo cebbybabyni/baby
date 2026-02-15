@@ -89,6 +89,10 @@ noBtn.onclick=move;
 
 //////////////////// YES PAGE ////////////////////
 yesBtn.onclick=()=>{
+// count YES clicks
+let yesClicks = localStorage.getItem("yesClicks") || 0;
+yesClicks = Number(yesClicks) + 1;
+localStorage.setItem("yesClicks", yesClicks);
 
 const music=new Audio("music.mp3");
 music.loop=true;
