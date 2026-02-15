@@ -257,21 +257,5 @@ document.addEventListener("click",function(e){
 
 });
 
-//////////////////// VISIT COUNTER (RUN ON PAGE LOAD) ////////////////////
-let visits = localStorage.getItem("visitCount");
-
-if(!visits){
-  visits = 1;
-}else{
-  visits = Number(visits) + 1;
-}
-
-localStorage.setItem("visitCount", visits);
-
-const counter = document.getElementById("visitCounter");
-
-if(counter){
-  counter.innerHTML = "You visited this page " + visits + " times… and counting 👀💕";
-}
-
+};
 });
