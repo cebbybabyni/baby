@@ -325,9 +325,9 @@ body > div[style*="backdrop-filter"]{
 
 #yesBubble{
   position:fixed;
-  top:12px;
-  right:12px;
-  width:200px;
+  top:10px;
+  left:10px;
+  width:130px;
   z-index:99999;
 }
 
@@ -336,25 +336,29 @@ body > div[style*="backdrop-filter"]{
   display:block;
 }
 
-/* center container inside bubble */
+/* container centered inside bubble */
 #bubbleText{
   position:absolute;
-  top:50%;
+  top:52%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:78%;
+  width:72%;              /* tighter so it fits bubble shape */
   text-align:center;
-  font-size:10px;
-  font-weight:700;
   color:#6b4b2a;
-  white-space:nowrap;
+  font-weight:700;
+  line-height:1.1;
 }
 
-/* number below text and centered */
+/* top line text */
+#bubbleText{
+  font-size:8.5px;
+  white-space:nowrap;     /* keep text in one line */
+}
+
+/* count centered under text */
 #yesCount{
   display:block;
-  margin-top:4px;
-  font-size:18px;
+  margin-top:2px;
+  font-size:15px;
   font-weight:900;
-  color:#6b4b2a;
 }
