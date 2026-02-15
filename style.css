@@ -326,7 +326,8 @@ body > div[style*="backdrop-filter"]{
 #yesBubble{
   position:fixed;
   top:10px;
-  left:10px;
+  right:10px;   /* move to RIGHT */
+  left:auto;    /* reset left */
   width:130px;
   z-index:99999;
 }
