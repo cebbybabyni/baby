@@ -322,3 +322,19 @@ button{
 body > div[style*="backdrop-filter"]{
   z-index:99998 !important;
 }
+
+#visitCounterBadge{
+  position:fixed;
+  top:18px;
+  right:18px;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(6px);
+  padding:10px 16px;
+  border-radius:25px;
+  font-size:13px;
+  color:#b04b6f;
+  box-shadow:0 6px 16px rgba(0,0,0,0.2);
+  z-index:99999;
+  animation:floatBadge 3s ease-in-out infinite;
+  font-family:'Poppins',sans-serif;
+}
