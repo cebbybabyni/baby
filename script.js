@@ -256,7 +256,6 @@ document.addEventListener("click",function(e){
  }
 
 //////////////////// VISIT COUNTER ////////////////////
-
 let visits = localStorage.getItem("visitCount");
 
 if(!visits){
