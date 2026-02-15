@@ -255,7 +255,9 @@ document.addEventListener("click",function(e){
   setInterval(spawnPetal,5000);
  }
 
-//////////////////// VISIT COUNTER ////////////////////
+});
+
+//////////////////// VISIT COUNTER (RUN ON PAGE LOAD) ////////////////////
 let visits = localStorage.getItem("visitCount");
 
 if(!visits){
