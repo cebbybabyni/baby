@@ -322,3 +322,17 @@ button{
 body > div[style*="backdrop-filter"]{
   z-index:99998 !important;
 }
+
+#yesBubble{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#ff4d88;
+  color:white;
+  padding:12px 18px;
+  border-radius:30px;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  z-index:9999;
+  font-size:14px;
+}
