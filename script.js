@@ -89,10 +89,15 @@ noBtn.onclick=move;
 
 //////////////////// YES PAGE ////////////////////
 yesBtn.onclick=()=>{
-// count YES clicks
-let yesClicks = localStorage.getItem("yesClicks") || 0;
-yesClicks = Number(yesClicks) + 1;
-localStorage.setItem("yesClicks", yesClicks);
+// 🌍 GLOBAL YES COUNTER (online)
+fetch("https://api.countapi.xyz/hit/cebbybaby/yesClicks")
+  .then(res => res.json())
+  .then(data => {
+     const badge = document.getElementById("visitCounterBadge");
+     if(badge){
+       badge.innerHTML = "She clicked YES " + data.value + " times 💖";
+     }
+  });
 
 const music=new Audio("music.mp3");
 music.loop=true;
