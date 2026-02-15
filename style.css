@@ -338,20 +338,23 @@ body > div[style*="backdrop-filter"]{
 
 #bubbleText{
   position:absolute;
-  top:42%;
+  top:44%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:62%;
+  width:58%;          /* smaller text area so it stays inside */
   text-align:center;
-  font-size:9px;
-  font-weight:600;
+  font-size:8.5px;    /* slightly smaller */
+  font-weight:700;
   color:#6b4b2a;
-  line-height:1.15;
+  line-height:1.1;
+
+  word-wrap:break-word;
+  overflow-wrap:break-word;
 }
 
 #yesCount{
   display:block;
-  font-size:14px;
-  font-weight:800;
-  margin-top:2px;
+  font-size:13px;
+  font-weight:900;
+  margin-top:1px;
 }
