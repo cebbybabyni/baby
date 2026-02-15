@@ -13,6 +13,8 @@
 
 <h1 id="typing"></h1>
 
+<div id="yesBubble">💘 Yes clicks: <span id="yesCount">0</span></div>
+
 <p>Because you're my favorite person to miss, my favorite mais, and the one who lives rent free in my head.</p>
 <p>So I have a very important question for you…</p>
 
@@ -26,6 +28,26 @@
 </div>
 
 <p id="loveMsg"></p>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBBltsFPtlF3jd_tv_8-vQeyhXPSJNCy2w",
+  authDomain: "abbybabynicebby.firebaseapp.com",
+  databaseURL: "https://abbybabynicebby-default-rtdb.firebaseio.com",
+  projectId: "abbybabynicebby",
+  storageBucket: "abbybabynicebby.firebasestorage.app",
+  messagingSenderId: "515415904868",
+  appId: "1:515415904868:web:4e4853284516c08afc0571",
+  measurementId: "G-9T57S85WV5"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+</script>
 
 <script src="script.js"></script>
 <script src="valentine.js"></script>
