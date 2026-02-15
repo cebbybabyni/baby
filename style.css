@@ -327,20 +327,20 @@ body > div[style*="backdrop-filter"]{
   position:fixed;
   top:20px;
   right:20px;
-  background:#6c7cff;
-  color:#fff;
-  padding:14px 18px;
-  border-radius:20px;
+  background:linear-gradient(135deg,#ffb6c9,#ffd1dc,#ffe4ec);
+  color:#ffffff;
+  padding:15px 20px;
+  border-radius:22px;
   font-size:14px;
   font-weight:500;
-  max-width:200px;
+  max-width:220px;
   line-height:1.4;
-  box-shadow:0 6px 18px rgba(0,0,0,0.18);
+  box-shadow:0 10px 25px rgba(255,182,201,0.45);
   z-index:9999;
   animation:floatBubble 3s ease-in-out infinite;
 }
 
-/* real chat bubble tail */
+/* chat bubble tail */
 #yesBubble::after{
   content:"";
   position:absolute;
@@ -348,12 +348,12 @@ body > div[style*="backdrop-filter"]{
   top:18px;
   width:0;
   height:0;
-  border-left:10px solid #6c7cff;
+  border-left:10px solid #ffd1dc;
   border-top:8px solid transparent;
   border-bottom:8px solid transparent;
 }
 
-/* number bigger like chat emphasis */
+/* number emphasis */
 #yesCount{
   display:block;
   font-size:20px;
@@ -361,7 +361,7 @@ body > div[style*="backdrop-filter"]{
   margin-top:4px;
 }
 
-/* floating idle animation */
+/* floating animation */
 @keyframes floatBubble{
   0%{ transform:translateY(0px); }
   50%{ transform:translateY(-6px); }
