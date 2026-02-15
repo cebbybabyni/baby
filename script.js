@@ -97,6 +97,7 @@ noBtn.onclick=move;
 
 //////////////////// YES PAGE ////////////////////
 yesBtn.onclick=()=>{
+counterRef.transaction(current => (current || 0) + 1);
 
 // 🎵 MUSIC (mobile safe)
 const music=new Audio("music.mp3");
