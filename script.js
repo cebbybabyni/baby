@@ -111,7 +111,7 @@ document.body.innerHTML=`
   <div class="note n2">Happy Valentine’s Day! 💌</div>
   <div class="note n3">I love you 🥰</div>
   <div class="note n4">I miss you, always 🥹</div>
-  <div class="note n5">You make me *orny 🌽</div>
+  <div class="note n5">You are always in my heart 🫀 </div>
   <div class="note n6">You make me happy 🤗</div>
 </div>
 
